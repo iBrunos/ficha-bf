@@ -270,7 +270,7 @@ function Home() {
                                 type="number"
 
                                 placeholder="0"
-                                className="mt-1 w-40 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                className=" mt-1 w-10 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
                             />
 
                         </div>
@@ -285,7 +285,7 @@ function Home() {
                                 type="number"
 
                                 placeholder="0"
-                                className="mt-1 w-40 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                className="mt-1 w-10 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
                             />
 
                         </div>
@@ -300,7 +300,7 @@ function Home() {
                                 type="number"
 
                                 placeholder="0"
-                                className="mt-1 w-40 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                className="mt-1 w-10 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
                             />
 
                         </div>
@@ -315,7 +315,7 @@ function Home() {
                                 type="number"
 
                                 placeholder="0"
-                                className="mt-1 w-40 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                className="mt-1 w-10 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
                             />
 
                         </div>
@@ -330,7 +330,7 @@ function Home() {
                                 type="number"
 
                                 placeholder="0"
-                                className="mt-1 w-40 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                className="mt-1 w-10 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
                             />
 
                         </div>
@@ -345,12 +345,14 @@ function Home() {
                                 type="number"
 
                                 placeholder="0"
-                                className="mt-1 w-40 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                className="mt-1 w-10 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
                             />
 
                         </div>
                     </div>
+
                 </div>
+
             </article>
         </div>
     );
