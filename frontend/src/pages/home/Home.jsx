@@ -335,11 +335,11 @@ function Home() {
                                 <label htmlFor="nome" className="block text-xs font-medium text-gray-700 dark:text-gray-200">
                                     Sub-Atributos
                                 </label>
+                                <label htmlFor="nome" className="ml-2 font-semibold block text-xs text-gray-700 dark:text-gray-200">
+                                    Força                                        </label>
+                                <div className='grid grid-cols-2 ml-2 bg-gray-700 w-40 h-12'>
 
-                                <div className='flex flex-col ml-2 bg-gray-700 w-40 h-40'>
-                                    <label htmlFor="nome" className="font-semibold block text-xs text-gray-700 dark:text-gray-200">
-                                        Força                                        </label>
-                                    <div className='flex-row'>
+                                    <div className='ml-2 flex flex-col bg-yellow-700'>
                                         <label htmlFor="nome" className="block text-xs text-gray-700 dark:text-gray-200">
                                             Atletismo
                                         </label>
@@ -349,7 +349,7 @@ function Home() {
                                             className="mt-1 w-10 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
                                         />
                                     </div>
-                                    <div className='ml-2 flex-row'>
+                                    <div className='ml-2 flex-row bg-slate-600'>
                                         <label htmlFor="nome" className="block text-xs text-gray-700 dark:text-gray-200">
                                             Dominação
                                         </label>
@@ -361,8 +361,8 @@ function Home() {
                                     </div>
                                 </div>
                                 <div className='ml-2'>
-                                    <label htmlFor="nome" className="block text-xs text-gray-700 dark:text-gray-200">
-                                        Investigação
+                                    <label htmlFor="nome" className="ml-2 font-semibold block text-xs text-gray-700 dark:text-gray-200">
+                                        Inteligência
                                     </label>
                                     <input
                                         type="number"
@@ -370,9 +370,9 @@ function Home() {
                                         className="mt-1 w-10 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
                                     />
                                 </div>
-                                <div className='ml-2'>
+                                <div className='ml-2 flex flex-col bg-yellow-700'>
                                     <label htmlFor="nome" className="block text-xs text-gray-700 dark:text-gray-200">
-                                        História
+                                        Atletismo
                                     </label>
                                     <input
                                         type="number"
@@ -380,9 +380,10 @@ function Home() {
                                         className="mt-1 w-10 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
                                     />
                                 </div>
-                                <div className='ml-2'>
+
+                                <div className='ml-2 flex flex-col bg-yellow-700'>
                                     <label htmlFor="nome" className="block text-xs text-gray-700 dark:text-gray-200">
-                                        Aprender
+                                        Atletismo
                                     </label>
                                     <input
                                         type="number"
