@@ -3,7 +3,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
 import DoneIcon from '@mui/icons-material/Done';
 
-function Atributos() {
+function Stats() {
     const [heal, setHeal] = useState('');
     const [damage, setDamage] = useState('');
     const [Hp, setHp] = useState(0);
@@ -36,7 +36,7 @@ function Atributos() {
       };
     return (
         <>
-            <div className='ml-2 mt-2 h-80 rounded-xl bg-gray-900 w-[20rem] flex flex-col'>
+            <div className='ml-2 mt-2 h-56 rounded-xl bg-gray-900 w-[18rem] flex flex-col'>
                 <label htmlFor='nome' className='ml-32 block font-semibold text-sm text-gray-700 dark:text-gray-200'>
                     Stats
                 </label>
@@ -141,4 +141,4 @@ function Atributos() {
     );
 }
 
-export default Atributos;
+export default Stats;
