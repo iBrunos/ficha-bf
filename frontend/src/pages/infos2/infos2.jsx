@@ -1,0 +1,87 @@
+import React, { useState } from 'react';
+
+function Infos2() {
+
+    const [selectedRace, setSelectedRace] = useState('');
+    const handleRaceChange = (event) => {
+        const { value } = event.target;
+        if (value === 'outra') {
+            setCustomRace('');
+        }
+        setSelectedRace(value);
+    };
+
+    const handleCustomRaceChange = (event) => {
+        setCustomRace(event.target.value);
+    };
+
+    const [hp, setHp] = useState(0);
+
+    const handleIncrement = () => {
+        setHp(hp + 1);
+    };
+
+    const handleDecrement = () => {
+        if (hp > 0) {
+            setHp(hp - 1);
+        }
+    };
+    return (
+        <>
+            <div className='ml-2'>
+                <label
+                    htmlFor="nome"
+                    className="block text-xs font-medium text-gray-700 dark:text-gray-200"
+                >
+                    Idade
+                </label>
+                <div className='flex flex-row'>
+                    <input
+                        type="number"
+                        placeholder="Digite a idade"
+                        className=" mt-1 w-40 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                    />
+                </div>
+            </div>
+            <div className='ml-2 '>
+                <label
+                    htmlFor="nome"
+                    className="block text-xs font-medium text-gray-700 dark:text-gray-200"
+                >
+                    Tendência
+                </label>
+                <select
+                    id="tendencia"
+                    className="text-gray-950 mt-1 w-44 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                >
+                    <option value="">Selecione uma Tendência</option>
+                    <option value="Neutro e Bom (NB)">Neutro e Bom (NB)</option>
+                    <option value="Caótico e Bom (CB)">Caótico e Bom (CB)</option>
+                    <option value="Leal e Neutro (LN)">Leal e Neutro (LN)</option>
+                    <option value="Neutro (N)">Neutro (N)</option>
+                    <option value="Caótico e Neutro (CN)">Caótico e Neutro (CN)</option>
+                    <option value="Leal e Mau (LM)">Leal e Mau (LM)</option>
+                    <option value="Neutro e Mau (NM)">Neutro e Mau (NM)</option>
+                    <option value="Caótico e Mau (CM)">Caótico e Mau (CM)</option>
+                </select>
+            </div>
+            <div className='ml-2 '>
+                <label
+                    htmlFor="nome"
+                    className="block text-xs font-medium text-gray-700 dark:text-gray-200"
+                >
+                    Nível
+                </label>
+                <input
+                    type="number"
+                    placeholder="Informe seu Nível"
+                    className="mt-1 w-40 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                />
+            </div>
+
+        </>
+
+    );
+}
+
+export default Infos2;

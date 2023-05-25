@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import EditIcon from '@mui/icons-material/Edit';
 
-function Home() {
+function UploadImage() {
     const [imageSrc, setImageSrc] = useState('');
 
     function handleImageChange(event) {
@@ -43,5 +43,5 @@ function Home() {
     );
 }
 
-export default Home;
+export default UploadImage;
 
