@@ -2,33 +2,9 @@ import React, { useState } from 'react';
 
 function Infos2() {
 
-    const [selectedRace, setSelectedRace] = useState('');
-    const handleRaceChange = (event) => {
-        const { value } = event.target;
-        if (value === 'outra') {
-            setCustomRace('');
-        }
-        setSelectedRace(value);
-    };
-
-    const handleCustomRaceChange = (event) => {
-        setCustomRace(event.target.value);
-    };
-
-    const [hp, setHp] = useState(0);
-
-    const handleIncrement = () => {
-        setHp(hp + 1);
-    };
-
-    const handleDecrement = () => {
-        if (hp > 0) {
-            setHp(hp - 1);
-        }
-    };
     return (
         <>
-        <div className="bg-gray-900 h-[11rem] w-[14rem] rounded-xl object-cover px-30 ml-2 mr-2 mt-2">            <div className='ml-2'>
+        <div className="bg-gray-900 h-[13rem] w-[14rem] rounded-xl object-cover px-30 ml-2 mr-2 mt-2">            <div className='ml-2'>
                 <label
                     htmlFor="nome"
                     className="block text-xs font-medium text-gray-700 dark:text-gray-200"
@@ -90,6 +66,28 @@ function Infos2() {
                     placeholder="Informe sua CA"
                     className="mt-1 w-40 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
                 />
+            </div>
+            <div className='ml-2 '>
+                <label
+                    htmlFor="nome"
+                    className="block text-xs font-medium text-gray-700 dark:text-gray-200"
+                >
+                   Background
+                </label>
+                <select
+                    id="background"
+                    className="text-gray-950 mt-1 w-48 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                >
+                    <option value="">Selecione um Background</option>
+                    <option value="Nobre">Nobre</option>
+                    <option value="Soldado">Soldado</option>
+                    <option value="Andarilho/Mercenário">Andarilho/Mercenário</option>
+                    <option value="Exilado">Exilado</option>
+                    <option value="Ronin">Ronin</option>
+                    <option value="Civil">Civil</option>
+                    <option value="Escravo">Escravo</option>
+                    <option value="Estudioso">Estudioso</option>
+                </select>
             </div>
             </div>
         </>
