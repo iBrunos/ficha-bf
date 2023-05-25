@@ -252,101 +252,145 @@ function Home() {
                             </div>
                         </div>
                     </div>
-                    <div className="bg-pink-900 h-68 w-52 object-cover px-30">
-                        <label
-                            htmlFor="nome"
-                            className="block text-xs font-medium text-gray-700 dark:text-gray-200"
-                        >
-                            Atributos
-                        </label>
-                        <div className='ml-2 '>
-                            <label
-                                htmlFor="nome"
-                                className="block text-xs text-gray-700 dark:text-gray-200"
-                            >
-                                Força
-                            </label>
-                            <input
-                                type="number"
+                    <div className="bg-pink-900 h-68 w-[38.5rem] object-cover px-30">
+                        <div className="flex">
+                            <div className=" w-full flex-col">
+                                <label htmlFor="nome" className="block text-xs font-medium text-gray-700 dark:text-gray-200">
+                                    Atributos
+                                </label>
 
-                                placeholder="0"
-                                className=" mt-1 w-10 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
-                            />
+                                <div className='ml-2'>
+                                    <label htmlFor="nome" className="block text-xs text-gray-700 dark:text-gray-200">
+                                        Força
+                                    </label>
+                                    <input
+                                        type="number"
+                                        placeholder="0"
+                                        className="mt-1 w-10 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                    />
+                                </div>
+                                <div className='ml-2'>
+                                    <label htmlFor="nome" className="block text-xs text-gray-700 dark:text-gray-200">
+                                        Inteligência
+                                    </label>
+                                    <input
+                                        type="number"
+                                        placeholder="0"
+                                        className="mt-1 w-10 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                    />
+                                </div>
+                                <div className='ml-2'>
+                                    <label htmlFor="nome" className="block text-xs text-gray-700 dark:text-gray-200">
+                                        Espírito
+                                    </label>
+                                    <input
+                                        type="number"
+                                        placeholder="0"
+                                        className="mt-1 w-10 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                    />
+                                </div>
+                                <div className='ml-2'>
+                                    <label htmlFor="nome" className="block text-xs text-gray-700 dark:text-gray-200">
+                                        Carisma
+                                    </label>
+                                    <input
+                                        type="number"
+                                        placeholder="0"
+                                        className="mt-1 w-10 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                    />
+                                </div>
+                                <div className='ml-2'>
+                                    <label htmlFor="nome" className="block text-xs text-gray-700 dark:text-gray-200">
+                                        Constituição
+                                    </label>
+                                    <input
+                                        type="number"
+                                        placeholder="0"
+                                        className="mt-1 w-10 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                    />
+                                </div>
+                                <div className='ml-2'>
+                                    <label htmlFor="nome" className="block text-xs text-gray-700 dark:text-gray-200">
+                                        Sabedoria
+                                    </label>
+                                    <input
+                                        type="number"
+                                        placeholder="0"
+                                        className="mt-1 w-10 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                    />
+                                </div>
+                                <div className='ml-2'>
+                                    <label htmlFor="nome" className="block text-xs text-gray-700 dark:text-gray-200">
+                                        KAI
+                                    </label>
+                                    <input
+                                        type="number"
+                                        placeholder="0"
+                                        className="mt-1 w-10 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                    />
+                                </div>
+                            </div>
 
-                        </div>
-                        <div className='ml-2 '>
-                            <label
-                                htmlFor="nome"
-                                className="block text-xs text-gray-700 dark:text-gray-200"
-                            >
-                                Inteligência
-                            </label>
-                            <input
-                                type="number"
+                            <div className=" w-full flex flex-col ">
+                                <label htmlFor="nome" className="block text-xs font-medium text-gray-700 dark:text-gray-200">
+                                    Sub-Atributos
+                                </label>
 
-                                placeholder="0"
-                                className="mt-1 w-10 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
-                            />
-
-                        </div>
-                        <div className='ml-2 '>
-                            <label
-                                htmlFor="nome"
-                                className="block text-xs text-gray-700 dark:text-gray-200"
-                            >
-                                Espírito
-                            </label>
-                            <input
-                                type="number"
-
-                                placeholder="0"
-                                className="mt-1 w-10 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
-                            />
-
-                        </div>
-                        <div className='ml-2 '>
-                            <label
-                                htmlFor="nome"
-                                className="block text-xs text-gray-700 dark:text-gray-200"
-                            >
-                                Destreza
-                            </label>
-                            <input
-                                type="number"
-
-                                placeholder="0"
-                                className="mt-1 w-10 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
-                            />
-
-                        </div>
-                        <div className='ml-2 '>
-                            <label
-                                htmlFor="nome"
-                                className="block text-xs text-gray-700 dark:text-gray-200"
-                            >
-                                Carisma
-                            </label>
-                            <input
-                                type="number"
-
-                                placeholder="0"
-                                className="mt-1 w-10 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
-                            />
-
-                        </div>
-                        <div className='ml-2 '>
-                            <label
-                                htmlFor="nome"
-                                className="block text-xs text-gray-700 dark:text-gray-200"
-                            >
-                                Constituição
-                            </label>
-                            <input
-                                type="number"
-
-                                placeholder="0"
-                                className="mt-1 w-10 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
-                            />
+                                <div className='flex flex-col ml-2 bg-gray-700 w-40 h-40'>
+                                    <label htmlFor="nome" className="font-semibold block text-xs text-gray-700 dark:text-gray-200">
+                                        Força                                        </label>
+                                    <div className='flex-row'>
+                                        <label htmlFor="nome" className="block text-xs text-gray-700 dark:text-gray-200">
+                                            Atletismo
+                                        </label>
+                                        <input
+                                            type="number"
+                                            placeholder="0"
+                                            className="mt-1 w-10 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                        />
+                                    </div>
+                                    <div className='ml-2 flex-row'>
+                                        <label htmlFor="nome" className="block text-xs text-gray-700 dark:text-gray-200">
+                                            Dominação
+                                        </label>
+                                        <input
+                                            type="number"
+                                            placeholder="0"
+                                            className="mt-1 w-10 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                        />
+                                    </div>
+                                </div>
+                                <div className='ml-2'>
+                                    <label htmlFor="nome" className="block text-xs text-gray-700 dark:text-gray-200">
+                                        Investigação
+                                    </label>
+                                    <input
+                                        type="number"
+                                        placeholder="0"
+                                        className="mt-1 w-10 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                    />
+                                </div>
+                                <div className='ml-2'>
+                                    <label htmlFor="nome" className="block text-xs text-gray-700 dark:text-gray-200">
+                                        História
+                                    </label>
+                                    <input
+                                        type="number"
+                                        placeholder="0"
+                                        className="mt-1 w-10 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                    />
+                                </div>
+                                <div className='ml-2'>
+                                    <label htmlFor="nome" className="block text-xs text-gray-700 dark:text-gray-200">
+                                        Aprender
+                                    </label>
+                                    <input
+                                        type="number"
+                                        placeholder="0"
+                                        className="mt-1 w-10 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                    />
+                                </div>
+                            </div>
 
                         </div>
                     </div>
