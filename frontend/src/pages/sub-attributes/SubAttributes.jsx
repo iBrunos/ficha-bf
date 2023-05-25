@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Atributos() {
+function SubAtributos() {
     const [forca, setForca] = useState('');
     const [inteligencia, setInteligencia] = useState('');
     const [destreza, setDestreza] = useState('');
@@ -167,8 +167,8 @@ function Atributos() {
         <>
             <div className="bg-gray-900 h-[12rem] w-[24rem] rounded-xl object-cover px-30 ml-2 mr-2 mt-2">
                 <div className="flex flex-col">
-                    <label htmlFor="nome" className="ml-44 block font-semibold text-sm text-gray-700 dark:text-gray-200">
-                        Atributos
+                    <label htmlFor="nome" className="ml-40 block font-semibold text-sm text-gray-700 dark:text-gray-200">
+                        Sub-Atributos
                     </label>
                     <div className="w-full grid grid-cols-2">
                         <div className='ml-2'>
@@ -390,4 +390,4 @@ function Atributos() {
     );
 }
 
-export default Atributos;
+export default SubAtributos;

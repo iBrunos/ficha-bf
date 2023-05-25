@@ -36,7 +36,7 @@ function Stats() {
       };
     return (
         <>
-            <div className='ml-2 mt-2 h-56 rounded-xl bg-gray-900 w-[18rem] flex flex-col'>
+            <div className='ml-2 mt-2 h-60 rounded-xl bg-gray-900 w-[18rem] flex flex-col'>
                 <label htmlFor='nome' className='ml-32 block font-semibold text-sm text-gray-700 dark:text-gray-200'>
                     Stats
                 </label>

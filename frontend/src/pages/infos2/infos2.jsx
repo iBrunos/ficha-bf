@@ -28,7 +28,7 @@ function Infos2() {
     };
     return (
         <>
-            <div className='ml-2'>
+        <div className="bg-gray-900 h-[11rem] w-[14rem] rounded-xl object-cover px-30 ml-2 mr-2 mt-2">            <div className='ml-2'>
                 <label
                     htmlFor="nome"
                     className="block text-xs font-medium text-gray-700 dark:text-gray-200"
@@ -78,7 +78,20 @@ function Infos2() {
                     className="mt-1 w-40 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
                 />
             </div>
-
+            <div className='ml-2 '>
+                <label
+                    htmlFor="nome"
+                    className="block text-xs font-medium text-gray-700 dark:text-gray-200"
+                >
+                    CA
+                </label>
+                <input
+                    type="number"
+                    placeholder="Informe sua CA"
+                    className="mt-1 w-40 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                />
+            </div>
+            </div>
         </>
 
     );
