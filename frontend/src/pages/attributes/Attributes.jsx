@@ -167,26 +167,26 @@ function Atributos() {
         <>
             <div className="bg-gray-900 h-[13rem] w-[24rem] rounded-xl object-cover px-30 ml-2 mr-2 mt-2">
                 <div className="flex flex-col">
-                    <label htmlFor="nome" className="ml-44 block font-semibold text-sm text-gray-700 dark:text-gray-200">
+                    <label htmlFor="nome" className="ml-44 block font-semibold text-sm text-white">
                         Atributos
                     </label>
                     <div className="w-full grid grid-cols-2">
                         <div className='ml-2'>
-                            <label htmlFor="nome" className="block text-xs text-gray-700 dark:text-gray-200">
+                            <label htmlFor="nome" className="block text-xs text-white">
                                 Força
                             </label>
                             <div className='flex flex-row'>
                                 <input
                                     type="number"
                                     placeholder=" ATR"
-                                    className="mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                    className="mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
                                     value={forca}
                                     onChange={handleChangeForca}
                                 />
                                 <input
                                     type="text"
                                     placeholder="mod"
-                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
                                     value={modForca}
                                     disabled
                                 />
@@ -200,21 +200,21 @@ function Atributos() {
                         </div>
 
                         <div className='ml-2'>
-                            <label htmlFor="nome" className="block text-xs text-gray-700 dark:text-gray-200">
+                            <label htmlFor="nome" className="block text-xs text-white">
                                 Inteligência
                             </label>
                             <div className='flex flex-row'>
                                 <input
                                     type="number"
                                     placeholder=" ATR"
-                                    className="mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                    className="mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
                                     value={inteligencia}
                                     onChange={handleChangeInteligencia}
                                 />
                                 <input
                                     type="text"
                                     placeholder="mod"
-                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
                                     value={modInteligencia}
                                     disabled
                                 />
@@ -226,21 +226,21 @@ function Atributos() {
                             </div>
                         </div>
                         <div className='ml-2'>
-                            <label htmlFor="nome" className="block text-xs text-gray-700 dark:text-gray-200">
+                            <label htmlFor="nome" className="block text-xs text-white">
                                 Espírito
                             </label>
                             <div className='flex flex-row'>
                                 <input
                                     type="number"
                                     placeholder=" ATR"
-                                    className="mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                    className="mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
                                     value={espirito}
                                     onChange={handleChangeEspirito}
                                 />
                                 <input
                                     type="text"
                                     placeholder="mod"
-                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
                                     value={modEspirito}
                                     disabled
                                 />
@@ -252,21 +252,21 @@ function Atributos() {
                             </div>
                         </div>
                         <div className='ml-2'>
-                            <label htmlFor="nome" className="block text-xs text-gray-700 dark:text-gray-200">
+                            <label htmlFor="nome" className="block text-xs text-white">
                                 Carisma
                             </label>
                             <div className='flex flex-row'>
                                 <input
                                     type="number"
                                     placeholder=" ATR"
-                                    className="mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                    className="mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
                                     value={carisma}
                                     onChange={handleChangeCarisma}
                                 />
                                 <input
                                     type="text"
                                     placeholder="mod"
-                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
                                     value={modCarisma}
                                     disabled
                                 />
@@ -278,21 +278,21 @@ function Atributos() {
                             </div>
                         </div>
                         <div className='ml-2'>
-                            <label htmlFor="nome" className="block text-xs text-gray-700 dark:text-gray-200">
+                            <label htmlFor="nome" className="block text-xs text-white">
                                 Constituição
                             </label>
                             <div className='flex flex-row'>
                                 <input
                                     type="number"
                                     placeholder=" ATR"
-                                    className="mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                    className="mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
                                     value={constituicao}
                                     onChange={handleChangeConstituicao}
                                 />
                                 <input
                                     type="text"
                                     placeholder="mod"
-                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
                                     value={modConstituicao}
                                     disabled
                                 />
@@ -304,21 +304,21 @@ function Atributos() {
                             </div>
                         </div>
                         <div className='ml-2'>
-                            <label htmlFor="nome" className="block text-xs text-gray-700 dark:text-gray-200">
+                            <label htmlFor="nome" className="block text-xs text-white">
                                 Sabedoria
                             </label>
                             <div className='flex flex-row'>
                                 <input
                                     type="number"
                                     placeholder=" ATR"
-                                    className="mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                    className="mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
                                     value={sabedoria}
                                     onChange={handleChangeSabedoria}
                                 />
                                 <input
                                     type="text"
                                     placeholder="mod"
-                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
                                     value={modSabedoria}
                                     disabled
                                 />
@@ -330,21 +330,21 @@ function Atributos() {
                             </div>
                         </div>
                         <div className='ml-2'>
-                            <label htmlFor="nome" className="block text-xs text-gray-700 dark:text-gray-200">
+                            <label htmlFor="nome" className="block text-xs text-white">
                                 KAI
                             </label>
                             <div className='flex flex-row'>
                                 <input
                                     type="number"
                                     placeholder=" ATR"
-                                    className="mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                    className="mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
                                     value={kai}
                                     onChange={handleChangeKai}
                                 />
                                 <input
                                     type="text"
                                     placeholder="mod"
-                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
                                     value={modKai}
                                     disabled
                                 />
@@ -356,21 +356,21 @@ function Atributos() {
                             </div>
                         </div>
                         <div className='ml-2'>
-                            <label htmlFor="nome" className="block text-xs text-gray-700 dark:text-gray-200">
+                            <label htmlFor="nome" className="block text-xs text-white">
                                 Destreza
                             </label>
                             <div className='flex flex-row'>
                                 <input
                                     type="number"
                                     placeholder=" ATR"
-                                    className="mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                    className="mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
                                     value={destreza}
                                     onChange={handleChangeDestreza}
                                 />
                                 <input
                                     type="text"
                                     placeholder="mod"
-                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
                                     value={modDestreza}
                                     disabled
                                 />

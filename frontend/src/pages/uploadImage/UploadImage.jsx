@@ -28,7 +28,7 @@ function UploadImage() {
                         }
                         className="h-52 w-52 rounded-full object-cover px-30"
                     />
-                    <label className='ml-[5.5rem] cursor-pointer w-full rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg dark:text-white sm:text-sm hover:border-blue-500 hover:shadow-md' htmlFor='upload-image'>
+                    <label className='ml-[5.5rem] cursor-pointer w-full rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg text-gray-900 sm:text-sm hover:border-blue-500 hover:shadow-md' htmlFor='upload-image'>
                         <EditIcon />
                     </label>
                     <input
@@ -36,7 +36,7 @@ function UploadImage() {
                         id="upload-image"
                         accept="image/*"
                         onChange={handleImageChange}
-                        className="hidden mt-2 w-full rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg dark:text-white sm:text-sm"
+                        className="hidden mt-2 w-full rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg text-gray-900 sm:text-sm"
                     />
                 </div>
             </div>

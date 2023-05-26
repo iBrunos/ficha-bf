@@ -48,7 +48,7 @@ function Stats() {
                         <input
                             type='number'
                             placeholder='0'
-                            className='mt-1 w-40 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm'
+                            className='mt-1 w-40 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm'
                         />
                     </div>
                 </div>
@@ -58,7 +58,7 @@ function Stats() {
                 <div>
                     <input
                         type='number'
-                        className='text-white ml-2 w-10 mt-1 rounded-md mr-2 border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm'
+                        className='text-white ml-2 w-10 mt-1 rounded-md mr-2 border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm'
                         value={Hp}
                         disabled
                         onChange={handleHpChange}
@@ -66,7 +66,7 @@ function Stats() {
                     <span className='text-white'>/ </span>
                     <input
                         type='number'
-                        className='ml-2 w-10 mt-1 rounded-md mr-2 border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm'
+                        className='ml-2 w-10 mt-1 rounded-md mr-2 border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm'
                         value={finalHp}
                         onChange={handleFinalHpChange}
                     />
@@ -78,7 +78,7 @@ function Stats() {
                         <FavoriteIcon className='text-green-900 ml-2' />
                         <input
                             type='number'
-                            className='mt-2 ml-2 w-16 rounded-r-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm'
+                            className='mt-2 ml-2 w-16 rounded-r-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm'
                             placeholder='heal'
                             value={heal}
                             onChange={handleLeftInputChange}
@@ -86,7 +86,7 @@ function Stats() {
                         <span className='px-1'></span>
                         <input
                             type='number'
-                            className='w-20 rounded-r-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm'
+                            className='w-20 rounded-r-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm'
                             placeholder='damage'
                             value={damage}
                             onChange={handleRightInputChange}
@@ -108,7 +108,7 @@ function Stats() {
                     <input
                         type="number"
                         placeholder=" 0"
-                        className="mt-1 w-40 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                        className="mt-1 w-40 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
                     />
                 </div>
                 <div className='ml-2 '>
@@ -120,7 +120,7 @@ function Stats() {
                     </label>
                     <select
                         id="tendencia"
-                        className="text-gray-950 mt-1 w-44 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                        className="text-gray-950 mt-1 w-44 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
                     >
                         <option value="">Selecione uma Classe</option>
                         <option value="Samurai">Samurai</option>

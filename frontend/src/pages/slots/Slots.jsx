@@ -26,7 +26,7 @@ function SlotGenerator() {
             id="numSlots"
             value={numSlots}
             onChange={handleNumSlotsChange}
-            className='mt-2 w-40 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm'
+            className='mt-2 w-40 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm'
           />
     
           {selectedSlots.map((isSelected, index) => (

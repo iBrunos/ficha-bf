@@ -184,7 +184,7 @@ function SubAtributosInteligencia() {
                                 <input
                                     type="text"
                                     placeholder="mod"
-                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
                                     value={modForca}
                                     disabled
                                 />
@@ -201,7 +201,7 @@ function SubAtributosInteligencia() {
                                 <input
                                     type="text"
                                     placeholder="mod"
-                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
                                     value={modForca}
                                     disabled
                                 />
@@ -218,7 +218,7 @@ function SubAtributosInteligencia() {
                                 <input
                                     type="text"
                                     placeholder="mod"
-                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
                                     value={modForca}
                                     disabled
                                 />
@@ -235,7 +235,7 @@ function SubAtributosInteligencia() {
                                 <input
                                     type="text"
                                     placeholder="mod"
-                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
                                     value={modForca}
                                     disabled
                                 />

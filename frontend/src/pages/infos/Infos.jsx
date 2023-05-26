@@ -35,21 +35,21 @@ function Infos() {
                 <div className='ml-2 mt-2 '>
                     <label
                         htmlFor="nome"
-                        className="block text-xs font-medium text-gray-700 dark:text-gray-200"
+                        className="block text-xs font-medium text-gray-200"
                     >
                         Nome
                     </label>
                     <input
                         type="text"
                         placeholder="Digite seu nome"
-                        className="mt-2 w-40 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                        className="mt-2 w-40 rounded-md shadow-sm border-gray-700 bg-gray-800 text-gray-900 sm:text-sm"
                     />
                 </div>
 
                 <div className='ml-2'>
                     <label
                         htmlFor="nome"
-                        className="block text-xs font-medium text-gray-700 dark:text-gray-200"
+                        className="block text-xs font-medium text-gray-200"
                     >
                         Idade
                     </label>
@@ -57,20 +57,20 @@ function Infos() {
                         <input
                             type="number"
                             placeholder="Digite a idade"
-                            className=" mt-1 w-40 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                            className=" mt-1 w-40 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-900 sm:text-sm"
                         />
                     </div>
                 </div>
                 <div className='ml-2 '>
                     <label
                         htmlFor="nome"
-                        className="block text-xs font-medium text-gray-700 dark:text-gray-200"
+                        className="block text-xs font-medium text-gray-200"
                     >
                         Raça
                     </label>
                     <select
                         id="raca"
-                        className="text-gray-950 mt-1 w-40 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                        className=" mt-1 w-40 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
                         value={selectedRace}
                         onChange={handleRaceChange}
                     >
@@ -91,7 +91,7 @@ function Infos() {
           {selectedRace === 'outra' && (
             <input
               type="text"
-              className="mt-1 w-40 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+              className="mt-1 w-40 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
               placeholder="Digite a raça"
               value={customRace}
               onChange={handleCustomRaceChange}
@@ -102,12 +102,12 @@ function Infos() {
         <div className="ml-2 ">
           <label
             htmlFor="nome"
-            className="block text-xs font-medium text-gray-700 dark:text-gray-200"
+            className="block text-xs font-medium text-gray-200"
           >
             Tamanho
           </label>
           <select
-            className="text-gray-950 mt-1 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+            className=" mt-1 w-40 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
             value={selectedSize}
             onChange={handleSizeChange}
           >
@@ -120,7 +120,7 @@ function Infos() {
           {selectedSize === 'outra' && (
             <input
               type="text"
-              className="mt-1 w-40 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+              className="mt-1 w-40 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
               placeholder="Digite o tamanho"
               value={customSize}
               onChange={handleCustomSizeChange}

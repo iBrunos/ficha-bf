@@ -167,17 +167,17 @@ function SubAtributosDestreza() {
         <>
             <div className="bg-gray-900 h-[15rem] w-[11rem] rounded-xl object-cover px-30 ml-12 mr-2">
                 <div className="flex flex-col">
-                <label htmlFor="nome" className="text-gray-900 ml-12 block font-semibold text-sm  dark:text-gray-200">
+                <label htmlFor="nome" className="textgray-900 ml-12 block font-semibold text-sm text-gray-200">
                     d
                     </label>
                     <div className="w-40 ml-2 grid grid-cols-2 border-solid border-2 border-red-900">
                     <div className='ml-2'>
                         
-                            <label htmlFor="nome" className="block font-semibold text-sm text-gray-700 dark:text-gray-200">
+                            <label htmlFor="nome" className="block font-semibold text-sm text-gray-200">
                                 Destreza
                             </label>
                             
-                            <label htmlFor="nome" className="ml-2 block text-xs text-gray-700 dark:text-gray-200">
+                            <label htmlFor="nome" className="ml-2 block text-xs text-gray-200">
                                 Acrobacia
                             </label>
                             <div className='flex flex-row mt-1'>
@@ -185,7 +185,7 @@ function SubAtributosDestreza() {
                                 <input
                                     type="text"
                                     placeholder="mod"
-                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
                                     value={modForca}
                                     disabled
                                 />
@@ -195,14 +195,14 @@ function SubAtributosDestreza() {
                                     <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
                                 </label>
                             </div>
-                            <label htmlFor="nome" className="ml-2 block text-xs text-gray-700 dark:text-gray-200">
+                            <label htmlFor="nome" className="ml-2 block text-xs text-gray-200">
                                 Furtividade                            </label>
                             <div className='flex flex-row mt-1'>
 
                                 <input
                                     type="text"
                                     placeholder="mod"
-                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
                                     value={modForca}
                                     disabled
                                 />
@@ -212,14 +212,14 @@ function SubAtributosDestreza() {
                                     <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
                                 </label>
                             </div>
-                            <label htmlFor="nome" className="ml-2 block text-xs text-gray-700 dark:text-gray-200">
+                            <label htmlFor="nome" className="ml-2 block text-xs text-gray-200">
                             Pontaria                            </label>
                             <div className='flex flex-row mt-1'>
 
                                 <input
                                     type="text"
                                     placeholder="mod"
-                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
                                     value={modForca}
                                     disabled
                                 />
@@ -229,14 +229,14 @@ function SubAtributosDestreza() {
                                     <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
                                 </label>
                             </div>
-                            <label htmlFor="nome" className="ml-2 block text-xs text-gray-700 dark:text-gray-200">
+                            <label htmlFor="nome" className="ml-2 block text-xs text-gray-200">
                                 Prestidigitação                            </label>
                             <div className='flex flex-row mt-1'>
 
                                 <input
                                     type="text"
                                     placeholder="mod"
-                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-white sm:text-sm"
+                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
                                     value={modForca}
                                     disabled
                                 />
