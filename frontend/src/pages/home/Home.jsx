@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
-import UploadImage from '../uploadImage/UploadImage';
-import Infos from '../infos/Infos';
-import InfosProfile from '../infos/infosPorfile';
-import Stats from '../stats/Stats';
-import Attributes from '../attributes/Attributes';
-import SubAttributesForca from '../sub-attributes/SubAttributesForça';
-import SubAttributesDestreza from '../sub-attributes/SubAttributesDestreza';
-import SubAttributesInteligencia from '../sub-attributes/SubAttributesInteligencia';
-import SubAttributesCarisma from '../sub-attributes/SubAttributesCarisma.jsx'
-import SubAttributesKai from '../sub-attributes/SubAttributesKai'
-import SubAttributesConstituicao from '../sub-attributes/SubAttributesConstituicao';
-import SubAttributesEspirito from '../sub-attributes/SubAttributesEspirito';
-import SubAttributesSabedoria from '../sub-attributes/SubAttributesSabedoria';
-import Todolist from '../todolist/ToDoList';
-import Slots from '../slots/Slots';
+import UploadImage from '../../components/uploadImage/UploadImage';
+import Infos from '../../components/infos/Infos';
+import InfosProfile from '../../components/infos/infosPorfile';
+import Stats from '../../components/stats/Stats';
+import Attributes from '../../components/attributes/Attributes';
+import SubAttributesForca from '../../components/sub-attributes/SubAttributesForca';
+import SubAttributesDestreza from '../../components/sub-attributes/SubAttributesDestreza';
+import SubAttributesInteligencia from '../../components/sub-attributes/SubAttributesInteligencia';
+import SubAttributesCarisma from '../../components/sub-attributes/SubAttributesCarisma';
+import SubAttributesKai from '../../components/sub-attributes/SubAttributesKai';
+import SubAttributesConstituicao from '../../components/sub-attributes/SubAttributesConstituicao';
+import SubAttributesEspirito from '../../components/sub-attributes/SubAttributesEspirito';
+import SubAttributesSabedoria from '../../components/sub-attributes/SubAttributesSabedoria';
+import Todolist from '../../components/todolist/ToDoList';
+import Slots from '../../components/slots/Slots';
 function Home() {
 
   return (

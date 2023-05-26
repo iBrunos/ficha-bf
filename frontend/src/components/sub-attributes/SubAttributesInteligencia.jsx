@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function SubAtributosInteligencia() {
+function SubAttributesInteligencia() {
     const [forca, setForca] = useState('');
     const [inteligencia, setInteligencia] = useState('');
     const [destreza, setDestreza] = useState('');
@@ -165,7 +165,7 @@ function SubAtributosInteligencia() {
 
     return (
         <>
-            <div className="bg-gray-900 h-[15rem] w-[11rem] rounded-xl object-cover px-30 mr-2 ">
+            <div className="bg-gray-900 h-[15rem] w-[11rem] rounded-xl object-cover px-30 ml-24">
                 <div className="flex flex-col">
                 <label htmlFor="nome" className="text-gray-900 ml-12 block font-semibold text-sm ">
                 ‎ 
@@ -173,11 +173,11 @@ function SubAtributosInteligencia() {
                     <div className="w-40 ml-2 grid grid-cols-2 border-solid border-2 border-red-900 ">
                         <div className='ml-2'>
                             <label htmlFor="nome" className="block font-semibold text-sm text-gray-200">
-                            Sabedoria
+                                Inteligência
                             </label>
                             
                             <label htmlFor="nome" className="ml-2 block text-xs text-white">
-                            Percepção
+                            Investigação
                             </label>
                             <div className='flex flex-row mt-1'>
                                 
@@ -195,7 +195,7 @@ function SubAtributosInteligencia() {
                                 </label>
                             </div>
                             <label htmlFor="nome" className="ml-2 block text-xs text-white">
-                            Medicina                            </label>
+                            Aprender                            </label>
                             <div className='flex flex-row mt-1'>
                                 
                                 <input
@@ -212,7 +212,7 @@ function SubAtributosInteligencia() {
                                 </label>
                             </div>
                             <label htmlFor="nome" className="ml-2 block text-xs text-white">
-                            Sobrevivência                            </label>
+                            Misticismo                            </label>
                             <div className='flex flex-row mt-1'>
                                
                                 <input
@@ -229,7 +229,7 @@ function SubAtributosInteligencia() {
                                 </label>
                             </div>
                             <label htmlFor="nome" className="ml-2 block text-xs text-white">
-                            Perspicácia                            </label>
+                            História                            </label>
                             <div className='flex flex-row mt-1'>
                                
                                 <input
@@ -253,4 +253,4 @@ function SubAtributosInteligencia() {
     );
 }
 
-export default SubAtributosInteligencia;
+export default SubAttributesInteligencia;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function SubAtributosCarisma() {
+function SubAttributesDestreza() {
     const [forca, setForca] = useState('');
     const [inteligencia, setInteligencia] = useState('');
     const [destreza, setDestreza] = useState('');
@@ -165,23 +165,23 @@ function SubAtributosCarisma() {
 
     return (
         <>
-            <div className="bg-gray-900 h-[12rem] w-[11rem] rounded-xl object-cover px-30 mr-2 mt-2">
+            <div className="bg-gray-900 h-[15rem] w-[11rem] rounded-xl object-cover px-30 ml-12">
                 <div className="flex flex-col">
                 <label htmlFor="nome" className="text-gray-900 ml-12 block font-semibold text-sm ">
                 ‎ 
                     </label>
-                    <div className="w-40 ml-2 grid grid-cols-2 border-solid border-2 border-red-900 ">
-                        <div className='ml-2'>
+                    <div className="w-40 ml-2 grid grid-cols-2 border-solid border-2 border-red-900">
+                    <div className='ml-2'>
+                        
                             <label htmlFor="nome" className="block font-semibold text-sm text-gray-200">
-                            Carisma
+                                Destreza
+                            </label>
+                            
+                            <label htmlFor="nome" className="ml-2 block text-xs text-gray-200">
+                                Acrobacia
+                            </label>
+                            <div className='flex flex-row mt-1'>
 
-                            </label>
-                            
-                            <label htmlFor="nome" className="block text-xs text-white">
-                            Persuadir
-                            </label>
-                            <div className='flex flex-row mt-1'>
-                                
                                 <input
                                     type="text"
                                     placeholder="mod"
@@ -195,10 +195,10 @@ function SubAtributosCarisma() {
                                     <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
                                 </label>
                             </div>
-                            <label htmlFor="nome" className="block text-xs text-white">
-                            Intimidar                            </label>
+                            <label htmlFor="nome" className="ml-2 block text-xs text-gray-200">
+                                Furtividade                            </label>
                             <div className='flex flex-row mt-1'>
-                                
+
                                 <input
                                     type="text"
                                     placeholder="mod"
@@ -212,10 +212,10 @@ function SubAtributosCarisma() {
                                     <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
                                 </label>
                             </div>
-                            <label htmlFor="nome" className="block text-xs text-white">
-                            Sedução                            </label>
+                            <label htmlFor="nome" className="ml-2 block text-xs text-gray-200">
+                            Pontaria                            </label>
                             <div className='flex flex-row mt-1'>
-                               
+
                                 <input
                                     type="text"
                                     placeholder="mod"
@@ -229,7 +229,23 @@ function SubAtributosCarisma() {
                                     <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
                                 </label>
                             </div>
-                            
+                            <label htmlFor="nome" className="ml-2 block text-xs text-gray-200">
+                                Prestidigitação                            </label>
+                            <div className='flex flex-row mt-1'>
+
+                                <input
+                                    type="text"
+                                    placeholder="mod"
+                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
+                                    value={modForca}
+                                    disabled
+                                />
+                                <label className=" ml-2 relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" value="" className="sr-only peer" onClick={handleToggleForca} />
+                                    <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:mt-[0.1rem] after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                    <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -238,4 +254,4 @@ function SubAtributosCarisma() {
     );
 }
 
-export default SubAtributosCarisma;
+export default SubAttributesDestreza;

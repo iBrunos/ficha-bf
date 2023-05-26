@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function SubAtributosForça() {
+function SubattributesEspirito() {
     const [forca, setForca] = useState('');
     const [inteligencia, setInteligencia] = useState('');
     const [destreza, setDestreza] = useState('');
@@ -165,18 +165,19 @@ function SubAtributosForça() {
 
     return (
         <>
-            <div className=" bg-gray-900 h-[9rem] w-[11rem] rounded-xl object-cover px-30 mt-2 mr-2 ml-12">
+            <div className="bg-gray-900 h-[9rem] w-[11rem] rounded-xl object-cover px-30 mr-2 mt-2">
                 <div className="flex flex-col">
-                    <label htmlFor="nome" className="ml-12 block font-semibold text-sm text-gray-700 dark:text-gray-200">
-                        Sub-Atributos
+                <label htmlFor="nome" className="text-gray-900 ml-12 block font-semibold text-sm ">
+                ‎ 
                     </label>
                     <div className="w-40 ml-2 grid grid-cols-2 border-solid border-2 border-red-900 ">
                         <div className='ml-2'>
-                            <label htmlFor="nome" className="block font-semibold text-sm text-gray-700 dark:text-gray-200">
-                                Força
+                            <label htmlFor="nome" className="block font-semibold text-sm text-gray-200">
+                                Espírito
                             </label>
+
                             <label htmlFor="nome" className="block text-xs text-white">
-                                Atletismo
+                                Religião
                             </label>
                             <div className='flex flex-row mt-1'>
 
@@ -194,7 +195,7 @@ function SubAtributosForça() {
                                 </label>
                             </div>
                             <label htmlFor="nome" className="block text-xs text-white">
-                                Dominação                            </label>
+                                Determinação                            </label>
                             <div className='flex flex-row mt-1'>
 
                                 <input
@@ -210,12 +211,13 @@ function SubAtributosForça() {
                                     <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
                                 </label>
                             </div>
-                            </div>
-                            </div>
-                            </div>
-                            </div>
-</>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
     );
 }
 
-export default SubAtributosForça;
+export default SubattributesEspirito;

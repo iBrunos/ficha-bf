@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function SubAtributosInteligencia() {
+function SubAttributesSabedoria() {
     const [forca, setForca] = useState('');
     const [inteligencia, setInteligencia] = useState('');
     const [destreza, setDestreza] = useState('');
@@ -165,7 +165,7 @@ function SubAtributosInteligencia() {
 
     return (
         <>
-            <div className="bg-gray-900 h-[9rem] w-[11rem] rounded-xl object-cover px-30 ml-[6rem] mr-2 mt-2">
+            <div className="bg-gray-900 h-[15rem] w-[11rem] rounded-xl object-cover px-30 mr-2 ">
                 <div className="flex flex-col">
                 <label htmlFor="nome" className="text-gray-900 ml-12 block font-semibold text-sm ">
                 ‎ 
@@ -173,14 +173,14 @@ function SubAtributosInteligencia() {
                     <div className="w-40 ml-2 grid grid-cols-2 border-solid border-2 border-red-900 ">
                         <div className='ml-2'>
                             <label htmlFor="nome" className="block font-semibold text-sm text-gray-200">
-                                Constituição
+                            Sabedoria
                             </label>
-
-                            <label htmlFor="nome" className="block text-xs text-white">
-                                Resistência
+                            
+                            <label htmlFor="nome" className="ml-2 block text-xs text-white">
+                            Percepção
                             </label>
                             <div className='flex flex-row mt-1'>
-
+                                
                                 <input
                                     type="text"
                                     placeholder="mod"
@@ -194,10 +194,44 @@ function SubAtributosInteligencia() {
                                     <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
                                 </label>
                             </div>
-                            <label htmlFor="nome" className="block text-xs text-white">
-                                Estamina                            </label>
+                            <label htmlFor="nome" className="ml-2 block text-xs text-white">
+                            Medicina                            </label>
                             <div className='flex flex-row mt-1'>
-
+                                
+                                <input
+                                    type="text"
+                                    placeholder="mod"
+                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
+                                    value={modForca}
+                                    disabled
+                                />
+                                <label className=" ml-2 relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" value="" className="sr-only peer" onClick={handleToggleForca} />
+                                    <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:mt-[0.1rem] after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                    <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
+                                </label>
+                            </div>
+                            <label htmlFor="nome" className="ml-2 block text-xs text-white">
+                            Sobrevivência                            </label>
+                            <div className='flex flex-row mt-1'>
+                               
+                                <input
+                                    type="text"
+                                    placeholder="mod"
+                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
+                                    value={modForca}
+                                    disabled
+                                />
+                                <label className=" ml-2 relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" value="" className="sr-only peer" onClick={handleToggleForca} />
+                                    <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:mt-[0.1rem] after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                    <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
+                                </label>
+                            </div>
+                            <label htmlFor="nome" className="ml-2 block text-xs text-white">
+                            Perspicácia                            </label>
+                            <div className='flex flex-row mt-1'>
+                               
                                 <input
                                     type="text"
                                     placeholder="mod"
@@ -219,4 +253,4 @@ function SubAtributosInteligencia() {
     );
 }
 
-export default SubAtributosInteligencia;
+export default SubAttributesSabedoria;
