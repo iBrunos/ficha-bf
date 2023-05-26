@@ -12,23 +12,27 @@ import SubAttributesKai from '../sub-attributes/SubAttributesKai';
 import SubAttributesConstituicao from '../sub-attributes/SubAttributesConstituicao';
 import SubAttributesEspirito from '../sub-attributes/SubAttributesEspirito';
 import SubAttributesSabedoria from '../sub-attributes/SubAttributesSabedoria';
+import Todolist from '../todolist/ToDoList';
+import Slots from '../slots/Slots';
 function Home() {
 
   return (
     <div className=''>
+      <UploadImage />
+      <Infos />
+      <InfosProfile />
+      <Stats />
       <Attributes/>
-      <Infos/>
-      <InfosProfile/>
-      <UploadImage/>
-      <Stats></Stats>
       <SubAttributesForca/>
       <SubAttributesDestreza/>
       <SubAttributesInteligencia/>
       <SubAttributesCarisma/>
       <SubAttributesKai/>
-      <SubAttributesSabedoria/>
       <SubAttributesConstituicao/>
       <SubAttributesEspirito/>
+      <SubAttributesSabedoria/>
+      <Todolist/>
+      <Slots/>
     </div>
 
 

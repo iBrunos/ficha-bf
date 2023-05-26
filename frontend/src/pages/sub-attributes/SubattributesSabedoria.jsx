@@ -173,11 +173,11 @@ function SubAtributosInteligencia() {
                     <div className="w-40 ml-2 grid grid-cols-2 border-solid border-2 border-red-900 ">
                         <div className='ml-2'>
                             <label htmlFor="nome" className="block font-semibold text-sm text-gray-700 dark:text-gray-200">
-                                Inteligência
+                            Sabedoria
                             </label>
                             
                             <label htmlFor="nome" className="block text-xs ml-2 text-gray-700 dark:text-gray-200">
-                            Investigação
+                            Percepção
                             </label>
                             <div className='flex flex-row mt-1'>
                                 
@@ -195,7 +195,7 @@ function SubAtributosInteligencia() {
                                 </label>
                             </div>
                             <label htmlFor="nome" className=" ml-2 block text-xs text-gray-700 dark:text-gray-200">
-                            Aprender                            </label>
+                            Medicina                            </label>
                             <div className='flex flex-row mt-1'>
                                 
                                 <input
@@ -212,7 +212,7 @@ function SubAtributosInteligencia() {
                                 </label>
                             </div>
                             <label htmlFor="nome" className="ml-2 block text-xs text-gray-700 dark:text-gray-200">
-                            Misticismo                            </label>
+                            Sobrevivência                            </label>
                             <div className='flex flex-row mt-1'>
                                
                                 <input
@@ -229,7 +229,7 @@ function SubAtributosInteligencia() {
                                 </label>
                             </div>
                             <label htmlFor="nome" className="ml-2 block text-xs text-gray-700 dark:text-gray-200">
-                            História                            </label>
+                            Perspicácia                            </label>
                             <div className='flex flex-row mt-1'>
                                
                                 <input
