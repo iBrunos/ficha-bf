@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function SubattributesEspirito() {
+function SubAttributesEspirito() {
     const [forca, setForca] = useState('');
     const [inteligencia, setInteligencia] = useState('');
     const [destreza, setDestreza] = useState('');
@@ -220,4 +220,4 @@ function SubattributesEspirito() {
     );
 }
 
-export default SubattributesEspirito;
+export default SubAttributesEspirito;
