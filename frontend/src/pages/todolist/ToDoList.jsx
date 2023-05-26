@@ -48,8 +48,8 @@ function Todolist() {
         setTodoList(updatedTodoList);
     };
     return (
-        <div className="bg-gray-200 w-full  h-screen flex items-center">
-      <div className="w-[500px] mx-auto text-center rounded-xl bg-gray-900 p-5">
+        <div className=" ">
+      <div className="w-[20rem] h-[23rem] text-center rounded-xl bg-gray-900 p-5">
         <h1 className="text-5xl text-white font-extralight mb-8">Técnicas</h1>
         <form onSubmit={handleForm}>
           <input

@@ -17,36 +17,34 @@ import Slots from '../slots/Slots';
 function Home() {
 
   return (
-    <div className='bg-gray-900 w-[60rem] h-[5rem] '>
-      <div className='flex flex-row bg-gray-900 rounded-xl'>
-        <UploadImage />
-        <Infos />
-        <InfosProfile />
-        <Stats />
-      </div>
-
-      <div className='grid grid-cols-2 bg-gray-800 w-[50rem]'>
-
-        <div className='bg-gray-900 '>
-          <Attributes />
-          <Slots />
+    <div className='bg-gray-900 h-[70rem]' >
+      <div className=' bg-gray-900 w-[60rem] h-[5rem] ml-80'>
+        <div className='flex flex-row bg-gray-900 rounded-xl'>
+          <UploadImage />
+          <Infos />
+          <InfosProfile />
+          <Stats />
         </div>
-        <div className='grid grid-cols-3 '>
-          <SubAttributesForca />
-          <SubAttributesDestreza />
-          <SubAttributesInteligencia />
-          <SubAttributesCarisma />
-          <SubAttributesKai />
-          <SubAttributesConstituicao />
-          <SubAttributesEspirito />
-          <SubAttributesSabedoria />
-        </div>
-  
-      </div>
+        <div className='grid grid-cols-2 bg-gray-900 w-[50rem]'>
 
+          <div className='bg-gray-900 '>
+            <Attributes />
+            <Slots />
+            <Todolist />
+          </div>
+          <div className='grid grid-cols-3 '>
+            <SubAttributesSabedoria />
+            <SubAttributesDestreza />
+            <SubAttributesInteligencia />
+            <SubAttributesCarisma />
+            <SubAttributesKai />
+            <SubAttributesConstituicao />
+            <SubAttributesEspirito />
+            <SubAttributesForca />
+          </div>
+        </div>
+      </div>
     </div>
-
-
 
   );
 

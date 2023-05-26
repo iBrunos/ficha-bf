@@ -165,10 +165,10 @@ function SubAtributosDestreza() {
 
     return (
         <>
-            <div className="bg-gray-900 h-[15rem] w-[11rem] rounded-xl object-cover px-30 ml-12 mr-2">
+            <div className="bg-gray-900 h-[15rem] w-[11rem] rounded-xl object-cover px-30 ml-12">
                 <div className="flex flex-col">
-                <label htmlFor="nome" className="textgray-900 ml-12 block font-semibold text-sm text-gray-200">
-                    d
+                <label htmlFor="nome" className="text-gray-900 ml-12 block font-semibold text-sm ">
+                ‎ 
                     </label>
                     <div className="w-40 ml-2 grid grid-cols-2 border-solid border-2 border-red-900">
                     <div className='ml-2'>
