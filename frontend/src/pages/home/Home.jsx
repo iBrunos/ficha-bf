@@ -7,8 +7,8 @@ import Attributes from '../attributes/Attributes';
 import SubAttributesForca from '../sub-attributes/SubAttributesForça';
 import SubAttributesDestreza from '../sub-attributes/SubAttributesDestreza';
 import SubAttributesInteligencia from '../sub-attributes/SubAttributesInteligencia';
-import SubAttributesCarisma from '../sub-attributes/SubAttributesCarisma';
-import SubAttributesKai from '../sub-attributes/SubAttributesKai';
+import SubAttributesCarisma from '../sub-attributes/SubAttributesCarisma.jsx'
+import SubAttributesKai from '../sub-attributes/SubAttributesKai'
 import SubAttributesConstituicao from '../sub-attributes/SubAttributesConstituicao';
 import SubAttributesEspirito from '../sub-attributes/SubAttributesEspirito';
 import SubAttributesSabedoria from '../sub-attributes/SubAttributesSabedoria';
