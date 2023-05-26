@@ -31,7 +31,7 @@ function Infos() {
 
     return (
         <>
-            <div className="bg-gray-900 rounded-xl object-cover w-48 h-56 px-30 ml-2 mr-2 mt-2">
+            <div className="bg-gray-900 rounded-xl object-cover w-52 h-56 px-30 ml-2 mr-2 mt-2">
                 <div className='ml-2 mt-2 '>
                     <label
                         htmlFor="nome"

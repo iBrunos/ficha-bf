@@ -165,7 +165,7 @@ function Atributos() {
 
     return (
         <>
-            <div className="bg-gray-900 h-[12rem] w-[24rem] rounded-xl object-cover px-30 ml-2 mr-2 mt-2">
+            <div className="bg-gray-900 h-[13rem] w-[24rem] rounded-xl object-cover px-30 ml-2 mr-2 mt-2">
                 <div className="flex flex-col">
                     <label htmlFor="nome" className="ml-44 block font-semibold text-sm text-gray-700 dark:text-gray-200">
                         Atributos

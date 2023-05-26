@@ -1,20 +1,24 @@
 import React, { useState } from 'react';
 import UploadImage from '../uploadImage/UploadImage';
 import Infos from '../infos/Infos';
-import Infos2 from '../infos2/infos2';
+import InfosProfile from '../infos/infosPorfile';
 import Stats from '../stats/Stats';
 import Attributes from '../attributes/Attributes';
-import SubAttributes from '../sub-attributes/SubAttributes';
+import SubAttributesForca from '../sub-attributes/SubAttributesForça';
+import SubAttributesDestreza from '../sub-attributes/SubAttributesDestreza';
+import SubAttributesInteligencia from '../sub-attributes/SubAttributesInteligencia';
 function Home() {
 
   return (
     <div className=''>
       <Attributes/>
       <Infos/>
-      <Infos2/>
+      <InfosProfile/>
       <UploadImage/>
       <Stats></Stats>
-      <SubAttributes/>
+      <SubAttributesForca/>
+      <SubAttributesDestreza/>
+      <SubAttributesInteligencia/>
 
     </div>
 

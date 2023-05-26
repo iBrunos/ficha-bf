@@ -4,7 +4,7 @@ function Infos2() {
 
     return (
         <>
-        <div className="bg-gray-900 h-[13rem] w-[14rem] rounded-xl object-cover px-30 ml-2 mr-2 mt-2">            <div className='ml-2'>
+        <div className="bg-gray-900 h-[14rem] w-[14rem] rounded-xl object-cover px-30 ml-2 mr-2 mt-2">            <div className='ml-2'>
                 <label
                     htmlFor="nome"
                     className="block text-xs font-medium text-gray-700 dark:text-gray-200"
