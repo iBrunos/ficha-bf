@@ -41,7 +41,7 @@ function Infos() {
                     </label>
                     <input
                         type="text"
-                        placeholder="Digite seu nome"
+                        placeholder=" Digite seu nome"
                         className="mt-2 w-40 rounded-md shadow-sm border-gray-700 bg-gray-800 text-gray-900 sm:text-sm"
                     />
                 </div>
@@ -56,7 +56,7 @@ function Infos() {
                     <div className='flex flex-row'>
                         <input
                             type="number"
-                            placeholder="Digite a idade"
+                            placeholder=" Digite a idade"
                             className=" mt-1 w-40 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-900 sm:text-sm"
                         />
                     </div>
