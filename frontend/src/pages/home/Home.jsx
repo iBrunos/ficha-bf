@@ -17,22 +17,33 @@ import Slots from '../slots/Slots';
 function Home() {
 
   return (
-    <div className=''>
-      <UploadImage />
-      <Infos />
-      <InfosProfile />
-      <Stats />
-      <Attributes/>
-      <SubAttributesForca/>
-      <SubAttributesDestreza/>
-      <SubAttributesInteligencia/>
-      <SubAttributesCarisma/>
-      <SubAttributesKai/>
-      <SubAttributesConstituicao/>
-      <SubAttributesEspirito/>
-      <SubAttributesSabedoria/>
-      <Todolist/>
-      <Slots/>
+    <div className='bg-gray-900 w-[60rem] h-[5rem]'>
+      <div className='flex flex-row bg-gray-900'>
+        <UploadImage />
+        <Infos />
+        <InfosProfile />
+        <Stats />
+      </div>
+
+      <div className='grid grid-cols-2 bg-gray-800 w-[50rem]'>
+
+        <div className='bg-gray-900 '>
+          <Attributes />
+          <Slots />
+        </div>
+        <div className='grid grid-cols-3 '>
+          <SubAttributesForca />
+          <SubAttributesDestreza />
+          <SubAttributesInteligencia />
+          <SubAttributesCarisma />
+          <SubAttributesKai />
+          <SubAttributesConstituicao />
+          <SubAttributesEspirito />
+          <SubAttributesSabedoria />
+        </div>
+  
+      </div>
+
     </div>
 
 
