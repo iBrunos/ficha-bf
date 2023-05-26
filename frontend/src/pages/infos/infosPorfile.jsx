@@ -14,7 +14,7 @@ function Infos2() {
                 <div className='flex flex-row'>
                     <input
                         type="number"
-                        placeholder="Digite a idade"
+                        placeholder=" Digite a idade"
                         className=" mt-2 w-40 rounded-md shadow-sm border-gray-700 bg-gray-800 text-gray-900 sm:text-sm"
                     />
                 </div>
@@ -50,7 +50,7 @@ function Infos2() {
                 </label>
                 <input
                     type="number"
-                    placeholder="Informe seu Nível"
+                    placeholder=" Informe seu Nível"
                     className="mt-2 w-40 rounded-md shadow-sm border-gray-700 bg-gray-800 text-gray-900 sm:text-sm"
                 />
             </div>
@@ -63,7 +63,7 @@ function Infos2() {
                 </label>
                 <input
                     type="number"
-                    placeholder="Informe sua CA"
+                    placeholder=" Informe sua CA"
                     className="mt-2 w-40 rounded-md shadow-sm border-gray-700 bg-gray-800 text-gray-900 sm:text-sm"
                 />
             </div>

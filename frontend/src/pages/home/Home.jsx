@@ -17,8 +17,8 @@ import Slots from '../slots/Slots';
 function Home() {
 
   return (
-    <div className='bg-gray-900 w-[60rem] h-[5rem]'>
-      <div className='flex flex-row bg-gray-900'>
+    <div className='bg-gray-900 w-[60rem] h-[5rem] '>
+      <div className='flex flex-row bg-gray-900 rounded-xl'>
         <UploadImage />
         <Infos />
         <InfosProfile />

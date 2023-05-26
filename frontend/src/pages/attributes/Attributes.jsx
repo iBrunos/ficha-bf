@@ -179,7 +179,7 @@ function Atributos() {
                                 <input
                                     type="number"
                                     placeholder=" ATR"
-                                    className="mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
+                                    className="mt-2 w-11 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
                                     value={forca}
                                     onChange={handleChangeForca}
                                 />
@@ -207,7 +207,7 @@ function Atributos() {
                                 <input
                                     type="number"
                                     placeholder=" ATR"
-                                    className="mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
+                                    className="mt-2 w-11 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
                                     value={inteligencia}
                                     onChange={handleChangeInteligencia}
                                 />
@@ -233,7 +233,7 @@ function Atributos() {
                                 <input
                                     type="number"
                                     placeholder=" ATR"
-                                    className="mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
+                                    className="mt-2 w-11 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
                                     value={espirito}
                                     onChange={handleChangeEspirito}
                                 />
@@ -259,7 +259,7 @@ function Atributos() {
                                 <input
                                     type="number"
                                     placeholder=" ATR"
-                                    className="mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
+                                    className="mt-2 w-11 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
                                     value={carisma}
                                     onChange={handleChangeCarisma}
                                 />
@@ -285,7 +285,7 @@ function Atributos() {
                                 <input
                                     type="number"
                                     placeholder=" ATR"
-                                    className="mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
+                                    className="mt-2 w-11 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
                                     value={constituicao}
                                     onChange={handleChangeConstituicao}
                                 />
@@ -311,7 +311,7 @@ function Atributos() {
                                 <input
                                     type="number"
                                     placeholder=" ATR"
-                                    className="mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
+                                    className="mt-2 w-11 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
                                     value={sabedoria}
                                     onChange={handleChangeSabedoria}
                                 />
@@ -337,7 +337,7 @@ function Atributos() {
                                 <input
                                     type="number"
                                     placeholder=" ATR"
-                                    className="mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
+                                    className="mt-2 w-11 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
                                     value={kai}
                                     onChange={handleChangeKai}
                                 />
@@ -363,7 +363,7 @@ function Atributos() {
                                 <input
                                     type="number"
                                     placeholder=" ATR"
-                                    className="mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
+                                    className="mt-2 w-11 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
                                     value={destreza}
                                     onChange={handleChangeDestreza}
                                 />

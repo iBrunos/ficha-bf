@@ -177,7 +177,7 @@ function SubAtributosCarisma() {
 
                             </label>
                             
-                            <label htmlFor="nome" className="block text-xs ml-2 text-gray-700 dark:text-gray-200">
+                            <label htmlFor="nome" className="block text-xs text-white">
                             Persuadir
                             </label>
                             <div className='flex flex-row mt-1'>
@@ -195,7 +195,7 @@ function SubAtributosCarisma() {
                                     <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
                                 </label>
                             </div>
-                            <label htmlFor="nome" className=" ml-2 block text-xs text-gray-700 dark:text-gray-200">
+                            <label htmlFor="nome" className="block text-xs text-white">
                             Intimidar                            </label>
                             <div className='flex flex-row mt-1'>
                                 
@@ -212,7 +212,7 @@ function SubAtributosCarisma() {
                                     <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
                                 </label>
                             </div>
-                            <label htmlFor="nome" className="ml-2 block text-xs text-gray-700 dark:text-gray-200">
+                            <label htmlFor="nome" className="block text-xs text-white">
                             Sedução                            </label>
                             <div className='flex flex-row mt-1'>
                                
