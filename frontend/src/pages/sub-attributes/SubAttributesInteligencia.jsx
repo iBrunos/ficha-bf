@@ -172,11 +172,11 @@ function SubAtributosInteligencia() {
                     </label>
                     <div className="w-40 ml-2 grid grid-cols-2 border-solid border-2 border-red-900 ">
                         <div className='ml-2'>
-                            <label htmlFor="nome" className="block font-semibold text-sm text-gray-700 dark:text-gray-200">
+                            <label htmlFor="nome" className="block font-semibold text-sm text-gray-200">
                                 Inteligência
                             </label>
                             
-                            <label htmlFor="nome" className="block text-xs ml-2 text-gray-700 dark:text-gray-200">
+                            <label htmlFor="nome" className="ml-2 block text-xs text-white">
                             Investigação
                             </label>
                             <div className='flex flex-row mt-1'>
@@ -194,7 +194,7 @@ function SubAtributosInteligencia() {
                                     <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
                                 </label>
                             </div>
-                            <label htmlFor="nome" className=" ml-2 block text-xs text-gray-700 dark:text-gray-200">
+                            <label htmlFor="nome" className="ml-2 block text-xs text-white">
                             Aprender                            </label>
                             <div className='flex flex-row mt-1'>
                                 
@@ -211,7 +211,7 @@ function SubAtributosInteligencia() {
                                     <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
                                 </label>
                             </div>
-                            <label htmlFor="nome" className="ml-2 block text-xs text-gray-700 dark:text-gray-200">
+                            <label htmlFor="nome" className="ml-2 block text-xs text-white">
                             Misticismo                            </label>
                             <div className='flex flex-row mt-1'>
                                
@@ -228,7 +228,7 @@ function SubAtributosInteligencia() {
                                     <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
                                 </label>
                             </div>
-                            <label htmlFor="nome" className="ml-2 block text-xs text-gray-700 dark:text-gray-200">
+                            <label htmlFor="nome" className="ml-2 block text-xs text-white">
                             História                            </label>
                             <div className='flex flex-row mt-1'>
                                

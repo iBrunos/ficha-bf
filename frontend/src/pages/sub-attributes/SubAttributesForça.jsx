@@ -175,7 +175,7 @@ function SubAtributosForça() {
                             <label htmlFor="nome" className="block font-semibold text-sm text-gray-700 dark:text-gray-200">
                                 Força
                             </label>
-                            <label htmlFor="nome" className="ml-2 block text-xs text-gray-700 dark:text-gray-200">
+                            <label htmlFor="nome" className="block text-xs text-white">
                                 Atletismo
                             </label>
                             <div className='flex flex-row mt-1'>
@@ -193,7 +193,7 @@ function SubAtributosForça() {
                                     <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
                                 </label>
                             </div>
-                            <label htmlFor="nome" className="ml-2 block text-xs text-gray-700 dark:text-gray-200">
+                            <label htmlFor="nome" className="block text-xs text-white">
                                 Dominação                            </label>
                             <div className='flex flex-row mt-1'>
 

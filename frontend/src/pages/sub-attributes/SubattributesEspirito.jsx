@@ -172,11 +172,11 @@ function SubAtributosInteligencia() {
                     </label>
                     <div className="w-40 ml-2 grid grid-cols-2 border-solid border-2 border-red-900 ">
                         <div className='ml-2'>
-                            <label htmlFor="nome" className="block font-semibold text-sm text-gray-700 dark:text-gray-200">
+                            <label htmlFor="nome" className="block font-semibold text-sm text-gray-200">
                                 Espírito
                             </label>
 
-                            <label htmlFor="nome" className="block text-xs ml-2 text-gray-700 dark:text-gray-200">
+                            <label htmlFor="nome" className="block text-xs text-white">
                                 Religião
                             </label>
                             <div className='flex flex-row mt-1'>

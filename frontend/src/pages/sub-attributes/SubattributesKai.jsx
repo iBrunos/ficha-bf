@@ -172,11 +172,10 @@ function SubAtributosKai() {
                     </label>
                     <div className="w-40 ml-2 grid grid-cols-2 border-solid border-2 border-red-900 ">
                         <div className='ml-2'>
-                            <label htmlFor="nome" className="block font-semibold text-sm text-gray-700 dark:text-gray-200">
+                            <label htmlFor="nome" className="block font-semibold text-sm text-gray-200">
                                 Kai
                             </label>
-
-                            <label htmlFor="nome" className="w-20 block text-xs ml-2 text-gray-700 dark:text-gray-200">
+                            <label htmlFor="nome" className="w-36 ml-2 block text-xs text-white">
                                 Detectar Alma
                             </label>
                             <div className='flex flex-row mt-1 '>
@@ -194,7 +193,7 @@ function SubAtributosKai() {
                                     <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
                                 </label>
                             </div>
-                            <label htmlFor="nome" className="w-24 ml-2 block text-xs text-gray-700 dark:text-gray-200">
+                            <label htmlFor="nome" className="w-36 ml-2 block text-xs text-white">
                                 Controle de Chi
                             </label>
                             <div className='flex flex-row mt-1'>
@@ -212,7 +211,7 @@ function SubAtributosKai() {
                                     <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
                                 </label>
                             </div>
-                            <label htmlFor="nome" className="w-36 ml-2 block text-xs text-gray-700 dark:text-gray-200">
+                            <label htmlFor="nome" className="w-36 ml-2 block text-xs text-white">
                                 Armadura Espiritual
                             </label>
                             <div className='flex flex-row mt-1'>
