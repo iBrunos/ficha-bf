@@ -50,12 +50,11 @@ function Todolist() {
     return (
         <div className=" ">
       <div className="w-[25rem] h-[23rem] text-center rounded-xl bg-gray-900 p-5">
-        <h1 className="text-5xl text-white font-extralight mb-8">Técnicas</h1>
         <form onSubmit={handleForm}>
           <input
             className="border-2 placeholder:text-gray-500 rounded-lg border-black w-full p-5 mb-5 text-black"
             type="text"
-            placeholder="Título"
+            placeholder="Técnica / Magia / Habilidade"
             value={todoTitle}
             onChange={(e) => setTodoTitle(e.target.value)}
           />

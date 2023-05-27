@@ -20,7 +20,7 @@ function Home() {
 
     <div className='bg-gray-900 h-[70rem] w-full' >
     <div className=' bg-gray-900 h-[5rem] w-full'>
-      <div className='flex flex-row w-full bg-gray-900 rounded-xl'>
+      <div className='flex flex-row w-full h-64 bg-gray-900 rounded-xl'>
         <UploadImage />
         <Infos />
         <InfosProfile />
