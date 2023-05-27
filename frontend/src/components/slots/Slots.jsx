@@ -50,23 +50,23 @@ function Slots() {
         <input
           type="text"
           placeholder=" Slot / Técnica"
-          className="mt-1 w-48 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
+          className="mt-1 w-48 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-white sm:text-sm"
         />
         <SlotGenerator />
       </div>
       <div className='mt-2 ml-2 text-white' >
-      <input
+        <input
           type="text"
           placeholder=" Slot / Técnica"
-          className="mt-1 w-48 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
+          className="mt-1 w-48 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-white sm:text-sm"
         />
         <SlotGenerator />
       </div>
       <div className='mt-2 ml-2 text-white' >
-      <input
+        <input
           type="text"
           placeholder=" Slot / Técnica"
-          className="mt-1 w-48 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
+          className="mt-1 w-48 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-white sm:text-sm"
         />
         <SlotGenerator />
       </div>
