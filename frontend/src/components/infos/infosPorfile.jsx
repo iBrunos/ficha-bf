@@ -16,7 +16,7 @@ function Infos2() {
                 </label>
                 <select
                     id="tendencia"
-                    className="mt-1 w-50 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
+                    className="mt-1 w-50 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-white sm:text-sm"
                 >
                     <option value="">Selecione uma Tendência</option>
                     <option value="Neutro e Bom (NB)">Neutro e Bom (NB)</option>
@@ -39,7 +39,7 @@ function Infos2() {
                 <input
                     type="number"
                     placeholder=" Informe seu Nível"
-                    className="mt-2 w-40 rounded-md shadow-sm border-gray-700 bg-gray-800 text-gray-900 sm:text-sm"
+                    className="mt-2 w-40 rounded-md shadow-sm border-gray-700 bg-gray-800 text-white sm:text-sm"
                 />
             </div>
             <div className='ml-2 '>
@@ -52,7 +52,7 @@ function Infos2() {
                 <input
                     type="number"
                     placeholder=" Informe sua CA"
-                    className="mt-2 w-40 rounded-md shadow-sm border-gray-700 bg-gray-800 text-gray-900 sm:text-sm"
+                    className="mt-2 w-40 rounded-md shadow-sm border-gray-700 bg-gray-800 text-white sm:text-sm"
                 />
             </div>
             <div className='ml-2 '>
@@ -64,7 +64,7 @@ function Infos2() {
                 </label>
                 <select
                     id="background"
-                    className="mt-1 w-50 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
+                    className="mt-1 w-50 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-white sm:text-sm"
                 >
                     <option value="">Selecione um Background</option>
                     <option value="Nobre">Nobre</option>

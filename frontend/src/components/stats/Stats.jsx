@@ -45,7 +45,7 @@ function Stats() {
                         <input
                             type='number'
                             placeholder=' 0'
-                            className="mt-2 w-50 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
+                            className="mt-2 w-50 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-white sm:text-sm"
                         />
                     </div>
                 </div>
@@ -56,7 +56,7 @@ function Stats() {
                 <div>
                     <input
                         type='number'
-                        className='ml-2 mt-1 w-10 rounded-md shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm'
+                        className='ml-2 mt-1 w-10 rounded-md shadow-sm border-gray-700 bg-gray-800 text-white sm:text-sm'
                         value={Hp}
                         disabled
                         onChange={handleHpChange}
@@ -64,7 +64,7 @@ function Stats() {
                     <span className='text-white'>   / </span>
                     <input
                         type='number'
-                        className='ml-2 mt-1 w-10 rounded-md shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm'
+                        className='ml-2 mt-1 w-10 rounded-md shadow-sm border-gray-700 bg-gray-800 text-white sm:text-sm'
                         value={finalHp}
                         onChange={handleFinalHpChange}
                     />
@@ -76,7 +76,7 @@ function Stats() {
                         <FavoriteIcon className='text-green-900 ml-2' />
                         <input
                             type='number'
-                            className='ml-2 mt-1 w-16 rounded-md shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm'
+                            className='ml-2 mt-1 w-16 rounded-md shadow-sm border-gray-700 bg-gray-800 text-white sm:text-sm'
                             placeholder=' heal'
                             value={heal}
                             onChange={handleLeftInputChange}
@@ -84,7 +84,7 @@ function Stats() {
                         <span className='px-1'></span>
                         <input
                             type='number'
-                            className='ml-2 mt-1 w-[4.6rem] rounded-md shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm'
+                            className='ml-2 mt-1 w-[4.6rem] rounded-md shadow-sm border-gray-700 bg-gray-800 text-white sm:text-sm'
                             placeholder=' damage'
                             value={damage}
                             onChange={handleRightInputChange}
@@ -117,7 +117,7 @@ function Stats() {
                     </label>
                     <select
                         id="tendencia"
-                        className="mt-1 w-40 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
+                        className="mt-1 w-40 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-white sm:text-sm"
                     >
                         <option value="">Selecione uma Classe</option>
                         <option value="Samurai">Samurai</option>

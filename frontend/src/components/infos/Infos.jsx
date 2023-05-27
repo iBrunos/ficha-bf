@@ -42,7 +42,7 @@ function Infos() {
                     <input
                         type="text"
                         placeholder=" Digite seu nome"
-                        className="mt-2 w-40 rounded-md shadow-sm border-gray-700 bg-gray-800 text-gray-900 sm:text-sm"
+                        className="mt-2 w-40 rounded-md shadow-sm border-gray-700 bg-gray-800 text-white sm:text-sm"
                     />
                 </div>
 
@@ -57,7 +57,7 @@ function Infos() {
                         <input
                             type="number"
                             placeholder=" Digite a idade"
-                            className=" mt-1 w-40 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-900 sm:text-sm"
+                            className=" mt-1 w-40 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-white sm:text-sm"
                         />
                     </div>
                 </div>
@@ -91,7 +91,7 @@ function Infos() {
           {selectedRace === 'outra' && (
             <input
               type="text"
-              className="mt-1 w-40 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
+              className="mt-1 w-40 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-white sm:text-sm"
               placeholder="Digite a raça"
               value={customRace}
               onChange={handleCustomRaceChange}
@@ -120,7 +120,7 @@ function Infos() {
           {selectedSize === 'outra' && (
             <input
               type="text"
-              className="mt-1 w-40 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
+              className="mt-1 w-40 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-white sm:text-sm"
               placeholder="Digite o tamanho"
               value={customSize}
               onChange={handleCustomSizeChange}

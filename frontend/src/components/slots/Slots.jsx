@@ -5,7 +5,9 @@ function SlotGenerator() {
   const [selectedSlots, setSelectedSlots] = useState([]);
 
   const handleNumSlotsChange = (event) => {
-    const value = parseInt(event.target.value);
+    let value = parseInt(event.target.value);
+    // Limitar o valor máximo para 20
+    value = Math.min(value, 20);
     setNumSlots(value);
     setSelectedSlots(Array(value).fill(false));
   };
@@ -43,33 +45,42 @@ function SlotGenerator() {
   );
 }
 
+
 function Slots() {
+  const [numDivs, setNumDivs] = useState(1); // Estado para armazenar a quantidade de divs
+  const divs = [];
+
+  const handleNumDivsChange = (event) => {
+    const value = parseInt(event.target.value);
+    setNumDivs(value);
+  };
+
+  for (let i = 0; i < numDivs; i++) {
+    divs.push(
+      <div className='mt-2 ml-2 text-white' key={i}>
+        <input
+          type="text"
+          placeholder=" Slot / Técnica"
+          className="mt-1 w-48 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-white sm:text-sm"
+        />
+        <SlotGenerator />
+      </div>
+    );
+  }
+
   return (
-    <div className='bg-gray-900 mt-2 ml-2 rounded-xl w-[13rem]'>
-      <div className='mt-2 ml-2 text-white' >
+    <div className='bg-gray-900 text-white mt-2 ml-2 rounded-xl w-[13rem]'>
+      <div>
+        <label className='ml-2 'htmlFor="numDivs">Recursos  </label>
         <input
-          type="text"
-          placeholder=" Slot / Técnica"
-          className="mt-1 w-48 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-white sm:text-sm"
+          type="number"
+          id="numDivs"
+          value={numDivs}
+          onChange={handleNumDivsChange}
+          className="ml-2 mt-1 w-40 rounded-md shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
         />
-        <SlotGenerator />
       </div>
-      <div className='mt-2 ml-2 text-white' >
-        <input
-          type="text"
-          placeholder=" Slot / Técnica"
-          className="mt-1 w-48 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-white sm:text-sm"
-        />
-        <SlotGenerator />
-      </div>
-      <div className='mt-2 ml-2 text-white' >
-        <input
-          type="text"
-          placeholder=" Slot / Técnica"
-          className="mt-1 w-48 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-white sm:text-sm"
-        />
-        <SlotGenerator />
-      </div>
+      {divs}
     </div>
   );
 }
