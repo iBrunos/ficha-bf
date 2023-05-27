@@ -49,7 +49,7 @@ function Todolist() {
     };
     return (
         <div className=" ">
-      <div className="w-[20rem] h-[23rem] text-center rounded-xl bg-gray-900 p-5">
+      <div className="w-[25rem] h-[23rem] text-center rounded-xl bg-gray-900 p-5">
         <h1 className="text-5xl text-white font-extralight mb-8">Técnicas</h1>
         <form onSubmit={handleForm}>
           <input
@@ -72,7 +72,7 @@ function Todolist() {
             + Técnica
           </button>
         </form>
-        <div className="todo-show-area">
+        <div className="todo-show-area max-h-96 w-96 h-full overflow-auto">
           <ul>
                         {todoList.map((singleTodo, index) => {
                             return (

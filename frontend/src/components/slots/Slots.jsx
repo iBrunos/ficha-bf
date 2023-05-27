@@ -27,7 +27,7 @@ function SlotGenerator() {
         value={numSlots}
         onChange={handleNumSlotsChange}
         className=" mt-1 w-40 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
-        />
+      />
 
       {selectedSlots.map((isSelected, index) => (
         <label key={index} className="my-2">
@@ -35,7 +35,7 @@ function SlotGenerator() {
             type="checkbox"
             checked={isSelected}
             onChange={() => handleSlotToggle(index)}
-            className=" mt-1 w-40 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-900 sm:text-sm"
+            className=" mt-1 ml-2 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-900 sm:text-sm"
           />
         </label>
       ))}
@@ -47,15 +47,27 @@ function Slots() {
   return (
     <div className='bg-gray-900 mt-2 ml-2 rounded-xl w-[13rem]'>
       <div className='mt-2 ml-2 text-white' >
-        <h1>Slots Nv1</h1>
+        <input
+          type="text"
+          placeholder=" Slot / Técnica"
+          className="mt-1 w-48 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
+        />
         <SlotGenerator />
       </div>
       <div className='mt-2 ml-2 text-white' >
-        <h1>Slots Nv2</h1>
+      <input
+          type="text"
+          placeholder=" Slot / Técnica"
+          className="mt-1 w-48 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
+        />
         <SlotGenerator />
       </div>
       <div className='mt-2 ml-2 text-white' >
-        <h1>Slots Nv3</h1>
+      <input
+          type="text"
+          placeholder=" Slot / Técnica"
+          className="mt-1 w-48 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
+        />
         <SlotGenerator />
       </div>
     </div>
