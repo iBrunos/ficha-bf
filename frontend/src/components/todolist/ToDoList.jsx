@@ -57,12 +57,14 @@ function Todolist() {
             placeholder="Técnica / Magia / Habilidade"
             value={todoTitle}
             onChange={(e) => setTodoTitle(e.target.value)}
+            required
           />
           <textarea
             className="border-2 placeholder:text-gray-500 rounded-lg border-black w-full p-5 mb-5 text-black"
             placeholder="Descrição"
             value={todo}
             onChange={(e) => setTodo(e.target.value)}
+            required
           ></textarea>
           <button
             type="submit"

@@ -5,24 +5,12 @@ function Infos2() {
     return (
         <>
         <div className=" bg-gray-900 h-[14rem] w-[14rem] rounded-xl object-cover px-30 ml-2 mr-2 mt-2">            <div className='ml-2'>
-                <label
-                    htmlFor="nome"
-                    className="mt-2 block text-xs font-medium text-white"
-                >
-                    Idade
-                </label>
-                <div className='flex flex-row'>
-                    <input
-                        type="number"
-                        placeholder=" Digite a idade"
-                        className=" mt-2 w-40 rounded-md shadow-sm border-gray-700 bg-gray-800 text-gray-900 sm:text-sm"
-                    />
-                </div>
+
             </div>
             <div className='ml-2 '>
                 <label
                     htmlFor="nome"
-                    className="block text-xs font-medium text-white"
+                    className="mt-2 block text-xs font-medium text-white"
                 >
                     Tendência
                 </label>
