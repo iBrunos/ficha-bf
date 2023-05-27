@@ -10,7 +10,7 @@ import SubAttributesInteligencia from '../../components/sub-attributes/SubAttrib
 import SubAttributesCarisma from '../../components/sub-attributes/SubAttributesCarisma';
 import SubAttributesKai from '../../components/sub-attributes/SubAttributesKai';
 import SubAttributesConstituicao from '../../components/sub-attributes/SubAttributesConstituicao';
-import SubAttributesEspirito from '../../components/sub-attributes/SubAttributesEspirito';
+import SubAttributesEspirito from '../../components/sub-attributes/SubattributesEspirito';
 import SubAttributesSabedoria from '../../components/sub-attributes/SubAttributesSabedoria';
 import Todolist from '../../components/todolist/ToDoList';
 import Slots from '../../components/slots/Slots';
