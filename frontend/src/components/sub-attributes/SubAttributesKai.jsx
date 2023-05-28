@@ -5,27 +5,29 @@ function SubAttributesKai({ modCarisma }) {
     const [controleChi, setControleChi] = useState(0);
     const [armaduraEspiritual, setArmaduraEspiritual] = useState(0);
     const [proficiencia, setProficiencia] = useState(3);
-    const [toggle, setToggle] = useState(false);
+    const [toggleDetectarAlma, setToggleDetectarAlma] = useState(false);
+    const [toggleControleChi, setToggleControleChi] = useState(false);
+    const [toggleArmaduraEspiritual, setToggleArmaduraEspiritual] = useState(false);
 
     const handleToggleDetectarAlma = () => {
-        setToggle(!toggle);
-        if (toggle) {
+        setToggleDetectarAlma(!toggleDetectarAlma);
+        if (toggleDetectarAlma) {
             setDetectarAlma(detectarAlma - proficiencia);
         } else {
             setDetectarAlma(detectarAlma + proficiencia); ''
         }
     };
     const handleToggleControleChi = () => {
-        setToggle(!toggle);
-        if (toggle) {
+        setToggleControleChi(!toggleControleChi);
+        if (toggleControleChi) {
             setControleChi(controleChi - proficiencia);
         } else {
             setControleChi(controleChi + proficiencia);
         }
     };
     const handleToggleArmaduraEspiritual = () => {
-        setToggle(!toggle);
-        if (toggle) {
+        setToggleArmaduraEspiritual(!toggleArmaduraEspiritual);
+        if (toggleArmaduraEspiritual) {
             setArmaduraEspiritual(armaduraEspiritual - proficiencia);
         } else {
             setArmaduraEspiritual(armaduraEspiritual + proficiencia);
@@ -35,7 +37,7 @@ function SubAttributesKai({ modCarisma }) {
 
     return (
         <>
-            <div className="mt-2 bg-gray-900 h-[15rem] w-[11rem] rounded-xl object-cover px-30 mr-2">
+            <div className="ml-10 mt-2 bg-gray-900 h-[15rem] w-[11rem] rounded-xl object-cover px-30 mr-2">
                 <div className="flex flex-col">
                     <div className="w-40 ml-2 grid grid-cols-2 border-solid border-2 border-red-900 pb-2">
                         <div className="ml-2">
