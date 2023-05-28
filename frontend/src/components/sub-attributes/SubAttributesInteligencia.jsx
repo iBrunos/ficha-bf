@@ -43,7 +43,7 @@ function SubAttributesInteligencia() {
 
     return (
         <>
-            <div className="mt-2 bg-gray-900 h-[15rem] w-[11rem] rounded-xl object-cover px-30 mr-2">
+            <div className="mt-2 ml-10 bg-gray-900 h-[15rem] w-[11rem] rounded-xl object-cover px-30 mr-2">
                 <div className="flex flex-col">
                     <div className="w-40 ml-2 grid grid-cols-2 border-solid border-2 border-red-900 pb-2">
                         <div className="ml-2">
