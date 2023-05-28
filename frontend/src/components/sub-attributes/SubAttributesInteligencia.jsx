@@ -6,40 +6,47 @@ function SubAttributesInteligencia() {
     const [aprender, setAprender] = useState(0);
     const [misticismo, setMisticismo] = useState(0);
     const [proficiencia, setProficiencia] = useState(3);
-    const [toggle, setToggle] = useState(false);
-
-    const handleToggleinvestigacao = () => {
-        setToggle(!toggle);
-        if (toggle) {
+    const [toggleInvestigacao, setToggleInvestigacao] = useState(false);
+    const [toggleHistoria, setToggleHistoria] = useState(false);
+    const [toggleAprender, setToggleAprender] = useState(false);
+    const [toggleMisticismo, setToggleMisticismo] = useState(false);
+    
+    const handleToggleInvestigacao = () => {
+        setToggleInvestigacao(!toggleInvestigacao);
+        if (toggleInvestigacao) {
             setInvestigacao(investigacao - proficiencia);
         } else {
-            setInvestigacao(investigacao + proficiencia);''
+            setInvestigacao(investigacao + proficiencia);
         }
     };
-    const handleTogglehistoria = () => {
-        setToggle(!toggle);
-        if (toggle) {
-            SetHistoria(historia - proficiencia);
+    
+    const handleToggleHistoria = () => {
+        setToggleHistoria(!toggleHistoria);
+        if (toggleHistoria) {
+            setHistoria(historia - proficiencia);
         } else {
-            SetHistoria(historia + proficiencia);
+            setHistoria(historia + proficiencia);
         }
     };
-    const handleToggleaprender = () => {
-        setToggle(!toggle);
-        if (toggle) {
+    
+    const handleToggleAprender = () => {
+        setToggleAprender(!toggleAprender);
+        if (toggleAprender) {
             setAprender(aprender - proficiencia);
         } else {
             setAprender(aprender + proficiencia);
         }
     };
-    const handleTogglemisticismo = () => {
-        setToggle(!toggle);
-        if (toggle) {
+    
+    const handleToggleMisticismo = () => {
+        setToggleMisticismo(!toggleMisticismo);
+        if (toggleMisticismo) {
             setMisticismo(misticismo - proficiencia);
         } else {
             setMisticismo(misticismo + proficiencia);
         }
     };
+    
 
     return (
         <>
@@ -67,7 +74,7 @@ function SubAttributesInteligencia() {
                                         type="checkbox"
                                         value=""
                                         className="sr-only peer"
-                                        onClick={handleToggleinvestigacao}
+                                        onClick={handleToggleInvestigacao}
                                     />
                                     <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:mt-[0.1rem] after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                                     <span className="ml-3 text-sm font-medium text-white dark:text-gray-300"></span>
@@ -89,7 +96,7 @@ function SubAttributesInteligencia() {
                                         type="checkbox"
                                         value=""
                                         className="sr-only peer"
-                                        onClick={handleTogglehistoria}
+                                        onClick={handleToggleHistoria}
                                     />
                                     <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:mt-[0.1rem] after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                                     <span className="ml-3 text-sm font-medium text-white dark:text-gray-300"></span>
@@ -111,7 +118,7 @@ function SubAttributesInteligencia() {
                                         type="checkbox"
                                         value=""
                                         className="sr-only peer"
-                                        onClick={handleToggleaprender}
+                                        onClick={handleToggleAprender}
                                     />
                                     <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:mt-[0.1rem] after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                                     <span className="ml-3 text-sm font-medium text-white dark:text-gray-300"></span>
@@ -133,7 +140,7 @@ function SubAttributesInteligencia() {
                                     type="checkbox"
                                     value=""
                                     className="sr-only peer"
-                                    onClick={handleTogglemisticismo}
+                                    onClick={handleToggleMisticismo}
                                 />
                                 <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:mt-[0.1rem] after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                                 <span className="ml-3 text-sm font-medium text-white dark:text-gray-300"></span>
