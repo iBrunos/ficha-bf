@@ -5,35 +5,37 @@ function SubAttributesCarisma({ modCarisma }) {
     const [intimidar, setIntimidar] = useState(0);
     const [persuadir, setPersuadir] = useState(0);
     const [proficiencia, setProficiencia] = useState(3);
-    const [toggle, setToggle] = useState(false);
-    const [toggle, setToggle] = useState(false);
-    const [toggle, setToggle] = useState(false);
+    const [toggleSeducao, setToggleSeducao] = useState(false);
+    const [toggleIntimidar, setToggleIntimidar] = useState(false);
+    const [togglePersuadir, setTogglePersuadir] = useState(false);
     
-
     const handleToggleSeducao = () => {
-        setToggle(!toggle);
-        if (toggle) {
+        setToggleSeducao(!toggleSeducao);
+        if (toggleSeducao) {
             setSeducao(seducao - proficiencia);
         } else {
-            setSeducao(seducao + proficiencia); ''
+            setSeducao(seducao + proficiencia);
         }
     };
-    const handleToggleintimidar = () => {
-        setToggle(!toggle);
-        if (toggle) {
+    
+    const handleToggleIntimidar = () => {
+        setToggleIntimidar(!toggleIntimidar);
+        if (toggleIntimidar) {
             setIntimidar(intimidar - proficiencia);
         } else {
             setIntimidar(intimidar + proficiencia);
         }
     };
+    
     const handleTogglePersuadir = () => {
-        setToggle(!toggle);
-        if (toggle) {
+        setTogglePersuadir(!togglePersuadir);
+        if (togglePersuadir) {
             setPersuadir(persuadir - proficiencia);
         } else {
             setPersuadir(persuadir + proficiencia);
         }
     };
+    
 
 
     return (
