@@ -6,6 +6,9 @@ function SubAttributesCarisma({ modCarisma }) {
     const [persuadir, setPersuadir] = useState(0);
     const [proficiencia, setProficiencia] = useState(3);
     const [toggle, setToggle] = useState(false);
+    const [toggle, setToggle] = useState(false);
+    const [toggle, setToggle] = useState(false);
+    
 
     const handleToggleSeducao = () => {
         setToggle(!toggle);
