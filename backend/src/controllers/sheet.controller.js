@@ -184,7 +184,7 @@ const updateFicha = async (req, res) => {
 };
 
 export default {
-    createService,
+  createService,
   getAllFichas,
   getFichaById,
   updateFicha,
