@@ -5,7 +5,6 @@ import logoMin from "../../assets/imgs/logoMin.png";
 import setCookie from "../../hooks/Cookie";
 import BF from "../../assets/imgs/bf.png";
 import { GoogleLogin } from 'react-google-login';
-import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -38,9 +37,19 @@ const LoginForm = () => {
     }
   };
   const onSuccess = (res) => {
-
-      const { name, email, imageUrl } = response.profileObj;
-      console.log(name, email, imageUrl);
+    const client = google.accounts.oauth2.initCodeClient({
+      client_id: 'YOUR_GOOGLE_CLIENT_ID',
+      scope: 'https://www.googleapis.com/auth/userinfo.profile',
+      ux_mode: 'popup',
+      callback: (res) => {
+        if (res.code) {
+          console.log(res.code)
+        }
+      },
+    });
+    client.requestCode();
+    const { name, email, imageUrl } = response.profileObj;
+    console.log(name, email, imageUrl);
 
   };
 
@@ -49,8 +58,7 @@ const LoginForm = () => {
 
     console.log("Login falied: ", res);
 
-};
-
+  };
 
   const handleRememberMe = () => {
     setRememberMe(!rememberMe);
@@ -198,6 +206,7 @@ const LoginForm = () => {
                         onSuccess={onSuccess}
                         cookiePolicy={'single_host_origin'}
                         isSignedIn={true}
+
                       />
 
                     </div>
