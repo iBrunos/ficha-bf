@@ -199,7 +199,7 @@ const LoginForm = () => {
 
                         {!isLoggedIn && (
                           <GoogleLogin
-                            clientId="YOUR_CLIENT_ID"
+                            clientId="433202543860-i7bqf1mm1km3efconk4dvld87kcmn2il.apps.googleusercontent.com"
                             buttonText="Login with Google"
                             onFailure={console.error}
                             onSuccess={handleGoogleLogin}
