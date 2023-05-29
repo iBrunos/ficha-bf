@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function Atributos() {
     const [proficiencia, setProficiencia] = useState(3);
@@ -29,6 +30,31 @@ function Atributos() {
     const [toggleConstituicao, setToggleConstituicao] = useState(false);
     const [toggleKai, setToggleKai] = useState(false);
 
+    
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('https://api-bladefall.vercel.app/sheet');
+        const data = response.data;
+  
+        // Atualize todos os atributos com os dados recebidos da API
+        setForca(data.forca);
+        setInteligencia(data.inteligencia);
+        setAgilidade(data.agilidade);
+        setCarisma(data.carisma);
+        modSabedoria(data.agilidade);
+        modEspirito(data.carisma);
+        modConstituicao(data.agilidade);
+        modKai(data.carisma);
+        console.log(data)
+        // ... atualize outros estados com base nos dados da API
+      } catch (error) {
+        console.error('Erro ao obter os atributos:', error);
+      }
+    };
+  
+    fetchData();
+  }, []);
     const calcularMod = (valor) => {
         const parsedValor = parseInt(valor);
         if (parsedValor >= 1 && parsedValor <= 30) {

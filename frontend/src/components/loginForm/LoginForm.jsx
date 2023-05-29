@@ -16,25 +16,47 @@ const LoginForm = () => {
     setEmail(e.target.value);
   };
 
+ 
+
+  useEffect(() => {
+    if (localStorage.getItem("checkError") === "true") {
+      window.alert(
+        "Você precisa fazer login para acessar essa página.\nCaso Esteja com algum erro, chame o suporte."
+      );
+      localStorage.removeItem("checkError");
+    }
+   
+  }, [navigate]);
+
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
+  };  
+  const changePageTitle = (newTitle) => {
+    document.title = newTitle;
   };
+  changePageTitle("Blade Fall | Login");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newItem = { email, password };
-    const response = await axios.post("http://localhost:3000/auth", newItem);
+    const response = await axios.post("https://api-bladefall.vercel.app/auth", newItem);
     const data = response.data;
     if (data.message === "Login realizado com sucesso.") {
-      navigate('/home'); // Redireciona para '/home'
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("email", data.email);
+      localStorage.setItem("username", data.username);
+      localStorage.setItem("userId", data.id);
+      localStorage.setItem("level", data.level);
+      navigate('/user/home'); // Redireciona para '/home'
       setCookie("token", data.token, 7);
+      const token = localStorage.getItem("token");
     } else {
       setPassword("");
       setEmail("");
       setError("Email ou senha incorretos.");
     }
   };
-  
+
 
   const handleRememberMe = () => {
     setRememberMe(!rememberMe);
