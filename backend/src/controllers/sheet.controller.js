@@ -1,6 +1,6 @@
-import fichaService from '../services/fichaService.js';
+import fichaService from '../services/sheet.service.js';
 
-const createFicha = async (req, res) => {
+const createService = async (req, res) => {
   try {
     const {
       username,
@@ -184,7 +184,7 @@ const updateFicha = async (req, res) => {
 };
 
 export default {
-  createFicha,
+    createService,
   getAllFichas,
   getFichaById,
   updateFicha,
