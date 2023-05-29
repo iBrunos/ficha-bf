@@ -78,6 +78,8 @@ function Slots() {
           value={numDivs}
           onChange={handleNumDivsChange}
           className="ml-2 mt-1 w-40 rounded-md shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
+          min="0"
+          max="10"
         />
       </div>
       {divs}

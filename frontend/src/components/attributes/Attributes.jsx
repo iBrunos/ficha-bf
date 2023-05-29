@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Atributos() {
+    const [proficiencia, setProficiencia] = useState(3);
     const [forca, setForca] = useState('');
     const [inteligencia, setInteligencia] = useState('');
     const [destreza, setDestreza] = useState('');
@@ -19,148 +20,109 @@ function Atributos() {
     const [modConstituicao, setModConstituicao] = useState('');
     const [modKai, setModKai] = useState('');
 
-    const [toggle, setToggle] = useState(false);
+    const [toggleForca, setToggleForca] = useState(false);
+    const [toggleInteligencia, setToggleInteligencia] = useState(false);
+    const [toggleDestreza, setToggleDestreza] = useState(false);
+    const [toggleCarisma, setToggleCarisma] = useState(false);
+    const [toggleSabedoria, setToggleSabedoria] = useState(false);
+    const [toggleEspirito, setToggleEspirito] = useState(false);
+    const [toggleConstituicao, setToggleConstituicao] = useState(false);
+    const [toggleKai, setToggleKai] = useState(false);
 
     const calcularMod = (valor) => {
-        if (valor === '1') return -5;
-        if (valor === '2' || valor === '3') return -4;
-        if (valor === '4' || valor === '5') return -3;
-        if (valor === '6' || valor === '7') return -2;
-        if (valor === '8' || valor === '9') return -1;
-        if (valor === '10' || valor === '11') return 0;
-        if (valor === '12' || valor === '13') return 1;
-        if (valor === '14' || valor === '15') return 2;
-        if (valor === '16' || valor === '17') return 3;
-        if (valor === '18' || valor === '19') return 4;
-        if (valor === '20' || valor === '21') return 5;
-        if (valor === '22' || valor === '23') return 6;
-        if (valor === '24' || valor === '25') return 7;
-        if (valor === '26' || valor === '27') return 8;
-        if (valor === '28' || valor === '29') return 9;
-        if (valor === '30') return 10;
+        const parsedValor = parseInt(valor);
+        if (parsedValor >= 1 && parsedValor <= 30) {
+            return Math.floor((parsedValor - 10) / 2);
+        }
         return 0;
     };
-
-    const handleChangeForca = (e) => {
+    useEffect(() => {
+        const calculateMod = (valor) => {
+          if (valor === '1') return -5;
+          if (valor === '2' || valor === '3') return -4;
+          if (valor === '4' || valor === '5') return -3;
+          if (valor === '6' || valor === '7') return -2;
+          if (valor === '8' || valor === '9') return -1;
+          if (valor === '10' || valor === '11') return 0;
+          if (valor === '12' || valor === '13') return 1;
+          if (valor === '14' || valor === '15') return 2;
+          if (valor === '16' || valor === '17') return 3;
+          if (valor === '18' || valor === '19') return 4;
+          if (valor === '20' || valor === '21') return 5;
+          if (valor === '22' || valor === '23') return 6;
+          if (valor === '24' || valor === '25') return 7;
+          if (valor === '26' || valor === '27') return 8;
+          if (valor === '28' || valor === '29') return 9;
+          if (valor === '30') return 10;
+          return 0;
+        };
+      
+        const updateMod = (toggleState, valor, baseMod, proficiencia) => {
+          const mod = calculateMod(valor);
+          return toggleState ? baseMod - proficiencia + mod : baseMod + mod;
+        };
+      
+        setModForca(updateMod(toggleForca, forca, modForca, proficiencia));
+        setModInteligencia(updateMod(toggleInteligencia, inteligencia, modInteligencia, proficiencia));
+        setModDestreza(updateMod(toggleDestreza, destreza, modDestreza, proficiencia));
+        setModCarisma(updateMod(toggleCarisma, carisma, modCarisma, proficiencia));
+        setModSabedoria(updateMod(toggleSabedoria, sabedoria, modSabedoria, proficiencia));
+        setModEspirito(updateMod(toggleEspirito, espirito, modEspirito, proficiencia));
+        setModConstituicao(updateMod(toggleConstituicao, constituicao, modConstituicao, proficiencia));
+        setModKai(updateMod(toggleKai, kai, modKai, proficiencia));
+      }, [toggleForca, toggleInteligencia, toggleDestreza, toggleCarisma, toggleSabedoria, toggleEspirito, toggleConstituicao, toggleKai, forca, inteligencia, destreza, carisma, sabedoria, espirito, constituicao, kai, modForca, modInteligencia, modDestreza, modCarisma, modSabedoria, modEspirito, modConstituicao, modKai, proficiencia]);
+      
+    const handleChange = (e, stateSetter, modSetter) => {
         const valor = e.target.value;
-        setForca(valor);
+        stateSetter(valor);
         const mod = calcularMod(valor);
-        setModForca(mod);
-    };
-    const handleChangeInteligencia = (e) => {
-        const valor = e.target.value;
-        setInteligencia(valor);
-        const mod = calcularMod(valor);
-        setModInteligencia(mod);
-    };
-    const handleChangeDestreza = (e) => {
-        const valor = e.target.value;
-        setDestreza(valor);
-        const mod = calcularMod(valor);
-        setModDestreza(mod);
-    };
-    const handleChangeCarisma = (e) => {
-        const valor = e.target.value;
-        setCarisma(valor);
-        const mod = calcularMod(valor);
-        setModCarisma(mod);
-    };
-    const handleChangeSabedoria = (e) => {
-        const valor = e.target.value;
-        setSabedoria(valor);
-        const mod = calcularMod(valor);
-        setModSabedoria(mod);
-    };
-    const handleChangeEspirito = (e) => {
-        const valor = e.target.value;
-        setEspirito(valor);
-        const mod = calcularMod(valor);
-        setModEspirito(mod);
-    };
-    const handleChangeConstituicao = (e) => {
-        const valor = e.target.value;
-        setConstituicao(valor);
-        const mod = calcularMod(valor);
-        setModConstituicao(mod);
-    };
-    const handleChangeKai = (e) => {
-        const valor = e.target.value;
-        setKai(valor);
-        const mod = calcularMod(valor);
-        setModKai(mod);
+        modSetter(mod);
     };
 
+    const handleToggle = (toggleState, setToggleState, modState, setModState) => {
+        setToggleState(!toggleState);
+        setModState(toggleState ? modState - 2 : modState + 2);
+    };
+
+    const handleChangeForca = (e) => handleChange(e, setForca, setModForca);
+    const handleChangeInteligencia = (e) => handleChange(e, setInteligencia, setModInteligencia);
+    const handleChangeDestreza = (e) => handleChange(e, setDestreza, setModDestreza);
+    const handleChangeCarisma = (e) => handleChange(e, setCarisma, setModCarisma);
+    const handleChangeSabedoria = (e) => handleChange(e, setSabedoria, setModSabedoria);
+    const handleChangeEspirito = (e) => handleChange(e, setEspirito, setModEspirito);
+    const handleChangeConstituicao = (e) => handleChange(e, setConstituicao, setModConstituicao);
+    const handleChangeKai = (e) => handleChange(e, setKai, setModKai);
 
     const handleToggleForca = () => {
-        setToggle(!toggle);
-        if (toggle) {
-            setModForca(modForca - 2);
-        } else {
-            setModForca(modForca + 2);
-        }
+        handleToggle(toggleForca, setToggleForca, modForca, setModForca);
     };
 
     const handleToggleInteligencia = () => {
-        setToggle(!toggle);
-        if (toggle) {
-            setModInteligencia(modInteligencia - 2);
-        } else {
-            setModInteligencia(modInteligencia + 2);
-        }
+        handleToggle(toggleInteligencia, setToggleInteligencia, modInteligencia, setModInteligencia);
     };
 
     const handleToggleDestreza = () => {
-        setToggle(!toggle);
-        if (toggle) {
-            setModDestreza(modDestreza - 2);
-        } else {
-            setModDestreza(modDestreza + 2);
-        }
+        handleToggle(toggleDestreza, setToggleDestreza, modDestreza, setModDestreza);
     };
 
     const handleToggleCarisma = () => {
-        setToggle(!toggle);
-        if (toggle) {
-            setModCarisma(modCarisma - 2);
-        } else {
-            setModCarisma(modCarisma + 2);
-        }
+        handleToggle(toggleCarisma, setToggleCarisma, modCarisma, setModCarisma);
     };
 
     const handleToggleSabedoria = () => {
-        setToggle(!toggle);
-        if (toggle) {
-            setModSabedoria(modSabedoria - 2);
-        } else {
-            setModSabedoria(modSabedoria + 2);
-        }
+        handleToggle(toggleSabedoria, setToggleSabedoria, modSabedoria, setModSabedoria);
     };
 
     const handleToggleEspirito = () => {
-        setToggle(!toggle);
-        if (toggle) {
-            setModEspirito(modEspirito - 2);
-        } else {
-            setModEspirito(modEspirito + 2);
-        }
+        handleToggle(toggleEspirito, setToggleEspirito, modEspirito, setModEspirito);
     };
 
     const handleToggleConstituicao = () => {
-        setToggle(!toggle);
-        if (toggle) {
-            setModConstituicao(modConstituicao - 2);
-        } else {
-            setModConstituicao(modConstituicao + 2);
-        }
+        handleToggle(toggleConstituicao, setToggleConstituicao, modConstituicao, setModConstituicao);
     };
 
     const handleToggleKai = () => {
-        setToggle(!toggle);
-        if (toggle) {
-            setModKai(modKai - 2);
-        } else {
-            setModKai(modKai + 2);
-        }
+        handleToggle(toggleKai, setToggleKai, modKai, setModKai);
     };
 
     return (
@@ -184,9 +146,9 @@ function Atributos() {
                                     onChange={handleChangeForca}
                                 />
                                 <input
-                                    type="text"
+                                    type="number"
                                     placeholder="mod"
-                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
+                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-white sm:text-sm"
                                     value={modForca}
                                     disabled
                                 />
@@ -212,9 +174,9 @@ function Atributos() {
                                     onChange={handleChangeInteligencia}
                                 />
                                 <input
-                                    type="text"
+                                    type="number"
                                     placeholder="mod"
-                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
+                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-white sm:text-sm"
                                     value={modInteligencia}
                                     disabled
                                 />
@@ -238,9 +200,9 @@ function Atributos() {
                                     onChange={handleChangeEspirito}
                                 />
                                 <input
-                                    type="text"
+                                    type="number"
                                     placeholder="mod"
-                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
+                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-white sm:text-sm"
                                     value={modEspirito}
                                     disabled
                                 />
@@ -264,9 +226,9 @@ function Atributos() {
                                     onChange={handleChangeCarisma}
                                 />
                                 <input
-                                    type="text"
+                                    type="number"
                                     placeholder="mod"
-                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
+                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-white sm:text-sm"
                                     value={modCarisma}
                                     disabled
                                 />
@@ -290,9 +252,9 @@ function Atributos() {
                                     onChange={handleChangeConstituicao}
                                 />
                                 <input
-                                    type="text"
+                                    type="number"
                                     placeholder="mod"
-                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
+                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-white sm:text-sm"
                                     value={modConstituicao}
                                     disabled
                                 />
@@ -316,9 +278,9 @@ function Atributos() {
                                     onChange={handleChangeSabedoria}
                                 />
                                 <input
-                                    type="text"
+                                    type="number"
                                     placeholder="mod"
-                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
+                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-white sm:text-sm"
                                     value={modSabedoria}
                                     disabled
                                 />
@@ -342,9 +304,9 @@ function Atributos() {
                                     onChange={handleChangeKai}
                                 />
                                 <input
-                                    type="text"
+                                    type="number"
                                     placeholder="mod"
-                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
+                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-white sm:text-sm"
                                     value={modKai}
                                     disabled
                                 />
@@ -368,9 +330,9 @@ function Atributos() {
                                     onChange={handleChangeDestreza}
                                 />
                                 <input
-                                    type="text"
+                                    type="number"
                                     placeholder="mod"
-                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-gray-900 sm:text-sm"
+                                    className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-white sm:text-sm"
                                     value={modDestreza}
                                     disabled
                                 />
