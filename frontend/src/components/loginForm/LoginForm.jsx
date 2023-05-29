@@ -4,7 +4,8 @@ import axios from "axios";
 import logoMin from "../../assets/imgs/logoMin.png";
 import setCookie from "../../hooks/Cookie";
 import BF from "../../assets/imgs/bf.png";
-import { GoogleLogin } from 'react-google-login';
+import { GoogleLogin } from '@react-oauth/google';
+
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -36,28 +37,24 @@ const LoginForm = () => {
       setError("Email ou senha incorretos.");
     }
   };
-  const onSuccess = (res) => {
-    const client = google.accounts.oauth2.initCodeClient({
-      client_id: 'YOUR_GOOGLE_CLIENT_ID',
-      scope: 'https://www.googleapis.com/auth/userinfo.profile',
-      ux_mode: 'popup',
-      callback: (res) => {
-        if (res.code) {
-          console.log(res.code)
-        }
-      },
-    });
-    client.requestCode();
-    const { name, email, imageUrl } = response.profileObj;
-    console.log(name, email, imageUrl);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  };
+  const handleGoogleLogin = async () => {
+    const response = await GoogleLogin.performLogin();
 
-  const onFailure = (res) => {
+    if (response.status === 200) {
+      const { accessToken, idToken } = response.data;
 
+      // Save the access token and id token to the browser's localStorage
+      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("idToken", idToken);
 
-    console.log("Login falied: ", res);
+      // Set the isLoggedIn state to true
+      setIsLoggedIn(true);
 
+      // Navigate to the home page
+      useNavigate("/");
+    }
   };
 
   const handleRememberMe = () => {
@@ -197,17 +194,30 @@ const LoginForm = () => {
                       Entrar
                     </button>
                     <div className="mt-2">
+                      <div>
+                        <h1>My Application</h1>
 
-                      <GoogleLogin
-                        clientId={clientId}
-                        className="mt-2 w-28 px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-red-500 rounded-lg hover:bg-red-400 focus:outline-none focus:bg-red-400 focus:ring focus:ring-red-300 focus:ring-opacity-50"
-                        buttonText="Google"
-                        onFailure={onFailure}
-                        onSuccess={onSuccess}
-                        cookiePolicy={'single_host_origin'}
-                        isSignedIn={true}
+                        {!isLoggedIn && (
+                          <GoogleLogin
+                            clientId="YOUR_CLIENT_ID"
+                            buttonText="Login with Google"
+                            onFailure={console.error}
+                            onSuccess={handleGoogleLogin}
+                          />
+                        )}
 
-                      />
+                        {isLoggedIn && (
+                          <div>
+                            <h2>You are logged in!</h2>
+
+                            <p>Your email address is: {localStorage.getItem("email")}</p>
+
+                            <button onClick={() => setIsLoggedOut(true)}>Logout</button>
+                          </div>
+                        )}
+                      </div>
+
+
 
                     </div>
                   </div>
