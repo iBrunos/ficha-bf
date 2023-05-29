@@ -46,7 +46,7 @@ const LoginForm = () => {
       console.log(name, email, imageUrl);
     } else {
       // Tratar outros cenários ou erros inesperados
-      console.log('Erro na resposta do login do Google');
+      console.log('Erro na resposta do login do Google:', response);
     }
   };
 
