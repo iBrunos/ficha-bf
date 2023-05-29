@@ -39,34 +39,36 @@ const Atributos = () => {
           headers: { Authorization: `Bearer ${token}` },
         };
         const response = await axios.get(API_URL, config);
-
-        setForca(response.data.forca);
-        setInteligencia(response.data.inteligencia);
-        setDestreza(response.data.destreza);
-        setCarisma(response.data.carisma);
-        setSabedoria(response.data.sabedoria);
-        setEspirito(response.data.espirito);
-        setConstituicao(response.data.constituicao);
-        setKai(response.data.kai);
-
-        setModForca(calcularMod(response.data.forca));
-        setModInteligencia(calcularMod(response.data.inteligencia));
-        setModDestreza(calcularMod(response.data.destreza));
-        setModCarisma(calcularMod(response.data.carisma));
-        setModSabedoria(calcularMod(response.data.sabedoria));
-        setModEspirito(calcularMod(response.data.espirito));
-        setModConstituicao(calcularMod(response.data.constituicao));
-        setModKai(calcularMod(response.data.kai));
-
-        console.log(response.data);
+  
+        if (response.data.length > 0) {
+          const sheetData = response.data[0]; // Acessa o primeiro objeto do array
+  
+          setForca(sheetData.forca || 0);
+          setInteligencia(sheetData.inteligencia || 0);
+          setDestreza(sheetData.destreza || 0);
+          setCarisma(sheetData.carisma || 0);
+          setSabedoria(sheetData.sabedoria || 0);
+          setEspirito(sheetData.espirito || 0);
+          setConstituicao(sheetData.constituicao || 0);
+          setKai(sheetData.kai || 0);
+  
+          setModForca(calcularMod(sheetData.forca || 0));
+          setModInteligencia(calcularMod(sheetData.inteligencia || 0));
+          setModDestreza(calcularMod(sheetData.destreza || 0));
+          setModCarisma(calcularMod(sheetData.carisma || 0));
+          setModSabedoria(calcularMod(sheetData.sabedoria || 0));
+          setModEspirito(calcularMod(sheetData.espirito || 0));
+          setModConstituicao(calcularMod(sheetData.constituicao || 0));
+          setModKai(calcularMod(sheetData.kai || 0));
+        }
       } catch (error) {
-        console.log(error);
+        // Tratar erros
       }
     };
-
+  
     fetchItems();
   }, []);
-
+  
   const calcularMod = (valor) => {
     return Math.floor((valor - 10) / 2);
   };
