@@ -203,14 +203,13 @@ const LoginForm = () => {
                 )}
 
                 <p className="mt-6 text-sm text-center text-gray-400">
-                  Tem interesse em uma vaga?{" "}
+                  Não tem uma conta? {" "}
                   <a
-                    href="/pt-br/sign-up"
+                    href="/signIn"
                     className="text-red-500 focus:outline-none focus:underline hover:underline"
                   >
                     Cadastre-se
                   </a>
-                  .
                 </p>
               </div>
             </div>
