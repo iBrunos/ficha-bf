@@ -1,155 +1,106 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-function Atributos() {
-    const [proficiencia, setProficiencia] = useState(3);
-    const [forca, setForca] = useState('');
-    const [inteligencia, setInteligencia] = useState('');
-    const [destreza, setDestreza] = useState('');
-    const [carisma, setCarisma] = useState('');
-    const [sabedoria, setSabedoria] = useState('');
-    const [espirito, setEspirito] = useState('');
-    const [constituicao, setConstituicao] = useState('');
-    const [kai, setKai] = useState('');
+const Atributos = () => {
+  const [forca, setForca] = useState('');
+  const [inteligencia, setInteligencia] = useState('');
+  const [destreza, setDestreza] = useState('');
+  const [carisma, setCarisma] = useState('');
+  const [sabedoria, setSabedoria] = useState('');
+  const [espirito, setEspirito] = useState('');
+  const [constituicao, setConstituicao] = useState('');
+  const [kai, setKai] = useState('');
 
-    const [modForca, setModForca] = useState('');
-    const [modInteligencia, setModInteligencia] = useState('');
-    const [modDestreza, setModDestreza] = useState('');
-    const [modCarisma, setModCarisma] = useState('');
-    const [modSabedoria, setModSabedoria] = useState('');
-    const [modEspirito, setModEspirito] = useState('');
-    const [modConstituicao, setModConstituicao] = useState('');
-    const [modKai, setModKai] = useState('');
+  const [modForca, setModForca] = useState(0);
+  const [modInteligencia, setModInteligencia] = useState(0);
+  const [modDestreza, setModDestreza] = useState(0);
+  const [modCarisma, setModCarisma] = useState(0);
+  const [modSabedoria, setModSabedoria] = useState(0);
+  const [modEspirito, setModEspirito] = useState(0);
+  const [modConstituicao, setModConstituicao] = useState(0);
+  const [modKai, setModKai] = useState(0);
 
-    const [toggleForca, setToggleForca] = useState(false);
-    const [toggleInteligencia, setToggleInteligencia] = useState(false);
-    const [toggleDestreza, setToggleDestreza] = useState(false);
-    const [toggleCarisma, setToggleCarisma] = useState(false);
-    const [toggleSabedoria, setToggleSabedoria] = useState(false);
-    const [toggleEspirito, setToggleEspirito] = useState(false);
-    const [toggleConstituicao, setToggleConstituicao] = useState(false);
-    const [toggleKai, setToggleKai] = useState(false);
+  const [toggleForca, setToggleForca] = useState(false);
+  const [toggleInteligencia, setToggleInteligencia] = useState(false);
+  const [toggleDestreza, setToggleDestreza] = useState(false);
+  const [toggleCarisma, setToggleCarisma] = useState(false);
+  const [toggleSabedoria, setToggleSabedoria] = useState(false);
+  const [toggleEspirito, setToggleEspirito] = useState(false);
+  const [toggleConstituicao, setToggleConstituicao] = useState(false);
+  const [toggleKai, setToggleKai] = useState(false);
 
-    
+  const API_URL = 'https://api-bladefall.vercel.app/sheet';
+
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchItems = async () => {
       try {
-        const response = await axios.get('https://api-bladefall.vercel.app/sheet');
-        const data = response.data;
-  
-        // Atualize todos os atributos com os dados recebidos da API
-        setForca(data.forca);
-        setInteligencia(data.inteligencia);
-        setAgilidade(data.agilidade);
-        setCarisma(data.carisma);
-        modSabedoria(data.agilidade);
-        modEspirito(data.carisma);
-        modConstituicao(data.agilidade);
-        modKai(data.carisma);
-        console.log(data)
-        // ... atualize outros estados com base nos dados da API
+        const token = localStorage.getItem('token');
+        const config = {
+          headers: { Authorization: `Bearer ${token}` },
+        };
+        const response = await axios.get(API_URL, config);
+
+        setForca(response.data.forca);
+        setInteligencia(response.data.inteligencia);
+        setDestreza(response.data.destreza);
+        setCarisma(response.data.carisma);
+        setSabedoria(response.data.sabedoria);
+        setEspirito(response.data.espirito);
+        setConstituicao(response.data.constituicao);
+        setKai(response.data.kai);
+
+        setModForca(calcularMod(response.data.forca));
+        setModInteligencia(calcularMod(response.data.inteligencia));
+        setModDestreza(calcularMod(response.data.destreza));
+        setModCarisma(calcularMod(response.data.carisma));
+        setModSabedoria(calcularMod(response.data.sabedoria));
+        setModEspirito(calcularMod(response.data.espirito));
+        setModConstituicao(calcularMod(response.data.constituicao));
+        setModKai(calcularMod(response.data.kai));
+
+        console.log(response.data);
       } catch (error) {
-        console.error('Erro ao obter os atributos:', error);
+        console.log(error);
       }
     };
-  
-    fetchData();
+
+    fetchItems();
   }, []);
-    const calcularMod = (valor) => {
-        const parsedValor = parseInt(valor);
-        if (parsedValor >= 1 && parsedValor <= 30) {
-            return Math.floor((parsedValor - 10) / 2);
-        }
-        return 0;
-    };
-    useEffect(() => {
-        const calculateMod = (valor) => {
-          if (valor === '1') return -5;
-          if (valor === '2' || valor === '3') return -4;
-          if (valor === '4' || valor === '5') return -3;
-          if (valor === '6' || valor === '7') return -2;
-          if (valor === '8' || valor === '9') return -1;
-          if (valor === '10' || valor === '11') return 0;
-          if (valor === '12' || valor === '13') return 1;
-          if (valor === '14' || valor === '15') return 2;
-          if (valor === '16' || valor === '17') return 3;
-          if (valor === '18' || valor === '19') return 4;
-          if (valor === '20' || valor === '21') return 5;
-          if (valor === '22' || valor === '23') return 6;
-          if (valor === '24' || valor === '25') return 7;
-          if (valor === '26' || valor === '27') return 8;
-          if (valor === '28' || valor === '29') return 9;
-          if (valor === '30') return 10;
-          return 0;
-        };
-      
-        const updateMod = (toggleState, valor, baseMod, proficiencia) => {
-          const mod = calculateMod(valor);
-          return toggleState ? baseMod - proficiencia + mod : baseMod + mod;
-        };
-      
-        setModForca(updateMod(toggleForca, forca, modForca, proficiencia));
-        setModInteligencia(updateMod(toggleInteligencia, inteligencia, modInteligencia, proficiencia));
-        setModDestreza(updateMod(toggleDestreza, destreza, modDestreza, proficiencia));
-        setModCarisma(updateMod(toggleCarisma, carisma, modCarisma, proficiencia));
-        setModSabedoria(updateMod(toggleSabedoria, sabedoria, modSabedoria, proficiencia));
-        setModEspirito(updateMod(toggleEspirito, espirito, modEspirito, proficiencia));
-        setModConstituicao(updateMod(toggleConstituicao, constituicao, modConstituicao, proficiencia));
-        setModKai(updateMod(toggleKai, kai, modKai, proficiencia));
-      }, [toggleForca, toggleInteligencia, toggleDestreza, toggleCarisma, toggleSabedoria, toggleEspirito, toggleConstituicao, toggleKai, forca, inteligencia, destreza, carisma, sabedoria, espirito, constituicao, kai, modForca, modInteligencia, modDestreza, modCarisma, modSabedoria, modEspirito, modConstituicao, modKai, proficiencia]);
-      
-    const handleChange = (e, stateSetter, modSetter) => {
-        const valor = e.target.value;
-        stateSetter(valor);
-        const mod = calcularMod(valor);
-        modSetter(mod);
-    };
 
-    const handleToggle = (toggleState, setToggleState, modState, setModState) => {
-        setToggleState(!toggleState);
-        setModState(toggleState ? modState - 2 : modState + 2);
-    };
+  const calcularMod = (valor) => {
+    return Math.floor((valor - 10) / 2);
+  };
 
-    const handleChangeForca = (e) => handleChange(e, setForca, setModForca);
-    const handleChangeInteligencia = (e) => handleChange(e, setInteligencia, setModInteligencia);
-    const handleChangeDestreza = (e) => handleChange(e, setDestreza, setModDestreza);
-    const handleChangeCarisma = (e) => handleChange(e, setCarisma, setModCarisma);
-    const handleChangeSabedoria = (e) => handleChange(e, setSabedoria, setModSabedoria);
-    const handleChangeEspirito = (e) => handleChange(e, setEspirito, setModEspirito);
-    const handleChangeConstituicao = (e) => handleChange(e, setConstituicao, setModConstituicao);
-    const handleChangeKai = (e) => handleChange(e, setKai, setModKai);
-
-    const handleToggleForca = () => {
-        handleToggle(toggleForca, setToggleForca, modForca, setModForca);
-    };
-
-    const handleToggleInteligencia = () => {
-        handleToggle(toggleInteligencia, setToggleInteligencia, modInteligencia, setModInteligencia);
-    };
-
-    const handleToggleDestreza = () => {
-        handleToggle(toggleDestreza, setToggleDestreza, modDestreza, setModDestreza);
-    };
-
-    const handleToggleCarisma = () => {
-        handleToggle(toggleCarisma, setToggleCarisma, modCarisma, setModCarisma);
-    };
-
-    const handleToggleSabedoria = () => {
-        handleToggle(toggleSabedoria, setToggleSabedoria, modSabedoria, setModSabedoria);
-    };
-
-    const handleToggleEspirito = () => {
-        handleToggle(toggleEspirito, setToggleEspirito, modEspirito, setModEspirito);
-    };
-
-    const handleToggleConstituicao = () => {
-        handleToggle(toggleConstituicao, setToggleConstituicao, modConstituicao, setModConstituicao);
-    };
-
-    const handleToggleKai = () => {
-        handleToggle(toggleKai, setToggleKai, modKai, setModKai);
-    };
+  const toggleStat = (stat) => {
+    switch (stat) {
+      case 'forca':
+        setToggleForca(!toggleForca);
+        break;
+      case 'inteligencia':
+        setToggleInteligencia(!toggleInteligencia);
+        break;
+      case 'destreza':
+        setToggleDestreza(!toggleDestreza);
+        break;
+      case 'carisma':
+        setToggleCarisma(!toggleCarisma);
+        break;
+      case 'sabedoria':
+        setToggleSabedoria(!toggleSabedoria);
+        break;
+      case 'espirito':
+        setToggleEspirito(!toggleEspirito);
+        break;
+      case 'constituicao':
+        setToggleConstituicao(!toggleConstituicao);
+        break;
+      case 'kai':
+        setToggleKai(!toggleKai);
+        break;
+      default:
+        break;
+    }
+  };
 
     return (
         <>
@@ -169,17 +120,16 @@ function Atributos() {
                                     placeholder=" ATR"
                                     className="mt-2 w-11 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
                                     value={forca}
-                                    onChange={handleChangeForca}
                                 />
                                 <input
                                     type="number"
                                     placeholder="mod"
                                     className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-white sm:text-sm"
-                                    value={modForca}
+                                    value={toggleForca ? modForca + 1 : modForca}
                                     disabled
                                 />
                                 <label className=" ml-2 relative inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" value="" className="sr-only peer" onClick={handleToggleForca} />
+                                    <input type="checkbox" value="" className="sr-only peer" onClick={toggleStat('forca')} />
                                     <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:mt-[0.1rem] after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                                     <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
                                 </label>
@@ -197,17 +147,17 @@ function Atributos() {
                                     placeholder=" ATR"
                                     className="mt-2 w-11 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
                                     value={inteligencia}
-                                    onChange={handleChangeInteligencia}
+
                                 />
                                 <input
                                     type="number"
                                     placeholder="mod"
                                     className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-white sm:text-sm"
-                                    value={modInteligencia}
+                                    value={toggleInteligencia ? modInteligencia + 1 : modInteligencia}
                                     disabled
                                 />
                                 <label className=" ml-2 relative inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" value="" className="sr-only peer" onClick={handleToggleInteligencia} />
+                                    <input type="checkbox" value="" className="sr-only peer" onClick={toggleStat('inteligencia')} />
                                     <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:mt-[0.1rem] after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                                     <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
                                 </label>
@@ -223,17 +173,16 @@ function Atributos() {
                                     placeholder=" ATR"
                                     className="mt-2 w-11 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
                                     value={espirito}
-                                    onChange={handleChangeEspirito}
                                 />
                                 <input
                                     type="number"
                                     placeholder="mod"
                                     className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-white sm:text-sm"
-                                    value={modEspirito}
+                                    value={toggleEspirito ? modEspirito + 1 : modEspirito}
                                     disabled
                                 />
                                 <label className=" ml-2 relative inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" value="" className="sr-only peer" onClick={handleToggleEspirito} />
+                                    <input type="checkbox" value="" className="sr-only peer" onClick={toggleStat('espirito')} />
                                     <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:mt-[0.1rem] after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                                     <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
                                 </label>
@@ -249,17 +198,16 @@ function Atributos() {
                                     placeholder=" ATR"
                                     className="mt-2 w-11 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
                                     value={carisma}
-                                    onChange={handleChangeCarisma}
                                 />
                                 <input
                                     type="number"
                                     placeholder="mod"
                                     className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-white sm:text-sm"
-                                    value={modCarisma}
+                                    value={toggleCarisma ? modCarisma + 1 : modCarisma}
                                     disabled
                                 />
                                 <label className=" ml-2 relative inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" value="" className="sr-only peer" onClick={handleToggleCarisma} />
+                                    <input type="checkbox" value="" className="sr-only peer" onClick={toggleStat('carisma')} />
                                     <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:mt-[0.1rem] after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                                     <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
                                 </label>
@@ -275,17 +223,16 @@ function Atributos() {
                                     placeholder=" ATR"
                                     className="mt-2 w-11 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
                                     value={constituicao}
-                                    onChange={handleChangeConstituicao}
                                 />
                                 <input
                                     type="number"
                                     placeholder="mod"
                                     className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-white sm:text-sm"
-                                    value={modConstituicao}
+                                    value={toggleConstituicao ? modConstituicao + 1 : modConstituicao}
                                     disabled
                                 />
                                 <label className=" ml-2 relative inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" value="" className="sr-only peer" onClick={handleToggleConstituicao} />
+                                    <input type="checkbox" value="" className="sr-only peer" onClick={toggleStat('constituicao')} />
                                     <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:mt-[0.1rem] after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                                     <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
                                 </label>
@@ -301,17 +248,16 @@ function Atributos() {
                                     placeholder=" ATR"
                                     className="mt-2 w-11 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
                                     value={sabedoria}
-                                    onChange={handleChangeSabedoria}
                                 />
                                 <input
                                     type="number"
                                     placeholder="mod"
                                     className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-white sm:text-sm"
-                                    value={modSabedoria}
+                                    value= {toggleSabedoria ? modSabedoria + 1 : modSabedoria}
                                     disabled
                                 />
                                 <label className=" ml-2 relative inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" value="" className="sr-only peer" onClick={handleToggleSabedoria} />
+                                    <input type="checkbox" value="" className="sr-only peer" onClick={toggleStat('sabedoria')} />
                                     <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:mt-[0.1rem] after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                                     <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
                                 </label>
@@ -327,17 +273,16 @@ function Atributos() {
                                     placeholder=" ATR"
                                     className="mt-2 w-11 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
                                     value={kai}
-                                    onChange={handleChangeKai}
                                 />
                                 <input
                                     type="number"
                                     placeholder="mod"
                                     className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-white sm:text-sm"
-                                    value={modKai}
+                                    value= {toggleKai ? modKai + 1 : modKai}
                                     disabled
                                 />
                                 <label className=" ml-2 relative inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" value="" className="sr-only peer" onClick={handleToggleKai} />
+                                    <input type="checkbox" value="" className="sr-only peer" onClick={ toggleStat('kai')} />
                                     <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:mt-[0.1rem] after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                                     <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
                                 </label>
@@ -353,17 +298,16 @@ function Atributos() {
                                     placeholder=" ATR"
                                     className="mt-2 w-11 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
                                     value={destreza}
-                                    onChange={handleChangeDestreza}
                                 />
                                 <input
                                     type="number"
                                     placeholder="mod"
                                     className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-white sm:text-sm"
-                                    value={modDestreza}
+                                    value={toggleDestreza ? modDestreza + 1 : modDestreza}
                                     disabled
                                 />
                                 <label className=" ml-2 relative inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" value="" className="sr-only peer" onClick={handleToggleDestreza} />
+                                    <input type="checkbox" value="" className="sr-only peer" onClick={toggleStat('destreza')} />
                                     <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:mt-[0.1rem] after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                                     <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
                                 </label>
