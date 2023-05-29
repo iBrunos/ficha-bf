@@ -188,7 +188,7 @@ const LoginForm = () => {
                       Entrar
                     </button>
                     <div className="mt-2">
-                      <GoogleOAuthProvider   clientId="533448691447-7bk76j9pt418ef264mi7e4ood3lrni76.apps.googleusercontent.com">
+                      <GoogleOAuthProvider   clientId="433202543860-i7bqf1mm1km3efconk4dvld87kcmn2il.apps.googleusercontent.com">
                       <GoogleLogin
                         className="mt-2 w-28 px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-red-500 rounded-lg hover:bg-red-400 focus:outline-none focus:bg-red-400 focus:ring focus:ring-red-300 focus:ring-opacity-50"
                         buttonText="Google"
