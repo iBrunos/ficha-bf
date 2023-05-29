@@ -197,7 +197,7 @@ const LoginForm = () => {
                         onFailure={onFailure}
                         onSuccess={onSuccess}
                         cookiePolicy={'single_host_origin'}
-                        isSignedIn={ture}
+                        isSignedIn={true}
                       />
 
                     </div>
