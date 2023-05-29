@@ -5,6 +5,7 @@ import logoMin from "../../assets/imgs/logoMin.png";
 import setCookie from "../../hooks/Cookie";
 import BF from "../../assets/imgs/bf.png";
 import { GoogleLogin } from '@react-oauth/google';
+import { GoogleProvider } from '@react-oauth/google';
 
 
 const LoginForm = () => {
@@ -198,12 +199,14 @@ const LoginForm = () => {
                         <h1>My Application</h1>
 
                         {!isLoggedIn && (
-                          <GoogleLogin
-                            clientId="433202543860-i7bqf1mm1km3efconk4dvld87kcmn2il.apps.googleusercontent.com"
-                            buttonText="Login with Google"
-                            onFailure={console.error}
-                            onSuccess={handleGoogleLogin}
-                          />
+                          <GoogleProvider clientId="433202543860-i7bqf1mm1km3efconk4dvld87kcmn2il.apps.googleusercontent.com">
+                            <GoogleLogin
+
+                              buttonText="Login with Google"
+                              onFailure={console.error}
+                              onSuccess={handleGoogleLogin}
+                            />
+                          </GoogleProvider>
                         )}
 
                         {isLoggedIn && (
