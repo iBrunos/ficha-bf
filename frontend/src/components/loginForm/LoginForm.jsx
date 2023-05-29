@@ -4,7 +4,7 @@ import axios from "axios";
 import logoMin from "../../assets/imgs/logoMin.png";
 import setCookie from "../../hooks/Cookie";
 import BF from "../../assets/imgs/bf.png";
-import { GoogleLogin } from '@react-oauth/google';
+import { GoogleLogin } from 'react-google-login';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const LoginForm = () => {
@@ -12,6 +12,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState("");
+  const clientId = "433202543860-i7bqf1mm1km3efconk4dvld87kcmn2il.apps.googleusercontent.com"
   const navigate = useNavigate();
 
   const handleEmailChange = (e) => {
@@ -36,19 +37,19 @@ const LoginForm = () => {
       setError("Email ou senha incorretos.");
     }
   };
-  const responseGoogle = (response) => {
-    if (response.error === 'popup_closed_by_user') {
-      // Tratar o fechamento da janela de autenticação pelo usuário
-      console.log('Login cancelado pelo usuário');
-    } else if (response.profileObj) {
-      // Lógica para manipular o perfil do usuário
+  const onSuccess = (res) => {
+
       const { name, email, imageUrl } = response.profileObj;
       console.log(name, email, imageUrl);
-    } else {
-      // Tratar outros cenários ou erros inesperados
-      console.log('Erro na resposta do login do Google:', response);
-    }
+
   };
+
+  const onFailure = (res) => {
+
+
+    console.log("Login falied: ", res);
+
+};
 
 
   const handleRememberMe = () => {
@@ -188,37 +189,40 @@ const LoginForm = () => {
                       Entrar
                     </button>
                     <div className="mt-2">
-                      <GoogleOAuthProvider   clientId="433202543860-i7bqf1mm1km3efconk4dvld87kcmn2il.apps.googleusercontent.com">
+
                       <GoogleLogin
+                        clientId={clientId}
                         className="mt-2 w-28 px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-red-500 rounded-lg hover:bg-red-400 focus:outline-none focus:bg-red-400 focus:ring focus:ring-red-300 focus:ring-opacity-50"
                         buttonText="Google"
-                        onFailure={responseGoogle}
-                        onSuccess={responseGoogle}
+                        onFailure={onFailure}
+                        onSuccess={onSuccess}
+                        cookiePolicy={'single_host_origin'}
+                        isSignedIn={ture}
                       />
-                    </GoogleOAuthProvider>
-                  </div>
-              </div>
-            </form>
-            {error && (
-              <p className="mt-4 text-sm text-red-500 text-center">
-                {error}
-              </p>
-            )}
 
-            <p className="mt-6 text-sm text-center text-gray-400">
-              Tem interesse em uma vaga?{" "}
-              <a
-                href="/pt-br/sign-up"
-                className="text-red-500 focus:outline-none focus:underline hover:underline"
-              >
-                Cadastre-se
-              </a>
-              .
-            </p>
+                    </div>
+                  </div>
+                </form>
+                {error && (
+                  <p className="mt-4 text-sm text-red-500 text-center">
+                    {error}
+                  </p>
+                )}
+
+                <p className="mt-6 text-sm text-center text-gray-400">
+                  Tem interesse em uma vaga?{" "}
+                  <a
+                    href="/pt-br/sign-up"
+                    className="text-red-500 focus:outline-none focus:underline hover:underline"
+                  >
+                    Cadastre-se
+                  </a>
+                  .
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </div >
+        </div >
       </div >
     </>
   );
