@@ -4,17 +4,12 @@ import axios from "axios";
 import logoMin from "../../assets/imgs/logoMin.png";
 import setCookie from "../../hooks/Cookie";
 import BF from "../../assets/imgs/bf.png";
-import { GoogleLogin } from '@react-oauth/google';
-import { GoogleProvider } from 'react-google-auth';
-
-
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState("");
-  const clientId = "433202543860-i7bqf1mm1km3efconk4dvld87kcmn2il.apps.googleusercontent.com"
   const navigate = useNavigate();
 
   const handleEmailChange = (e) => {
@@ -39,25 +34,7 @@ const LoginForm = () => {
       setError("Email ou senha incorretos.");
     }
   };
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const handleGoogleLogin = async () => {
-    const response = await GoogleLogin.performLogin();
-
-    if (response.status === 200) {
-      const { accessToken, idToken } = response.data;
-
-      // Save the access token and id token to the browser's localStorage
-      localStorage.setItem("accessToken", accessToken);
-      localStorage.setItem("idToken", idToken);
-
-      // Set the isLoggedIn state to true
-      setIsLoggedIn(true);
-
-      // Navigate to the home page
-      useNavigate("/");
-    }
-  };
+  
 
   const handleRememberMe = () => {
     setRememberMe(!rememberMe);
@@ -195,35 +172,6 @@ const LoginForm = () => {
                     >
                       Entrar
                     </button>
-                    <div className="mt-2">
-                      <div>
-                        <h1>My Application</h1>
-
-                        {!isLoggedIn && (
-                          <GoogleProvider clientId="433202543860-i7bqf1mm1km3efconk4dvld87kcmn2il.apps.googleusercontent.com">
-                            <GoogleLogin
-
-                              buttonText="Login with Google"
-                              onFailure={console.error}
-                              onSuccess={handleGoogleLogin}
-                            />
-                          </GoogleProvider>
-                        )}
-
-                        {isLoggedIn && (
-                          <div>
-                            <h2>You are logged in!</h2>
-
-                            <p>Your email address is: {localStorage.getItem("email")}</p>
-
-                            <button onClick={() => setIsLoggedOut(true)}>Logout</button>
-                          </div>
-                        )}
-                      </div>
-
-
-
-                    </div>
                   </div>
                 </form>
                 {error && (
@@ -245,8 +193,8 @@ const LoginForm = () => {
               </div>
             </div>
           </div>
-        </div >
-      </div >
+        </div>
+      </div>
     </>
   );
 };
