@@ -27,11 +27,6 @@ const UserSchema = new mongoose.Schema({
     avatar: {
         type: Buffer,
     },
-    loja: {
-        type: String,
-        enum: ['Loja 01', 'Loja 02'],
-        required: true,
-    },
 });
 UserSchema.pre("save", async function (next) {
     this.password = await bcrypt.hash(this.password, 10);
@@ -58,7 +53,6 @@ User.findOne({ username: "admin" })
         level: "Gerente",
         email: "admin@gmail.com",
         phone: "(71) 98799-8888",
-        loja: "",
         avatar: ""
       });
 

@@ -23,21 +23,18 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newItem = { email, password };
-    const response = await axios.post(
-      "https://api-archei.onrender.com/auth",
-      newItem
-    );
+    const response = await axios.post("http://localhost:3000/auth", newItem);
     const data = response.data;
-    if (data.message === "Login realizado com sucesso") {
-      navigate("/user/profile");
+    if (data.message === "Login realizado com sucesso.") {
+      navigate('/home'); // Redireciona para '/home'
       setCookie("token", data.token, 7);
     } else {
       setPassword("");
       setEmail("");
       setError("Email ou senha incorretos.");
     }
-
   };
+  
 
   const handleRememberMe = () => {
     setRememberMe(!rememberMe);
