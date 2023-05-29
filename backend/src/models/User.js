@@ -59,7 +59,7 @@ User.findOne({ username: 'admin' })
         email: 'admin@gmail.com',
         phone: '(71) 98799-8888',
         avatar: '',
-        sheet: sheetId, // Substitua "sheetId" pelo ID da planilha existente
+        sheet: '647514a67e33d35435841df5', // Substitua "sheetId" pelo ID da planilha existente
       });
 
       // Salva o usuário no banco de dados

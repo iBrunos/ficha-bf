@@ -26,7 +26,8 @@ const login = async (req, res) => {
             id: user.id,
             username: user.username,
             email: user.email,
-            level: user.level
+            level: user.level,
+            sheet: user.sheet
           });
     }catch(err){
         res.status(500).send(err.message)
