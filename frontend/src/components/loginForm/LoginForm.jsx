@@ -5,7 +5,8 @@ import logoMin from "../../assets/imgs/logoMin.png";
 import setCookie from "../../hooks/Cookie";
 import BF from "../../assets/imgs/bf.png";
 import { GoogleLogin } from '@react-oauth/google';
-import { GoogleProvider } from '@react-oauth/google';
+import { GoogleProvider } from 'react-google-auth';
+
 
 
 const LoginForm = () => {
