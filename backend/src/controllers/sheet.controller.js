@@ -68,6 +68,7 @@ const createService = async (req, res) => {
       carisma,
       sabedoria,
       destreza,
+      proficiencia
     });
 
     if (!createFicha) {
@@ -149,6 +150,8 @@ const updateFicha = async (req, res) => {
       carisma,
       sabedoria,
       destreza,
+      proficiencia
+
     } = req.body;
 
     const updates = {
@@ -170,6 +173,7 @@ const updateFicha = async (req, res) => {
       carisma,
       sabedoria,
       destreza,
+      proficiencia
     };
 
     await fichaService.updateService(id, updates);

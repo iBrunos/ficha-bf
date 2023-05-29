@@ -76,6 +76,10 @@ const SheetSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    proficiencia: {
+        type: Number,
+        required: true,
+    },
 
 });
 
@@ -113,6 +117,7 @@ Ficha.findOne({ username: "teste" })
         carisma: 19,
         sabedoria: 20,
         destreza: 20,
+        proficiencia: 3
       });
 
       // Salva o usuário no banco de dados
