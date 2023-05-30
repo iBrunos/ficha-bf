@@ -2,8 +2,8 @@ import mongoose from 'mongoose';
 import Ficha from './Ficha.js';
 import Toggles from './Toggles.js';
 
-
-const UserSchema = new mongoose.Schema({
+const Ficha = mongoose.model('Ficha', FichaSchema);
+ema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
