@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
-import bcrypt from 'bcrypt';
-import Ficha from 'Ficha.js';
-import Toggles from 'Toggles.js';
+import Ficha from './Ficha.js';
+import Toggles from './Toggles.js';
 
 const UserSchema = new mongoose.Schema({
   username: {
