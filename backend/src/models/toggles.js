@@ -50,7 +50,7 @@ const toggleSchema = new mongoose.Schema({
     type: Boolean,
     required: true,
     default: false,
-  }, 
+  },
   toggleDeterminacao: {
     type: Boolean,
     required: true,
@@ -122,41 +122,42 @@ const toggleSchema = new mongoose.Schema({
     required: true,
     default: false,
   },
-  sheet: {
+  user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Ficha',
 },
-});
+
+  });
 
 const Toggles = mongoose.model("Toggles", toggleSchema);
 
 
-const testeToggles = new Toggles ({
+const testeToggles = new Toggles({
 
-    toggleSeducao: 0,
-    toggleIntimidar: 0,
-    togglePersuadir: 1,
-    toggleResistencia: 0,
-    toggleEstamina: 1,
-    toggleAcrobacia: 0,
-    oggleFurtividade: 1,
-    togglePontaria: 0,
-    togglePrestidigitacao: 0,
-    toggleReligiao: 1,
-    toggleDeterminacao: 0,
-    toggleAtletismo: 0,
-    toggleDominacao: 1,
-    toggleInvestigacao: 0,
-    toggleHistoria: 0,
-    toggleAprender: 0,
-    toggleMisticismo: 1,
-    toggleDetectarAlma: 1,
-    toggleControleChi: 1,
-    toggleArmaduraEspiritual: 0,
-    toggleMedicina: 0,
-    toggleSobrevivencia: 0,
-    togglePespicacia: 0,
-    togglePercepcao: 1
+  toggleSeducao: 0,
+  toggleIntimidar: 0,
+  togglePersuadir: 1,
+  toggleResistencia: 0,
+  toggleEstamina: 1,
+  toggleAcrobacia: 0,
+  oggleFurtividade: 1,
+  togglePontaria: 0,
+  togglePrestidigitacao: 0,
+  toggleReligiao: 1,
+  toggleDeterminacao: 0,
+  toggleAtletismo: 0,
+  toggleDominacao: 1,
+  toggleInvestigacao: 0,
+  toggleHistoria: 0,
+  toggleAprender: 0,
+  toggleMisticismo: 1,
+  toggleDetectarAlma: 1,
+  toggleControleChi: 1,
+  toggleArmaduraEspiritual: 0,
+  toggleMedicina: 0,
+  toggleSobrevivencia: 0,
+  togglePespicacia: 0,
+  togglePercepcao: 1,
+
 })
 
 

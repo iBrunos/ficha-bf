@@ -2,8 +2,10 @@ import mongoose from 'mongoose';
 import Ficha from './Ficha.js';
 import Toggles from './Toggles.js';
 
-const Ficha = mongoose.model('Ficha', FichaSchema);
-ema = new mongoose.Schema({
+
+
+
+const UserSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
@@ -28,10 +30,6 @@ ema = new mongoose.Schema({
   },
   avatar: {
     type: Buffer,
-  },
-  sheet: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Ficha',
   },
 });
 
@@ -58,7 +56,6 @@ UserSchema.post('save', async function (doc) {
     sabedoria: 0,
     destreza: 0,
     proficiencia: 0,
-    toggles: null,
   });
 
 await ficha.save();
@@ -91,7 +88,7 @@ UserSchema.post('save', async function (doc) {
     toggleSobrevivencia: 0,
     togglePerspicacia: 0,
     togglePercepcao: 0,
-    sheet: doc._id, // Vincule o Toggle à ficha salva
+    user: doc._id, // Vincule o Toggle à ficha salva
   });
 
   await toggle.save();
