@@ -123,7 +123,7 @@ const Atributos = () => {
                                     type="number"
                                     placeholder=" ATR"
                                     className="mt-2 w-11 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
-                                    value={forca}
+                                    defaultValue={forca} readOnly
                                 />
                                 <input
                                     type="number"
@@ -150,8 +150,7 @@ const Atributos = () => {
                                     type="number"
                                     placeholder=" ATR"
                                     className="mt-2 w-11 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
-                                    value={inteligencia}
-
+                                    defaultValue={inteligencia} readOnly
                                 />
                                 <input
                                     type="number"
@@ -176,7 +175,7 @@ const Atributos = () => {
                                     type="number"
                                     placeholder=" ATR"
                                     className="mt-2 w-11 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
-                                    value={espirito}
+                                    defaultValue={espirito} readOnly
                                 />
                                 <input
                                     type="number"
@@ -201,7 +200,7 @@ const Atributos = () => {
                                     type="number"
                                     placeholder=" ATR"
                                     className="mt-2 w-11 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
-                                    value={carisma}
+                                    defaultValue={carisma} readOnly
                                 />
                                 <input
                                     type="number"
@@ -226,7 +225,7 @@ const Atributos = () => {
                                     type="number"
                                     placeholder=" ATR"
                                     className="mt-2 w-11 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
-                                    value={constituicao}
+                                    defaultValue={constituicao} readOnly
                                 />
                                 <input
                                     type="number"
@@ -251,7 +250,7 @@ const Atributos = () => {
                                     type="number"
                                     placeholder=" ATR"
                                     className="mt-2 w-11 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
-                                    value={sabedoria}
+                                    defaultValue={sabedoria} readOnly
                                 />
                                 <input
                                     type="number"
@@ -276,7 +275,7 @@ const Atributos = () => {
                                     type="number"
                                     placeholder=" ATR"
                                     className="mt-2 w-11 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
-                                    value={kai}
+                                    defaultValue={kai} readOnly
                                 />
                                 <input
                                     type="number"
@@ -301,7 +300,7 @@ const Atributos = () => {
                                     type="number"
                                     placeholder=" ATR"
                                     className="mt-2 w-11 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
-                                    value={destreza}
+                                    defaultValue={destreza} readOnly
                                 />
                                 <input
                                     type="number"
