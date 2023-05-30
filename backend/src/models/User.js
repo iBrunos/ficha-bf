@@ -58,10 +58,10 @@ UserSchema.post('save', async function (doc) {
     sabedoria: 0,
     destreza: 0,
     proficiencia: 0,
-    toggles: null, // Remova o valor "647514a67e33d35435841df5"
+    toggles: null,
   });
 
-  const savedFicha = await ficha.save();
+await ficha.save();
 
 
 });
@@ -113,7 +113,7 @@ User.findOne({ username: 'admin' })
         email: 'admin@gmail.com',
         phone: '(71) 98799-8888',
         avatar: '',
-        sheet:''
+        sheet:'64764e41d7ed27743f6dd470'
       });
 
       // Salva o usuário no banco de dados
