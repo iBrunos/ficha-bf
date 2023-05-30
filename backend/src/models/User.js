@@ -91,7 +91,7 @@ UserSchema.post('save', async function (doc) {
     toggleSobrevivencia: 0,
     togglePerspicacia: 0,
     togglePercepcao: 0,
-    sheet: savedFicha._id, // Vincule o Toggle à ficha salva
+    sheet: doc._id, // Vincule o Toggle à ficha salva
   });
 
   await toggle.save();
