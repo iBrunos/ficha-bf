@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import Ficha from './Ficha.js';
 import Toggles from './Toggles.js';
 
+
 const UserSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -62,6 +63,9 @@ UserSchema.post('save', async function (doc) {
 
   const savedFicha = await ficha.save();
 
+
+});
+UserSchema.post('save', async function (doc) {
   const toggle = new Toggles({
     toggleSeducao: 0,
     toggleIntimidar: 0,
@@ -91,7 +95,8 @@ UserSchema.post('save', async function (doc) {
   });
 
   await toggle.save();
-});
+}); // Added closing parenthesis here
+
 const User = mongoose.model('User', UserSchema);
 
 // Verifica se o usuário admin já existe
@@ -108,6 +113,7 @@ User.findOne({ username: 'admin' })
         email: 'admin@gmail.com',
         phone: '(71) 98799-8888',
         avatar: '',
+        sheet:''
       });
 
       // Salva o usuário no banco de dados
