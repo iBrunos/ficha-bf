@@ -3,7 +3,7 @@ import axios from "axios";
 
 const SignInForm = () => {
     const [username, setUsername] = useState("");
-    const [lastName, setLastName] = useState("");
+    const [lastname, setlastname] = useState("");
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -24,7 +24,7 @@ const SignInForm = () => {
 
         const newItem = {
             username,
-            lastName,
+            lastname,
             phone,
             email,
             password,
@@ -39,7 +39,7 @@ const SignInForm = () => {
             const response = await axios.post(API_URL, newItem);
             setItems([...items, response.data]);
             setUsername("");
-            setLastName("");
+            setlastname("");
             setPhone("");
             setEmail("");
             setPassword("");
@@ -98,8 +98,8 @@ const SignInForm = () => {
                                     <input
                                         type="text"
                                         placeholder="Silva"
-                                        value={lastName}
-                                        onChange={(e) => setLastName(e.target.value)}
+                                        value={lastname}
+                                        onChange={(e) => setlastname(e.target.value)}
                                         className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                                     />
                                 </div>

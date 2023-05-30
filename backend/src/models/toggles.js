@@ -122,6 +122,10 @@ const toggleSchema = new mongoose.Schema({
     required: true,
     default: false,
   },
+  sheet: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Ficha',
+},
 });
 
 const Toggles = mongoose.model("Toggles", toggleSchema);

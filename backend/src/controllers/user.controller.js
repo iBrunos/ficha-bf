@@ -2,10 +2,10 @@ import userService from "../services/user.service.js";
 
 const createService = async (req, res) => {
   try {
-    const { username, lastName, password, confirmPassword, email, phone } = req.body;
+    const { username, lastname, password, confirmPassword, email, phone } = req.body;
 
     // Verificando se todos os campos foram enviados
-    if (!username || !lastName || !password || !confirmPassword || !email || !phone) {
+    if (!username || !lastname || !password || !confirmPassword || !email || !phone) {
       return res.status(400).send({
         message: "Submit all fields for resgistration",
       });
@@ -15,7 +15,7 @@ const createService = async (req, res) => {
 
     const createUser = await userService.createService({
       username,
-      lastName,
+      lastname,
       password,
       confirmPassword,
       email,
@@ -33,7 +33,7 @@ const createService = async (req, res) => {
       user: {
         id: createUser.id,
         username,
-        lastName,
+        lastname,
         password,
         confirmPassword,
         email,
@@ -84,10 +84,10 @@ const findById = async (req, res) => {
 };
 const update = async (req, res) => {
   try {
-    const { _id, username, password, level, email, phone } = req.body;
+    const { _id, username, lastname, password, confirmPassword, email, phone } = req.body;
 
     // Verificando se todos os campos foram enviados
-    if (!nickname || !lastName || !password || !confirmPassword || !email || !phone) {
+    if (!nickname || !lastname || !password || !confirmPassword || !email || !phone) {
       res.status(400).send({
         message: "Submit at least one field for update",
       });
@@ -96,7 +96,7 @@ const update = async (req, res) => {
     await userService.updateService(
       _id,
       username,
-      lastName,
+      lastname,
       password,
       confirmPassword,
       email,
