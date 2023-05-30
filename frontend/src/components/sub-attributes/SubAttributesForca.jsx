@@ -4,12 +4,12 @@ function SubAttributesForca({ modForca }) {
     const [atletismo, setAtletismo] = useState(0);
     const [dominacao, setDominacao] = useState(0);
     const [proficiencia, setProficiencia] = useState(3);
-    const [toggleatletismo, setToggleAtletismo] = useState(false);
+    const [toggleAtletismo, setToggleAtletismo] = useState(false);
     const [toggleDominacao, setToggleDominacao] = useState(false);
 
-    const handleToggleatletismo = () => {
-        setToggleAtletismo(!toggleatletismo);
-        if (toggleatletismo) {
+    const handleToggleAtletismo = () => {
+        setToggleAtletismo(!toggleAtletismo);
+        if (toggleAtletismo) {
             setAtletismo(atletismo - proficiencia);
         } else {
             setAtletismo(atletismo + proficiencia); ''

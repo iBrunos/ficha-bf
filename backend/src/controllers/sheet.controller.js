@@ -179,7 +179,7 @@ const updateFicha = async (req, res) => {
     await fichaService.updateService(id, updates);
 
     res.send({
-      message: 'Ficha atualizada com sucesso.',
+      message: 'Ficha successfully updated.',
     });
   } catch (err) {
     console.error(err);

@@ -4,19 +4,20 @@ function SubAttributesConstituicao({ modCarisma }) {
     const [resistencia, setResistencia] = useState(0);
     const [estamina, setEstamina] = useState(0);
     const [proficiencia, setProficiencia] = useState(3);
-    const [toggle, setToggle] = useState(false);
+    const [toggleResistencia, setToggleResistencia] = useState(false);
+    const [toggleEstamina, setToggleEstamina] = useState(false);
 
     const handleToggleResistencia = () => {
-        setToggle(!toggle);
-        if (toggle) {
+        setToggleResistencia(!toggleResistencia);
+        if (toggleResistencia) {
             setResistencia(resistencia - proficiencia);
         } else {
             setResistencia(resistencia + proficiencia); ''
         }
     };
     const handleToggleEstamina = () => {
-        setToggle(!toggle);
-        if (toggle) {
+        setProficiencia(!toggleEstamina);
+        if (toggleEstamina) {
             setEstamina(estamina - proficiencia);
         } else {
             setEstamina(estamina + proficiencia);
