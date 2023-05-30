@@ -1,13 +1,66 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import logoMin from "../../assets/imgs/logoMin.png";
-import setCookie from "../../hooks/Cookie";
-import BF from "../../assets/imgs/bf.png";
 
 const SignInForm = () => {
+    const [username, setUsername] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [phone, setPhone] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
 
 
+    const changePageTitle = (newTitle) => {
+        document.title = newTitle;
+    };
+    changePageTitle("Blade Fall | Sign In");
+
+    const API_URL = "https://api-bladefall.vercel.app/user";
+
+
+
+    const addItem = async (e) => {
+        e.preventDefault();
+
+        const newItem = {
+            username,
+            lastName,
+            phone,
+            email,
+            password,
+            confirmPassword,
+        };
+  // Verificar se a senha e a confirmação de senha correspondem
+  if (password !== confirmPassword) {
+    console.error("A senha e a confirmação de senha não correspondem.");
+    return;
+  }
+        try {
+            const response = await axios.post(API_URL, newItem);
+            setItems([...items, response.data]);
+            setUsername("");
+            setLastName("");
+            setPhone("");
+            setEmail("");
+            setPassword("");
+            setConfirmPassword("");
+            fetchItems();
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const deleteItem = async (id) => {
+        const token = localStorage.getItem("token");
+        try {
+            await axios.delete(`${API_URL}/${id}`, {
+                headers: { Authorization: `Bearer ${token}` },
+            });
+            setItems(items.filter((item) => item._id !== id));
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
 
     return (
@@ -29,36 +82,70 @@ const SignInForm = () => {
                                 Vamos configurar tudo para que você possa verificar sua conta pessoal e começar a configurar seu perfil.
                             </p>
 
-                 
-
-                            <form className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
+                            <form className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2" onSubmit={addItem}>
                                 <div>
-                                    <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">NickName</label>
-                                    <input type="text" placeholder="João" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                    <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">username</label>
+                                    < input
+                                        type="text"
+                                        placeholder="João"
+                                        value={username}
+                                        onChange={(e) => setUsername(e.target.value)}
+                                        className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                    />
                                 </div>
                                 <div>
                                     <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Sobrenome</label>
-                                    <input type="text" placeholder="Silva" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                    <input
+                                        type="text"
+                                        placeholder="Silva"
+                                        value={lastName}
+                                        onChange={(e) => setLastName(e.target.value)}
+                                        className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                    />
                                 </div>
 
                                 <div>
                                     <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Telefone</label>
-                                    <input type="text" placeholder="(XX) - XXXXX-XXXX" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                    <input
+                                        type="text"
+                                        placeholder="(XX) - XXXXX-XXXX"
+                                        value={phone}
+                                        onChange={(e) => setPhone(e.target.value)}
+                                        className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                    />
                                 </div>
 
                                 <div>
                                     <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Endereço de Email</label>
-                                    <input type="email" placeholder="joãosilva@gmail.com" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                    <input
+                                        type="email"
+                                        placeholder="joãosilva@gmail.com"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                    />
                                 </div>
 
                                 <div>
                                     <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Senha</label>
-                                    <input type="password" placeholder="Digite a senha" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                    <input
+                                        type="password"
+                                        placeholder="Digite a senha"
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                    />
                                 </div>
 
                                 <div>
                                     <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Confirme sua senha</label>
-                                    <input type="password" placeholder="Confirme a senha" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                    <input
+                                        type="password"
+                                        placeholder="Confirme a senha"
+                                        value={confirmPassword}
+                                        onChange={(e) => setConfirmPassword(e.target.value)}
+                                        className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                    />
                                 </div>
 
                                 <button

@@ -2,25 +2,24 @@ import userService from "../services/user.service.js";
 
 const createService = async (req, res) => {
   try {
-    const { username, password, level, email, phone } = req.body;
+    const { username, lastName, password, confirmPassword, email, phone } = req.body;
 
     // Verificando se todos os campos foram enviados
-    if (!username || !password || !level || !email || !phone) {
+    if (!username || !lastName || !password || !confirmPassword || !email || !phone) {
       return res.status(400).send({
         message: "Submit all fields for resgistration",
       });
     }
 
-    // Obtendo o buffer da imagem
-    const avatar = req.file ? req.file.buffer : null;
+
 
     const createUser = await userService.createService({
       username,
+      lastName,
       password,
-      level,
+      confirmPassword,
       email,
       phone,
-      avatar, // Passa o buffer do arquivo para a propriedade "avatar"
     });
 
     if (!createUser) {
@@ -34,8 +33,9 @@ const createService = async (req, res) => {
       user: {
         id: createUser.id,
         username,
+        lastName,
         password,
-        level,
+        confirmPassword,
         email,
         phone,
         sheet
@@ -87,22 +87,20 @@ const update = async (req, res) => {
     const { _id, username, password, level, email, phone } = req.body;
 
     // Verificando se todos os campos foram enviados
-    if (!username || !password || !level || !email || !phone) {
+    if (!nickname || !lastName || !password || !confirmPassword || !email || !phone) {
       res.status(400).send({
         message: "Submit at least one field for update",
       });
     }
 
-    const avatar = req.file ? req.file.buffer : null;
-
     await userService.updateService(
       _id,
       username,
+      lastName,
       password,
-      level,
+      confirmPassword,
       email,
       phone,
-      avatar
     );
 
     res.send({

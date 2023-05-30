@@ -8,9 +8,9 @@ const router = Router();
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
-router.post("/", authMiddleware, upload.single('avatar'), userController.createService);
-router.get("/", authMiddleware, userController.findAll);
-router.get("/:id", authMiddleware, userController.findById);
+router.post("/",  upload.single('avatar'), userController.createService);
+router.get("/",  userController.findAll);
+router.get("/:id",  userController.findById);
 router.put("/:id", authMiddleware, upload.single('avatar'), userController.update)
 router.delete('/:id', authMiddleware, userController.deleteUser);
 
