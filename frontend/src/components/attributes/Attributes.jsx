@@ -54,8 +54,6 @@ const Atributos = () => {
           setConstituicao(sheetData.constituicao || 0);
           setKai(sheetData.kai || 0);
           setProficiencia(sheetData.proficiencia);
-          console.log("Proficiencia: ", proficiencia)
-
           setModForca(calcularMod(sheetData.forca || 0));
           setModInteligencia(calcularMod(sheetData.inteligencia || 0));
           setModDestreza(calcularMod(sheetData.destreza || 0));
