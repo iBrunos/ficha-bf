@@ -34,6 +34,7 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
+
 UserSchema.post('save', async function (doc) {
   const ficha = new Ficha({
     user: doc._id,
