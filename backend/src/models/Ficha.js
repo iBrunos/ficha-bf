@@ -80,9 +80,9 @@ const SheetSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    sheet: {
+    user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Ficha',
+        ref: 'User',
     },
     toggles: {
         type: mongoose.Schema.Types.ObjectId,

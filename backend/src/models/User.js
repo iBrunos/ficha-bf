@@ -36,8 +36,8 @@ const UserSchema = new mongoose.Schema({
 
 UserSchema.post('save', async function (doc) {
   const stock = new Ficha({
-    sheet: doc._id,
-    username: 'teste',
+    user: doc._id,
+    username: doc.username,
     age: 0,
     level: 0,
     race: 'Humano',
