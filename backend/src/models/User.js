@@ -35,7 +35,7 @@ const UserSchema = new mongoose.Schema({
 });
 
 UserSchema.post('save', async function (doc) {
-  const stock = new Ficha({
+  const ficha = new Ficha({
     user: doc._id,
     username: doc.username,
     age: 0,
@@ -59,7 +59,7 @@ UserSchema.post('save', async function (doc) {
     toggles: null, // Remova o valor "647514a67e33d35435841df5"
   });
 
-  const savedStock = await stock.save();
+  const savedFicha = await ficha.save();
 
   const toggle = new Toggles({
     toggleSeducao: 0,
@@ -86,7 +86,7 @@ UserSchema.post('save', async function (doc) {
     toggleSobrevivencia: 0,
     togglePerspicacia: 0,
     togglePercepcao: 0,
-    sheet: savedStock._id, // Vincule o Toggle à ficha salva
+    sheet: savedFicha._id, // Vincule o Toggle à ficha salva
   });
 
   await toggle.save();
