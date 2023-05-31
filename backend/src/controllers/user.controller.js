@@ -147,7 +147,7 @@ const update = async (req, res) => {
     const { _id, username, lastname, password, confirmPassword, email, phone, avatar } = req.body;
 
     // Verificando se todos os campos foram enviados
-    if (!username || !lastname || !password || !confirmPassword || !email || !phone) {
+    if (!username || !lastname || !password || !confirmPassword || !email || !phone, !avatar) {
       return res.status(400).send({
         message: "Submit at least one field for update",
       });
