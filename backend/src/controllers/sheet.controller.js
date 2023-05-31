@@ -139,11 +139,6 @@ const updateFicha = async (req, res) => {
       // Campos da ficha a serem atualizados
     } = req.body;
 
-    const user = await userService.findById(userId); // Pesquisa o usuário pelo ID
-
-    if (!user) {
-      return res.status(404).send({ message: 'User not found.' });
-    }
 
     const ficha = await Ficha.findOne({ userId }); // Pesquisa a ficha pelo ID do usuário
 
