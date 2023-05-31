@@ -110,24 +110,27 @@ const deleteUser = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
 const findAll = async (req, res) => {
   try {
-    const user = await userService.findAllService();
+    const users = await userService.findAll(); // Corrigido para userService.findAll()
 
-    if (user.length === 0) {
+    if (users.length === 0) {
       return res.status(400).send({
         message: "There are no registered users",
       });
     }
-    res.send(user);
+    res.send(users);
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
 };
+
 const findById = async (req, res) => {
   try {
     const id = req.params.id;
-    const user = await userService.findByIdService(id);
+    const user = await userService.findById(id); // Corrigido para userService.findById()
+
     if (!user) {
       return res.status(404).send({ message: "User not found" });
     }
@@ -136,12 +139,13 @@ const findById = async (req, res) => {
     res.status(500).send({ message: err.message });
   }
 };
+
 const update = async (req, res) => {
   try {
     const { _id, username, lastname, password, confirmPassword, email, phone } = req.body;
 
     // Verificando se todos os campos foram enviados
-    if (!nickname || !lastname || !password || !confirmPassword || !email || !phone) {
+    if (!username || !lastname || !password || !confirmPassword || !email || !phone) {
       res.status(400).send({
         message: "Submit at least one field for update",
       });
