@@ -146,6 +146,12 @@ const update = async (req, res) => {
     const _id = req.body._id;
     const avatar = req.file ? req.file.buffer : null; // Obtém o buffer do arquivo enviado
 
+
+    await userService.updateService(
+      _id,
+      avatar);
+
+
     res.send({
       message: "Usuário atualizado com sucesso",
       _id,
