@@ -10,7 +10,7 @@ function UploadImage() {
   const [isEditing, setIsEditing] = useState(false);
   const [editingItem, setEditingItem] = useState(null); // Adicionado o estado para guardar o item sendo editado
   const [items, setItems] = useState([]);
-  const API_URL = 'https://api-bladefall.vercel.app/user'; // Corrigido o nome da variável
+  const API_URL = 'https://ficha-bf-nine.vercel.app/user'; // Corrigido o nome da variável
 
   const fetchItems = async () => {
     const token = localStorage.getItem("token");
