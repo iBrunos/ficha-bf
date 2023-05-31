@@ -57,16 +57,16 @@ function UploadImage() {
         headers: { Authorization: `Bearer ${token}` },
       };
       setIsEditing(false);
-      const updates = {};
-  
+      const updates = new FormData(); // Crie um novo objeto FormData
+    
       if (selectedFile) {
-        updates.avatar = selectedFile;
+        updates.append('avatar', selectedFile); // Adicione o arquivo ao FormData
       }
       // Adicione as condições para outros campos que você deseja atualizar
-      // Exemplo: if (newUsername) { updates.username = newUsername; }
-  
+      // Exemplo: if (newUsername) { updates.append('username', newUsername); }
+    
       try {
-        await axios.put(`${API_URL}/${userId}`, updates, config);
+        await axios.put(`${API_URL}/${userId}`, updates, config); // Envie a solicitação com o FormData
         toast.success('Atualização realizada com sucesso!');
         fetchItems();
       } catch (error) {
@@ -76,6 +76,7 @@ function UploadImage() {
       console.error(error);
     }
   };
+  
 
   const handleCancelClick = () => {
     setIsEditing(false);

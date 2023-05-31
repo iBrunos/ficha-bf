@@ -146,13 +146,6 @@ const update = async (req, res) => {
   try {
     const { _id, username, lastname, password, confirmPassword, email, phone, avatar } = req.body;
 
-    // Verificando se pelo menos um campo foi enviado para atualização
-    if (!username && !lastname && !password && !confirmPassword && !email && !phone && !avatar) {
-      return res.status(400).send({
-        message: "Submit at least one field for update",
-      });
-    }
-
     const updates = {
       username,
       lastname,
@@ -160,7 +153,7 @@ const update = async (req, res) => {
       confirmPassword,
       email,
       phone,
-      avatar
+      avatar,
     };
 
     await userService.updateService(_id, updates);
