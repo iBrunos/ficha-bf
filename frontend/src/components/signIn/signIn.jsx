@@ -12,7 +12,7 @@ const SignInForm = () => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [items, setItems] = useState([]); // Definindo o estado inicial dos items
-
+    const navigate = useNavigate();
 
 
     const changePageTitle = (newTitle) => {
@@ -50,10 +50,13 @@ const SignInForm = () => {
     setPassword("");
     setConfirmPassword("");
     toast.success("Usuário criado com sucesso!");
-    navigate('/user/home'); // Redireciona para '/home'
+    toast.success("Vamos te redirecionar para fazer login");
+    setTimeout(() => {
+        navigate('/user/home'); // Redireciona para '/home' após 3 segundos
+      }, 3000);
 } catch (error) {
     console.error(error);
-    toast.error("Erro ao criar usuário.");
+
 }
 };
 

@@ -16,6 +16,7 @@ const Atributos = () => {
 
     const [proficiencia, setProficiencia] = useState('');
 
+
     const [modForca, setModForca] = useState(0);
     const [modInteligencia, setModInteligencia] = useState(0);
     const [modDestreza, setModDestreza] = useState(0);

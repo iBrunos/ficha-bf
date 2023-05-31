@@ -20,6 +20,7 @@ const createService = async (req, res) => {
       confirmPassword,
       email,
       phone,
+      avatar: ''
     });
 
     if (!createUser) {
@@ -129,7 +130,7 @@ const findAll = async (req, res) => {
 const findById = async (req, res) => {
   try {
     const id = req.params.id;
-    const user = await userService.findById(id); // Corrigido para userService.findById()
+    const user = await userService.findByIdService(id);
 
     if (!user) {
       return res.status(404).send({ message: "User not found" });
