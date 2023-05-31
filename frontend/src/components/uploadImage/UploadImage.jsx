@@ -56,6 +56,7 @@ function UploadImage() {
 
       if (selectedFile) {
         updates.append('avatar', selectedFile);
+        updates.append('_id', userId);
       }
 
       try {
