@@ -144,13 +144,10 @@ const findById = async (req, res) => {
 const update = async (req, res) => {
   try {
     const { _id, username, lastname, password, confirmPassword, email, phone } = req.body;
-    let avatar = null;
 
     // Verificar se um novo avatar foi enviado
-    if (req.file) {
-      avatar = req.file.buffer;
-    }
-
+    const avatar = req.file ? req.file.buffer : null;
+    
     const updates = {
 
       avatar,
