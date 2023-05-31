@@ -1,9 +1,7 @@
 import mongoose from 'mongoose';
 import Ficha from './Ficha.js';
 import Toggles from './Toggles.js';
-
-
-
+import bcrypt from 'bcrypt'
 
 const UserSchema = new mongoose.Schema({
   username: {
@@ -32,6 +30,15 @@ const UserSchema = new mongoose.Schema({
     type: Buffer,
   },
 
+});
+UserSchema.pre("save", async function (next) {
+  this.password = await bcrypt.hash(this.password, 10);
+  next();
+});
+
+UserSchema.pre("findOneAndUpdate", async function (next) {
+this._update.password = await bcrypt.hash(this._update.password, 10);
+next();
 });
 
 
