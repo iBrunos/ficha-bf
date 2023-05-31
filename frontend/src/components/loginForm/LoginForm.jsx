@@ -47,7 +47,6 @@ const LoginForm = () => {
       localStorage.setItem("username", data.username);
       localStorage.setItem("userId", data.id);
       localStorage.setItem("level", data.level);
-      localStorage.setItem("sheet", data.sheet);
       navigate('/user/home'); // Redireciona para '/home'
       setCookie("token", data.token, 7);
     } else {

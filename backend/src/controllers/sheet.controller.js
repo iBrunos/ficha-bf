@@ -114,19 +114,22 @@ const getAllFichas = async (req, res) => {
 };
 
 const getFichaById = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const ficha = await fichaService.findByIdService(id);
-
-    if (!ficha) {
-      return res.status(404).send({ message: 'Ficha não encontrada.' });
+    try {
+      const userId = req.params.userId; // Obter o UserId dos parâmetros da rota
+      const fichas = await fichaService.findAllService(userId); // Passar o UserId como parâmetro para o serviço
+  
+      if (fichas.length === 0) {
+        return res.status(400).send({
+          message: 'Não há fichas cadastradas.',
+        });
+      }
+  
+      res.send(fichas);
+    } catch (err) {
+      res.status(500).send({ message: err.message });
     }
-
-    res.send(ficha);
-  } catch (err) {
-    res.status(500).send({ message: err.message });
-  }
-};
+  };
+  
 
 const updateFicha = async (req, res) => {
   try {
