@@ -8,19 +8,26 @@ import { toast, ToastContainer } from 'react-toastify';
 function UploadImage() {
   const [imageSrc, setImageSrc] = useState('');
   const [isEditing, setIsEditing] = useState(false);
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [editingItem, setEditingItem] = useState(null); // Adicionado o estado para guardar o item sendo editado
   const [items, setItems] = useState([]);
-  const API_URL_USER = 'https://api-bladefall.vercel.app/user';
+  const API_URL = 'https://api-bladefall.vercel.app/user'; // Corrigido o nome da variável
 
   const fetchItems = async () => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
+    const userId = localStorage.getItem("userId");
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
 
     try {
-      const response = await axios.get(API_URL_USER, config);
-      setItems(response.data);
+      const response = await axios.get(`${API_URL}/${userId}`, config);
+      // Converte o buffer da imagem em um array de bytes
+      const imageBuffer = response.data.avatar.data; // obtém o buffer de imagem do response
+      const blob = new Blob([new Uint8Array(imageBuffer)], {
+        type: "image/png",
+      }); // cria um objeto Blob a partir do buffer
+      const imageUrl = URL.createObjectURL(blob); // cria um URL para o objeto Blob
+      setImageSrc(imageUrl); // define a URL como a fonte da imagem
     } catch (error) {
       console.error(error);
     }
@@ -30,57 +37,62 @@ function UploadImage() {
     fetchItems();
   }, []);
 
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
+  const editItem = async (id) => {
+    const token = localStorage.getItem('token');
+    setIsEditing(true);
+    setEditingItem(id);
 
-    reader.onload = function (e) {
-      setImageSrc(e.target.result);
-    };
-
-    reader.readAsDataURL(file);
-    setSelectedFile(file);
+    try {
+      const response = await axios.get(`${API_URL}/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const item = response.data;
+      setImageSrc(item.avatar); // Alterado para usar a propriedade avatar do item
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const handleEditClick = () => {
-    setIsEditing(true);
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      setImageSrc(reader.result);
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleSaveClick = async () => {
     try {
       const token = localStorage.getItem('token');
-      const userId = localStorage.getItem('userId');
+      const userId = localStorage.getItem("userId");
+      console.log("userId: ", userId)
+      const formData = new FormData();
+      formData.append('avatar', imageSrc);
 
+      await axios.put(`${API_URL}/${userId}`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      toast.success('Atualização realizada com sucesso!');
+      fetchItems();
       setIsEditing(false);
-      const updates = new FormData();
-
-      if (selectedFile) {
-        const fileBuffer = fs.readFileSync(selectedFile.path);
-        updates.append('avatar', fileBuffer);
-        updates.append('_id', userId);
-      }
-
-      try {
-        await axios.put(`${API_URL_USER}/${userId}`, updates, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'multipart/form-data',
-          },
-        });
-        toast.success('Atualização realizada com sucesso!');
-        fetchItems();
-      } catch (error) {
-        console.error(error);
-      }
     } catch (error) {
       console.error(error);
+      toast.error('Erro ao realizar a atualização.');
     }
   };
 
   const handleCancelClick = () => {
     setIsEditing(false);
     setImageSrc('');
-    setSelectedFile(null);
   };
 
   return (
@@ -106,7 +118,7 @@ function UploadImage() {
                 {!isEditing ? (
                   <EditIcon
                     className="text-black hover:text-white mt-2"
-                    onClick={handleEditClick}
+                    onClick={() => editItem(editingItem)} // Alterado para usar o ID do item sendo editado
                   />
                 ) : (
                   <>

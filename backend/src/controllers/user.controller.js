@@ -152,12 +152,7 @@ const update = async (req, res) => {
     }
 
     const updates = {
-      username,
-      lastname,
-      password,
-      confirmPassword,
-      email,
-      phone,
+
       avatar,
     };
 
