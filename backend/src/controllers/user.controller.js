@@ -115,7 +115,7 @@ const deleteUser = async (req, res) => {
 
 const findAll = async (req, res) => {
   try {
-    const users = await userService.findAll();
+    const users = await userService.findAllService();
 
     if (users.length === 0) {
       return res.status(400).send({

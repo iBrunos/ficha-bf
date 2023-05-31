@@ -9,28 +9,24 @@ function UploadImage() {
   const [imageSrc, setImageSrc] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [items, setItems] = useState([]);
   const API_URL = 'https://api-bladefall.vercel.app/user';
 
   const fetchItems = async () => {
-    try {
-      const token = localStorage.getItem('token');
-      const userId = localStorage.getItem('userId');
-      const config = {
-        headers: { Authorization: `Bearer ${token}` },
-      };
-      const response = await axios.get(`${API_URL}/${userId}`, config);
+    const token = localStorage.getItem('token');
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
 
-      if (response.data.length > 0) {
-        const sheetData = response.data[0];
-        // Do something with sheetData if needed
-      }
+    try {
+      const response = await axios.get(API_URL, config);
+      setItems(response.data);
     } catch (error) {
       console.error(error);
     }
   };
 
   useEffect(() => {
-    const userId = localStorage.getItem('userId');
     fetchItems();
   }, []);
 
@@ -49,24 +45,26 @@ function UploadImage() {
   const handleEditClick = () => {
     setIsEditing(true);
   };
+
   const handleSaveClick = async () => {
     try {
       const token = localStorage.getItem('token');
       const userId = localStorage.getItem('userId');
-      const config = {
-        headers: { Authorization: `Bearer ${token}` },
-      };
+
       setIsEditing(false);
-      const updates = new FormData(); // Crie um novo objeto FormData
-    
+      const updates = new FormData();
+
       if (selectedFile) {
-        updates.append('avatar', selectedFile); // Adicione o arquivo ao FormData
+        updates.append('avatar', selectedFile);
       }
-      // Adicione as condições para outros campos que você deseja atualizar
-      // Exemplo: if (newUsername) { updates.append('username', newUsername); }
-    
+
       try {
-        await axios.put(`${API_URL}/${userId}`, updates, config); // Envie a solicitação com o FormData
+        await axios.put(`${API_URL}/${userId}`, updates, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data',
+          },
+        });
         toast.success('Atualização realizada com sucesso!');
         fetchItems();
       } catch (error) {
@@ -76,7 +74,6 @@ function UploadImage() {
       console.error(error);
     }
   };
-  
 
   const handleCancelClick = () => {
     setIsEditing(false);
@@ -99,6 +96,7 @@ function UploadImage() {
                 }
                 className="h-52 w-52 rounded-full object-cover px-30"
               />
+
               <label
                 className="ml-[5.5rem] cursor-pointer w-full rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg text-white sm:text-sm hover:border-blue-500 hover:shadow-md"
                 htmlFor="upload-image"
