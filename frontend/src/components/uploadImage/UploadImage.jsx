@@ -55,7 +55,8 @@ function UploadImage() {
       const updates = new FormData();
 
       if (selectedFile) {
-        updates.append('avatar', selectedFile);
+        const fileBuffer = fs.readFileSync(selectedFile.path);
+        updates.append('avatar', fileBuffer);
         updates.append('_id', userId);
       }
 

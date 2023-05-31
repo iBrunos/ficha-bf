@@ -141,11 +141,16 @@ const findById = async (req, res) => {
     res.status(500).send({ message: err.message });
   }
 };
-
 const update = async (req, res) => {
   try {
     const { _id, username, lastname, password, confirmPassword, email, phone } = req.body;
-    const avatar = req.file ? req.file.buffer : null;
+    let avatar = null;
+
+    // Verificar se um novo avatar foi enviado
+    if (req.file) {
+      avatar = req.file.buffer;
+    }
+
     const updates = {
       username,
       lastname,
@@ -167,5 +172,4 @@ const update = async (req, res) => {
     res.status(500).send({ message: err.message });
   }
 };
-
 export default { createService, findAll, findById, update, deleteUser };
