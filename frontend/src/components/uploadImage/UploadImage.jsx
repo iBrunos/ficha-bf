@@ -60,7 +60,8 @@ function UploadImage() {
       setIsEditing(false);
       const formData = new FormData();
       formData.append('avatar', selectedFile);
-
+      console.log("selectedFile", selectedFile)
+  
       try {
         await axios.put(`${API_URL}/${userId}`, formData, config);
         toast.success('Avatar atualizado com sucesso!');
@@ -72,6 +73,7 @@ function UploadImage() {
       console.error(error);
     }
   };
+  
 
   const handleCancelClick = () => {
     setIsEditing(false);
