@@ -144,7 +144,7 @@ const findById = async (req, res) => {
 const update = async (req, res) => {
   try {
     const _id = req.body._id;
-    const avatar = req.file ? req.file.buffer : null;
+    const avatar = req.body.avatar.data ? req.file.buffer : null;
 
     await userService.updateService(_id, avatar);
 
