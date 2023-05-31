@@ -94,6 +94,7 @@ const createService = async (req, res) => {
         confirmPassword,
         email,
         phone,
+        avatar,
       },
     });
   } catch (err) {
@@ -143,7 +144,7 @@ const findById = async (req, res) => {
 
 const update = async (req, res) => {
   try {
-    const { _id, username, lastname, password, confirmPassword, email, phone } = req.body;
+    const { _id, username, lastname, password, confirmPassword, email, phone, avatar } = req.body;
 
     // Verificando se todos os campos foram enviados
     if (!username || !lastname || !password || !confirmPassword || !email || !phone) {
@@ -160,6 +161,7 @@ const update = async (req, res) => {
       confirmPassword,
       email,
       phone,
+      avatar
     );
 
     res.send({

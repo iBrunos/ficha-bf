@@ -33,16 +33,6 @@ function UploadImage() {
     fetchItems();
   }, []);
 
-  const dataURItoBlob = (dataURI) => {
-    const byteString = atob(dataURI.split(',')[1]);
-    const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-    const ab = new ArrayBuffer(byteString.length);
-    const ia = new Uint8Array(ab);
-    for (let i = 0; i < byteString.length; i++) {
-      ia[i] = byteString.charCodeAt(i);
-    }
-    return new Blob([ab], { type: mimeString });
-  };
 
   const handleImageChange = async (event) => {
     const file = event.target.files[0];
@@ -60,15 +50,11 @@ function UploadImage() {
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
+      setIsEditing(true);
+      const formData = new FormData();
+      formData.append('avatar', avatar); // Adicione a imagem ao objeto FormData
 
-      const updatedData = {};
-
-      if (imageSrc) {
-        const imageFile = dataURItoBlob(imageSrc);
-        updatedData.avatar = imageFile;
-      }
-
-      await axios.put(`${API_URL}/${userId}`, updatedData, config);
+      await axios.put(`${API_URL}/${userId}`, formData, config);
       toast.success('Avatar atualizado com sucesso!');
       setIsEditing(false);
       fetchItems();
@@ -77,36 +63,53 @@ function UploadImage() {
     }
   };
 
+  const handleEditClick = () => {
+    setIsEditing(true);
+  };
+  
   return (
-    <div className="bg-gray-900 h-[15.5rem] w-[14rem] rounded-xl object-cover px-30 ml-2 mr-2 mt-2">
-      <div className="flex flex-col">
-        <div className="flex flex-row">
-          <div className="ml-2 mt-2 rounded-xl max-w-sm flex-col">
-            <img
-              alt="Developer"
-              src={
-                imageSrc ||
-                'https://images.unsplash.com/photo-1614644147724-2d4785d69962?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80'
-              }
-              className="h-52 w-52 rounded-full object-cover px-30"
-            />
-            <label
-              className="ml-[5.5rem] cursor-pointer w-full rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg text-white sm:text-sm hover:border-blue-500 hover:shadow-md"
-              htmlFor="upload-image"
-            >
-              <EditIcon className="text-black hover:text-white mt-2" />
-              <input
-                type="file"
-                id="upload-image"
-                accept="image/*"
-                onChange={handleImageChange}
-                className="hidden mt-2 w-full rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg text-gray-900 sm:text-sm"
+    <>
+      <ToastContainer />
+      <div className="bg-gray-900 h-[15.5rem] w-[14rem] rounded-xl object-cover px-30 ml-2 mr-2 mt-2">
+        <div className="flex flex-col">
+          <div className="flex flex-row">
+            <div className="ml-2 mt-2 rounded-xl max-w-sm flex-col">
+              <img
+                alt="Developer"
+                src={
+                  imageSrc ||
+                  'https://images.unsplash.com/photo-1614644147724-2d4785d69962?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80'
+                }
+                className="h-52 w-52 rounded-full object-cover px-30"
               />
-            </label>
+              <label
+                className="ml-[5.5rem] cursor-pointer w-full rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg text-white sm:text-sm hover:border-blue-500 hover:shadow-md"
+                htmlFor="upload-image"
+              >
+                {!isEditing ? (
+                  <EditIcon
+                    className="text-black hover:text-white mt-2"
+                    onClick={handleEditClick}
+                  />
+                ) : (
+                  <>
+                    <CloseIcon
+                      className="text-black hover:text-white mt-2 mr-2"
+   onClick={() => setIsEditing(false)}
+                    />
+                    <DoneIcon
+                      className="text-black hover:text-white mt-2"
+                      onClick={handleImageChange}
+                    />
+                  </>
+                )}
+
+              </label>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
