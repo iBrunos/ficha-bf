@@ -146,16 +146,6 @@ const update = async (req, res) => {
     const _id = req.body._id;
     const avatar = req.file ? req.file.buffer : null; // Obtém o buffer do arquivo enviado
 
-    if (avatar) {
-      // Crie uma instância do BinData passando o buffer do arquivo e o tipo de dado (por exemplo, "image/jpeg")
-      const avatarBinData = new BinData(0, avatar, "<image/png>");
-
-      // Chame a função de atualização do serviço do usuário, passando o _id e o avatarBinData
-      await userService.updateService(_id, avatarBinData);
-    } else {
-      await userService.updateService(_id, null);
-    }
-
     res.send({
       message: "Usuário atualizado com sucesso",
       _id,

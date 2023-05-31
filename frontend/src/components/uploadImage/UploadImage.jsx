@@ -10,6 +10,7 @@ function UploadImage() {
   const [isEditing, setIsEditing] = useState(false);
   const [editingItem, setEditingItem] = useState(null); // Adicionado o estado para guardar o item sendo editado
   const [items, setItems] = useState([]);
+  const [avatar, setAvatar] = useState();
   const API_URL = 'https://ficha-bf-nine.vercel.app/user'; // Corrigido o nome da variável
 
   const fetchItems = async () => {
@@ -58,7 +59,7 @@ function UploadImage() {
     const reader = new FileReader();
 
     reader.onload = () => {
-      setImageSrc(reader.result);
+      setAvatar(reader.result);
     };
 
     if (file) {
@@ -66,14 +67,14 @@ function UploadImage() {
     }
   };
 
-  const handleSaveClick = async () => {
+  const handleSaveClick = async (e) => {
     try {
       const token = localStorage.getItem('token');
       const userId = localStorage.getItem("userId");
       console.log("userId: ", userId)
       const formData = new FormData();
-      formData.append('avatar', imageSrc);
-      formData.append('userId', userId);
+      formData.append("avatar", avatar);
+      formData.append("userId", userId);
 
       await axios.put(`${API_URL}/${userId}`, formData, {
         headers: {
@@ -104,6 +105,7 @@ function UploadImage() {
           <div className="flex flex-row">
             <div className="ml-2 mt-2 rounded-xl max-w-sm flex-col">
               <img
+                name="avatar"
                 alt="Developer"
                 src={
                   imageSrc ||
@@ -137,7 +139,7 @@ function UploadImage() {
                   id="upload-image"
                   type="file"
                   accept="image/*"
-                  onChange={handleImageChange}
+                  onChange={(e) => setAvatar(e.target.files[0])}
                   style={{ display: 'none' }}
                 />
               </label>
