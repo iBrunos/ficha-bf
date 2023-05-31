@@ -160,6 +160,7 @@ const update = async (req, res) => {
 
     res.send({
       message: "User successfully updated",
+      avatar,
     });
   } catch (err) {
     console.error(err);
