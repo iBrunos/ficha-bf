@@ -3,6 +3,7 @@ import axios from 'axios';
 import EditIcon from '@mui/icons-material/Edit';
 import DoneIcon from '@mui/icons-material/Done';
 import CloseIcon from '@mui/icons-material/Close';
+import { toast, ToastContainer } from 'react-toastify';
 const Atributos = () => {
     const [forca, setForca] = useState('');
     const [inteligencia, setInteligencia] = useState('');
@@ -115,6 +116,9 @@ const Atributos = () => {
             };
 
             await axios.put(`${API_URL}/${userId}`, updatedData, config);
+            toast.success("Atributos atualizados com sucesso!");
+            setIsEditing(false);
+            fetchItems();
         } catch (error) {
             console.error(error);
         }
@@ -189,16 +193,18 @@ const Atributos = () => {
 
     return (
         <>
+            <ToastContainer />
             <div className="bg-gray-900 h-[13rem] w-[24rem] rounded-xl object-cover px-30 ml-2 mr-2 mt-2">
                 <div className="flex flex-col">
                     <div className='flex flex-row'>
                         <label htmlFor="nome" className="ml-40 block font-semibold text-sm text-white">
                             Atributos
                         </label>
-                        <button className='ml-24' onClick={() => setIsEditing(!isEditing)}>
+                        <button className='ml-24 hover:text-white'
+                            onClick={() => setIsEditing(!isEditing)}>
                             {isEditing ? <CloseIcon /> : <EditIcon />}
                         </button>
-                        {isEditing && <button onClick={handleSave}><DoneIcon /></button>}
+                        {isEditing && <button className='hover:text-white' onClick={handleSave}><DoneIcon /></button>}
                     </div>
                     <div className="w-full grid grid-cols-2">
                         <div className='ml-2'>
@@ -208,9 +214,9 @@ const Atributos = () => {
                             <div className='flex flex-row'>
                                 <input
                                     type="number"
-                                    placeholder="ATR"
-                                    className="mt-2 w-11 rounded-md shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
-                                    value={isEditing ? editedForca : editedForca}
+                                    placeholder=" ATR"
+                                    className="mt-2 w-11 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
+                                    value={isEditing ? editedForca : forca}
                                     readOnly={!isEditing}
                                     onChange={(e) => handleInputChange(e, 'forca')}
                                 />
