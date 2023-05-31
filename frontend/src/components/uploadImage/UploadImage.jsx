@@ -8,6 +8,7 @@ import { toast, ToastContainer } from 'react-toastify';
 function UploadImage() {
   const [imageSrc, setImageSrc] = useState('');
   const [isEditing, setIsEditing] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
   const API_URL = 'https://api-bladefall.vercel.app/user';
 
   const fetchItems = async () => {
@@ -33,8 +34,7 @@ function UploadImage() {
     fetchItems();
   }, []);
 
-
-  const handleImageChange = async (event) => {
+  const handleImageChange = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
 
@@ -43,30 +43,42 @@ function UploadImage() {
     };
 
     reader.readAsDataURL(file);
+    setSelectedFile(file);
+  };
 
+  const handleEditClick = () => {
+    setIsEditing(true);
+  };
+
+  const handleSaveClick = async () => {
     try {
       const token = localStorage.getItem('token');
       const userId = localStorage.getItem('userId');
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
-      setIsEditing(true);
-      const formData = new FormData();
-      formData.append('avatar', avatar); // Adicione a imagem ao objeto FormData
-
-      await axios.put(`${API_URL}/${userId}`, formData, config);
-      toast.success('Avatar atualizado com sucesso!');
       setIsEditing(false);
-      fetchItems();
+      const formData = new FormData();
+      formData.append('avatar', selectedFile);
+
+      try {
+        await axios.put(`${API_URL}/${userId}`, formData, config);
+        toast.success('Avatar atualizado com sucesso!');
+        fetchItems();
+      } catch (error) {
+        console.error(error);
+      }
     } catch (error) {
       console.error(error);
     }
   };
 
-  const handleEditClick = () => {
-    setIsEditing(true);
+  const handleCancelClick = () => {
+    setIsEditing(false);
+    setImageSrc('');
+    setSelectedFile(null);
   };
-  
+
   return (
     <>
       <ToastContainer />
@@ -95,15 +107,21 @@ function UploadImage() {
                   <>
                     <CloseIcon
                       className="text-black hover:text-white mt-2 mr-2"
-   onClick={() => setIsEditing(false)}
+                      onClick={handleCancelClick}
                     />
                     <DoneIcon
                       className="text-black hover:text-white mt-2"
-                      onClick={handleImageChange}
+                      onClick={handleSaveClick}
                     />
                   </>
                 )}
-
+                <input
+                  id="upload-image"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                  style={{ display: 'none' }}
+                />
               </label>
             </div>
           </div>

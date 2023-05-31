@@ -94,7 +94,7 @@ const createService = async (req, res) => {
         confirmPassword,
         email,
         phone,
-        avatar,
+        avatar: '',
       },
     });
   } catch (err) {
@@ -115,7 +115,7 @@ const deleteUser = async (req, res) => {
 
 const findAll = async (req, res) => {
   try {
-    const users = await userService.findAll(); // Corrigido para userService.findAll()
+    const users = await userService.findAll();
 
     if (users.length === 0) {
       return res.status(400).send({
@@ -148,7 +148,7 @@ const update = async (req, res) => {
 
     // Verificando se todos os campos foram enviados
     if (!username || !lastname || !password || !confirmPassword || !email || !phone) {
-      res.status(400).send({
+      return res.status(400).send({
         message: "Submit at least one field for update",
       });
     }
