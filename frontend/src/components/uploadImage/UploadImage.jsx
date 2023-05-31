@@ -73,6 +73,7 @@ function UploadImage() {
       console.log("userId: ", userId)
       const formData = new FormData();
       formData.append('avatar', imageSrc);
+      formData.append('userId', userId);
 
       await axios.put(`${API_URL}/${userId}`, formData, {
         headers: {

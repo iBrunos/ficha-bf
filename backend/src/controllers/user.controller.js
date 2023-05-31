@@ -143,13 +143,14 @@ const findById = async (req, res) => {
 };
 const update = async (req, res) => {
   try {
-
+    const _id = req.body;
     const avatar = req.file ? req.file.buffer : null;
 
     await userService.updateService(_id, avatar);
 
     res.send({
       message: "User successfully updated",
+      _id,
       avatar,
     });
   } catch (err) {
