@@ -3,80 +3,62 @@ import mongoose from 'mongoose';
 const SheetSchema = new mongoose.Schema({
     username: {
         type: String,
-        unique: true,
+
     },
     age: {
-        type: Number,
-        required: true,
+        type: Number
     },
     level: {
-        type: Number,
-        required: true,
+        type: Number
     },
     race: {
-        type: String,
-        required: true,
-        lowercase: true
+        type: String
     },
     size: {
-        type: String,
-        required: true,
+        type: String
+         
     },
     alignment: {
-        type: String,
-        required: true,
+        type: String
     },
     xp: {
-        type: Number,
-        required: true,
+        type: Number
     },
     hp: {
-        type: Number,
-        required: true,
+        type: Number
     },
     hpTotal: {
-        type: Number,
-        required: true,
+        type: Number
     },
     characterClass: {
-        type: String,
-        required: true,
+        type: String
     },
     forca: {
-        type: Number,
-        required: true,
+        type: Number
     },
     espirito: {
-        type: Number,
-        required: true,
+        type: Number
     },
     constituicao: {
-        type: Number,
-        required: true,
+        type: Number
     },
     kai: {
-        type: Number,
-        required: true,
+        type: Number
     },
     inteligencia: {
-        type: Number,
-        required: true,
+        type: Number
     },
     carisma: {
-        type: Number,
-        required: true,
+        type: Number
     },
     sabedoria: {
-        type: Number,
-        required: true,
+        type: Number
     },
     destreza: {
-        type: Number,
-        required: true,
+        type: Number
     },
     proficiencia: {
-        type: Number,
-        required: true,
+        type: Number
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
