@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 
-
 const SheetSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -83,56 +82,10 @@ const SheetSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
     },
-    toggles: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'toggles',
-    },
 });
 
 
 const Ficha = mongoose.model("Ficha", SheetSchema);
-
-
-Ficha.findOne({ username: "teste" })
-    .then((existingUser) => {
-        if (existingUser) {
-        } else {
-            // Cria o usuário admin
-            const testeUser = new Ficha({
-                username: 'teste',
-                age: 0,
-                level: 0,
-                race: 'Humano',
-                size: 'Pequeno',
-                alignment: 'Neutro (N)',
-                xp: 0,
-                hp: 50,
-                hpTotal: 0,
-                characterClass: 'Bruxo',
-                forca: 14,
-                espirito: 15,
-                constituicao: 16,
-                kai: 17,
-                inteligencia: 18,
-                carisma: 19,
-                sabedoria: 20,
-                destreza: 20,
-                proficiencia: 3,
-                toggles: "647514a67e33d35435841df5"
-            });
-
-            // Salva o usuário no banco de dados
-            testeUser.save()
-                .then(() => {
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-        }
-    })
-    .catch((err) => {
-        console.log(err);
-    });
 
 
 export default Ficha;
