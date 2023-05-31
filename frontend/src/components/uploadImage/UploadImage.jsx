@@ -10,7 +10,7 @@ function UploadImage() {
   const [isEditing, setIsEditing] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const [items, setItems] = useState([]);
-  const API_URL = 'https://api-bladefall.vercel.app/user';
+  const API_URL_USER = 'https://api-bladefall.vercel.app/user';
 
   const fetchItems = async () => {
     const token = localStorage.getItem('token');
@@ -19,7 +19,7 @@ function UploadImage() {
     };
 
     try {
-      const response = await axios.get(API_URL, config);
+      const response = await axios.get(API_URL_USER, config);
       setItems(response.data);
     } catch (error) {
       console.error(error);
@@ -59,7 +59,7 @@ function UploadImage() {
       }
 
       try {
-        await axios.put(`${API_URL}/${userId}`, updates, {
+        await axios.put(`${API_URL_USER}/${userId}`, updates, {
           headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'multipart/form-data',

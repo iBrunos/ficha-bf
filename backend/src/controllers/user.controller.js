@@ -144,8 +144,8 @@ const findById = async (req, res) => {
 
 const update = async (req, res) => {
   try {
-    const { _id, username, lastname, password, confirmPassword, email, phone, avatar } = req.body;
-
+    const { _id, username, lastname, password, confirmPassword, email, phone } = req.body;
+    const avatar = req.file ? req.file.buffer : null;
     const updates = {
       username,
       lastname,
