@@ -1,5 +1,6 @@
 import fichaService from '../services/sheet.service.js';
-
+import Ficha from "../models/Ficha.js";
+import User from "../models/User.js";
 const createService = async (req, res) => {
   try {
     const {
@@ -114,73 +115,72 @@ const getAllFichas = async (req, res) => {
 };
 
 const getFichaById = async (req, res) => {
-    try {
-      const userId = req.params.userId; // Obter o UserId dos parâmetros da rota
-      const fichas = await fichaService.findAllService(userId); // Passar o UserId como parâmetro para o serviço
-  
-      if (fichas.length === 0) {
-        return res.status(400).send({
-          message: 'Não há fichas cadastradas.',
-        });
-      }
-  
-      res.send(fichas);
-    } catch (err) {
-      res.status(500).send({ message: err.message });
-    }
-  };
-  
-  const updateFicha = async (req, res) => {
-    try {
-      const { userId } = req.params;
-      const {
-        // Campos da ficha a serem atualizados
-      } = req.body;
-  
-      const user = await User.findById(userId); // Pesquisa o usuário pelo ID
-  
-      if (!user) {
-        return res.status(404).send({ message: 'User not found.' });
-      }
-  
-      const ficha = await Ficha.findOne({ userId }); // Pesquisa a ficha pelo ID do usuário
-  
-      if (!ficha) {
-        return res.status(404).send({ message: 'Ficha not found.' });
-      }
-  
-      // Atualiza os campos da ficha
-      ficha.username = req.body.username;
-      ficha.age = req.body.age;
-      ficha.level = req.body.level;
-      ficha.race = req.body.race;
-      ficha.size = req.body.size;
-      ficha.alignment = req.body.alignment;
-      ficha.xp = req.body.xp;
-      ficha.hp = req.body.hp;
-      ficha.hpTotal = req.body.hpTotal;
-      ficha.characterClass = req.body.characterClass;
-      ficha.forca = req.body.forca;
-      ficha.espirito = req.body.espirito;
-      ficha.constituicao = req.body.constituicao;
-      ficha.kai = req.body.kai;
-      ficha.inteligencia = req.body.inteligencia;
-      ficha.carisma = req.body.carisma;
-      ficha.sabedoria = req.body.sabedoria;
-      ficha.destreza = req.body.destreza;
-      ficha.proficiencia = req.body.proficiencia;
-  
-      await ficha.save(); // Salva as alterações na ficha
-  
-      res.send({
-        message: 'Ficha successfully updated.',
-      });
-    } catch (err) {
-      console.error(err);
-      res.status(500).send({ message: err.message });
-    }
-  };
+  try {
+    const userId = req.params.userId; // Obter o UserId dos parâmetros da rota
+    const fichas = await fichaService.findAllService(userId); // Passar o UserId como parâmetro para o serviço
 
+    if (fichas.length === 0) {
+      return res.status(400).send({
+        message: 'Não há fichas cadastradas.',
+      });
+    }
+
+    res.send(fichas);
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};
+
+const updateFicha = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const {
+      // Campos da ficha a serem atualizados
+    } = req.body;
+
+    const user = await User.findById(userId); // Pesquisa o usuário pelo ID
+
+    if (!user) {
+      return res.status(404).send({ message: 'User not found.' });
+    }
+
+    const ficha = await Ficha.findOne({ userId }); // Pesquisa a ficha pelo ID do usuário
+
+    if (!ficha) {
+      return res.status(404).send({ message: 'Ficha not found.' });
+    }
+
+    // Atualiza os campos da ficha
+    ficha.username = req.body.username;
+    ficha.age = req.body.age;
+    ficha.level = req.body.level;
+    ficha.race = req.body.race;
+    ficha.size = req.body.size;
+    ficha.alignment = req.body.alignment;
+    ficha.xp = req.body.xp;
+    ficha.hp = req.body.hp;
+    ficha.hpTotal = req.body.hpTotal;
+    ficha.characterClass = req.body.characterClass;
+    ficha.forca = req.body.forca;
+    ficha.espirito = req.body.espirito;
+    ficha.constituicao = req.body.constituicao;
+    ficha.kai = req.body.kai;
+    ficha.inteligencia = req.body.inteligencia;
+    ficha.carisma = req.body.carisma;
+    ficha.sabedoria = req.body.sabedoria;
+    ficha.destreza = req.body.destreza;
+    ficha.proficiencia = req.body.proficiencia;
+
+    await ficha.save(); // Salva as alterações na ficha
+
+    res.send({
+      message: 'Ficha successfully updated.',
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({ message: err.message });
+  }
+};
 
 export default {
   createService,
