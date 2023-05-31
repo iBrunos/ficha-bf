@@ -144,12 +144,20 @@ const findById = async (req, res) => {
 const update = async (req, res) => {
   try {
     const _id = req.body._id;
-    const avatar = req.body.avatar.data ? req.file.buffer : null;
+    const avatar = req.file ? req.file.buffer : null; // Obtém o buffer do arquivo enviado
 
-    await userService.updateService(_id, avatar);
+    if (avatar) {
+      // Crie uma instância do BinData passando o buffer do arquivo e o tipo de dado (por exemplo, "image/jpeg")
+      const avatarBinData = new BinData(0, avatar, "<image/png>");
+
+      // Chame a função de atualização do serviço do usuário, passando o _id e o avatarBinData
+      await userService.updateService(_id, avatarBinData);
+    } else {
+      await userService.updateService(_id, null);
+    }
 
     res.send({
-      message: "User successfully updated",
+      message: "Usuário atualizado com sucesso",
       _id,
       avatar,
     });
@@ -158,5 +166,6 @@ const update = async (req, res) => {
     res.status(500).send({ message: err.message });
   }
 };
+
 
 export default { createService, findAll, findById, update, deleteUser };
