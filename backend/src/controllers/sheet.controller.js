@@ -1,5 +1,6 @@
 import fichaService from '../services/sheet.service.js';
 import Ficha from "../models/Ficha.js";
+import userService from "../services/user.service.js";
 import User from "../models/User.js";
 const createService = async (req, res) => {
   try {
@@ -138,7 +139,7 @@ const updateFicha = async (req, res) => {
       // Campos da ficha a serem atualizados
     } = req.body;
 
-    const user = await User.findById(userId); // Pesquisa o usuário pelo ID
+    const user = await userService.findById(userId); // Pesquisa o usuário pelo ID
 
     if (!user) {
       return res.status(404).send({ message: 'User not found.' });
