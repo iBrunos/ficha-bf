@@ -6,11 +6,11 @@ const findAllService = () => User.find();
 
 const findByIdService = (id) => User.findById(id);
 
-const updateService = (id, { username, lastname, password, confirmPassword, email, phone, avatar }) =>
+const updateService = (id, updates) =>
   User.findByIdAndUpdate(
     id,
-    { username, lastname, password, confirmPassword, email, phone, avatar },
-    { new: true }
+    updates,
+    { new: true } // Define {new: true} para retornar o documento atualizado após a atualização
   );
 
 const deleteService = (id) => User.findByIdAndDelete(id);

@@ -141,20 +141,20 @@ const findById = async (req, res) => {
     res.status(500).send({ message: err.message });
   }
 };
+import userService from "../services/user.service.js";
 
 const update = async (req, res) => {
   try {
     const { _id, username, lastname, password, confirmPassword, email, phone, avatar } = req.body;
 
-    // Verificando se todos os campos foram enviados
-    if (!username || !lastname || !password || !confirmPassword || !email || !phone, !avatar) {
+    // Verificando se pelo menos um campo foi enviado para atualização
+    if (!username && !lastname && !password && !confirmPassword && !email && !phone && !avatar) {
       return res.status(400).send({
         message: "Submit at least one field for update",
       });
     }
 
-    await userService.updateService(
-      _id,
+    const updates = {
       username,
       lastname,
       password,
@@ -162,7 +162,9 @@ const update = async (req, res) => {
       email,
       phone,
       avatar
-    );
+    };
+
+    await userService.updateService(_id, updates);
 
     res.send({
       message: "User successfully updated",

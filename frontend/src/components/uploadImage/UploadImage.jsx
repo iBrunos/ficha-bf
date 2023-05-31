@@ -49,7 +49,6 @@ function UploadImage() {
   const handleEditClick = () => {
     setIsEditing(true);
   };
-
   const handleSaveClick = async () => {
     try {
       const token = localStorage.getItem('token');
@@ -58,13 +57,17 @@ function UploadImage() {
         headers: { Authorization: `Bearer ${token}` },
       };
       setIsEditing(false);
-      const formData = new FormData();
-      formData.append('avatar', selectedFile);
-      console.log("selectedFile", selectedFile)
+      const updates = {};
+  
+      if (selectedFile) {
+        updates.avatar = selectedFile;
+      }
+      // Adicione as condições para outros campos que você deseja atualizar
+      // Exemplo: if (newUsername) { updates.username = newUsername; }
   
       try {
-        await axios.put(`${API_URL}/${userId}`, formData, config);
-        toast.success('Avatar atualizado com sucesso!');
+        await axios.put(`${API_URL}/${userId}`, updates, config);
+        toast.success('Atualização realizada com sucesso!');
         fetchItems();
       } catch (error) {
         console.error(error);
@@ -73,7 +76,6 @@ function UploadImage() {
       console.error(error);
     }
   };
-  
 
   const handleCancelClick = () => {
     setIsEditing(false);
