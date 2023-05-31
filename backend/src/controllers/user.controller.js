@@ -141,7 +141,6 @@ const findById = async (req, res) => {
     res.status(500).send({ message: err.message });
   }
 };
-import userService from "../services/user.service.js";
 
 const update = async (req, res) => {
   try {
