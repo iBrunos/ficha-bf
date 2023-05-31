@@ -93,7 +93,6 @@ const createService = async (req, res) => {
         confirmPassword,
         email,
         phone,
-        sheet
       },
     });
   } catch (err) {
