@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import EditIcon from '@mui/icons-material/Edit';
+import DoneIcon from '@mui/icons-material/Done';
+import CloseIcon from '@mui/icons-material/Close';
 const Atributos = () => {
     const [forca, setForca] = useState('');
     const [inteligencia, setInteligencia] = useState('');
@@ -30,6 +32,17 @@ const Atributos = () => {
     const [toggleEspirito, setToggleEspirito] = useState(false);
     const [toggleConstituicao, setToggleConstituicao] = useState(false);
     const [toggleKai, setToggleKai] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
+
+    const [editedForca, setEditedForca] = useState(forca);
+    const [editedInteligencia, setEditedInteligencia] = useState(inteligencia);
+    const [editedDestreza, setEditedDestreza] = useState(destreza);
+    const [editedCarisma, setEditedCarisma] = useState(carisma);
+    const [editedSabedoria, setEditedSabedoria] = useState(sabedoria);
+    const [editedEspirito, setEditedEspirito] = useState(espirito);
+    const [editedConstituicao, setEditedConstituicao] = useState(constituicao);
+    const [editedKai, setEditedKai] = useState(kai);
+
 
     const API_URL = 'https://api-bladefall.vercel.app/sheet';
     const fetchItems = async () => {
@@ -73,6 +86,40 @@ const Atributos = () => {
         localStorage.setItem('userId', userId);
         fetchItems();
     }, []);
+    const handleSave = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const userId = localStorage.getItem('userId');
+            const config = {
+                headers: { Authorization: `Bearer ${token}` },
+            };
+
+            const updatedData = {
+                forca: editedForca,
+                inteligencia: editedInteligencia,
+                destreza: editedDestreza,
+                carisma: editedCarisma,
+                sabedoria: editedSabedoria,
+                espirito: editedEspirito,
+                constituicao: editedConstituicao,
+                kai: editedKai,
+                proficiencia,
+                modForca: calcularMod(editedForca),
+                modInteligencia: calcularMod(editedInteligencia),
+                modDestreza: calcularMod(editedDestreza),
+                modCarisma: calcularMod(editedCarisma),
+                modSabedoria: calcularMod(editedSabedoria),
+                modEspirito: calcularMod(editedEspirito),
+                modConstituicao: calcularMod(editedConstituicao),
+                modKai: calcularMod(editedKai),
+            };
+
+            await axios.put(`${API_URL}/${userId}`, updatedData, config);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
 
     const calcularMod = (valor) => {
         return Math.floor((valor - 10) / 2);
@@ -108,14 +155,51 @@ const Atributos = () => {
                 break;
         }
     };
+    const handleInputChange = (e, stat) => {
+        const value = parseInt(e.target.value);
+        switch (stat) {
+            case 'forca':
+                setEditedForca(value);
+                break;
+            case 'inteligencia':
+                setEditedInteligencia(value);
+                break;
+            case 'destreza':
+                setEditedDestreza(value);
+                break;
+            case 'carisma':
+                setEditedCarisma(value);
+                break;
+            case 'sabedoria':
+                setEditedSabedoria(value);
+                break;
+            case 'espirito':
+                setEditedEspirito(value);
+                break;
+            case 'constituicao':
+                setEditedConstituicao(value);
+                break;
+            case 'kai':
+                setEditedKai(value);
+                break;
+            default:
+                break;
+        }
+    };
 
     return (
         <>
             <div className="bg-gray-900 h-[13rem] w-[24rem] rounded-xl object-cover px-30 ml-2 mr-2 mt-2">
                 <div className="flex flex-col">
-                    <label htmlFor="nome" className="ml-44 block font-semibold text-sm text-white">
-                        Atributos
-                    </label>
+                    <div className='flex flex-row'>
+                        <label htmlFor="nome" className="ml-40 block font-semibold text-sm text-white">
+                            Atributos
+                        </label>
+                        <button className='ml-24' onClick={() => setIsEditing(!isEditing)}>
+                            {isEditing ? <CloseIcon /> : <EditIcon />}
+                        </button>
+                        {isEditing && <button onClick={handleSave}><DoneIcon /></button>}
+                    </div>
                     <div className="w-full grid grid-cols-2">
                         <div className='ml-2'>
                             <label htmlFor="nome" className="block text-xs text-white">
@@ -124,10 +208,13 @@ const Atributos = () => {
                             <div className='flex flex-row'>
                                 <input
                                     type="number"
-                                    placeholder=" ATR"
-                                    className="mt-2 w-11 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
-                                    defaultValue={forca} readOnly
+                                    placeholder="ATR"
+                                    className="mt-2 w-11 rounded-md shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
+                                    value={isEditing ? editedForca : editedForca}
+                                    readOnly={!isEditing}
+                                    onChange={(e) => handleInputChange(e, 'forca')}
                                 />
+
                                 <input
                                     type="number"
                                     placeholder="mod"
@@ -136,9 +223,14 @@ const Atributos = () => {
                                     disabled
                                 />
                                 <label className=" ml-2 relative inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" value="" className="sr-only peer" onClick={() => toggleStat('forca')} />
+                                    <input
+                                        type="checkbox"
+                                        checked={toggleForca}
+                                        className="sr-only peer"
+                                        onChange={() => toggleStat('forca')}
+                                    />
                                     <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:mt-[0.1rem] after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                                    <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
+                                    <span className="ml-3 text-sm font-medium text-white dark:text-gray-300"></span>
                                 </label>
                             </div>
 
@@ -153,8 +245,11 @@ const Atributos = () => {
                                     type="number"
                                     placeholder=" ATR"
                                     className="mt-2 w-11 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
-                                    defaultValue={inteligencia} readOnly
+                                    value={isEditing ? editedInteligencia : inteligencia}
+                                    readOnly={!isEditing}
+                                    onChange={(e) => handleInputChange(e, 'inteligencia')}
                                 />
+
                                 <input
                                     type="number"
                                     placeholder="mod"
@@ -163,11 +258,17 @@ const Atributos = () => {
                                     disabled
                                 />
                                 <label className=" ml-2 relative inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" value="" className="sr-only peer" onClick={() => toggleStat('inteligencia')} />
+                                    <input
+                                        type="checkbox"
+                                        checked={toggleInteligencia}
+                                        className="sr-only peer"
+                                        onChange={() => toggleStat('inteligencia')}
+                                    />
                                     <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:mt-[0.1rem] after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                                    <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
+                                    <span className="ml-3 text-sm font-medium text-white dark:text-gray-300"></span>
                                 </label>
                             </div>
+
                         </div>
                         <div className='ml-2'>
                             <label htmlFor="nome" className="block text-xs text-white">
@@ -178,8 +279,11 @@ const Atributos = () => {
                                     type="number"
                                     placeholder=" ATR"
                                     className="mt-2 w-11 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
-                                    defaultValue={espirito} readOnly
+                                    value={isEditing ? editedEspirito : espirito}
+                                    readOnly={!isEditing}
+                                    onChange={(e) => handleInputChange(e, 'espirito')}
                                 />
+
                                 <input
                                     type="number"
                                     placeholder="mod"
@@ -188,11 +292,17 @@ const Atributos = () => {
                                     disabled
                                 />
                                 <label className=" ml-2 relative inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" value="" className="sr-only peer" onClick={() => toggleStat('espirito')} />
+                                    <input
+                                        type="checkbox"
+                                        checked={toggleEspirito}
+                                        className="sr-only peer"
+                                        onChange={() => toggleStat('espirito')}
+                                    />
                                     <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:mt-[0.1rem] after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                                    <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
+                                    <span className="ml-3 text-sm font-medium text-white dark:text-gray-300"></span>
                                 </label>
                             </div>
+
                         </div>
                         <div className='ml-2'>
                             <label htmlFor="nome" className="block text-xs text-white">
@@ -203,8 +313,11 @@ const Atributos = () => {
                                     type="number"
                                     placeholder=" ATR"
                                     className="mt-2 w-11 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
-                                    defaultValue={carisma} readOnly
+                                    value={isEditing ? editedCarisma : carisma}
+                                    readOnly={!isEditing}
+                                    onChange={(e) => handleInputChange(e, 'carisma')}
                                 />
+
                                 <input
                                     type="number"
                                     placeholder="mod"
@@ -213,11 +326,17 @@ const Atributos = () => {
                                     disabled
                                 />
                                 <label className=" ml-2 relative inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" value="" className="sr-only peer" onClick={() => toggleStat('carisma')} />
+                                    <input
+                                        type="checkbox"
+                                        checked={toggleCarisma}
+                                        className="sr-only peer"
+                                        onChange={() => toggleStat('carisma')}
+                                    />
                                     <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:mt-[0.1rem] after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                                    <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
+                                    <span className="ml-3 text-sm font-medium text-white dark:text-gray-300"></span>
                                 </label>
                             </div>
+
                         </div>
                         <div className='ml-2'>
                             <label htmlFor="nome" className="block text-xs text-white">
@@ -228,8 +347,11 @@ const Atributos = () => {
                                     type="number"
                                     placeholder=" ATR"
                                     className="mt-2 w-11 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
-                                    defaultValue={constituicao} readOnly
+                                    value={isEditing ? editedConstituicao : constituicao}
+                                    readOnly={!isEditing}
+                                    onChange={(e) => handleInputChange(e, 'constituicao')}
                                 />
+
                                 <input
                                     type="number"
                                     placeholder="mod"
@@ -238,11 +360,17 @@ const Atributos = () => {
                                     disabled
                                 />
                                 <label className=" ml-2 relative inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" value="" className="sr-only peer" onClick={() => toggleStat('constituicao')} />
+                                    <input
+                                        type="checkbox"
+                                        checked={toggleConstituicao}
+                                        className="sr-only peer"
+                                        onChange={() => toggleStat('constituicao')}
+                                    />
                                     <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:mt-[0.1rem] after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                                    <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
+                                    <span className="ml-3 text-sm font-medium text-white dark:text-gray-300"></span>
                                 </label>
                             </div>
+
                         </div>
                         <div className='ml-2'>
                             <label htmlFor="nome" className="block text-xs text-white">
@@ -253,8 +381,11 @@ const Atributos = () => {
                                     type="number"
                                     placeholder=" ATR"
                                     className="mt-2 w-11 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
-                                    defaultValue={sabedoria} readOnly
+                                    value={isEditing ? editedSabedoria : sabedoria}
+                                    readOnly={!isEditing}
+                                    onChange={(e) => handleInputChange(e, 'sabedoria')}
                                 />
+
                                 <input
                                     type="number"
                                     placeholder="mod"
@@ -263,11 +394,17 @@ const Atributos = () => {
                                     disabled
                                 />
                                 <label className=" ml-2 relative inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" value="" className="sr-only peer" onClick={() => toggleStat('sabedoria')} />
+                                    <input
+                                        type="checkbox"
+                                        checked={toggleSabedoria}
+                                        className="sr-only peer"
+                                        onChange={() => toggleStat('sabedoria')}
+                                    />
                                     <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:mt-[0.1rem] after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                                    <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
+                                    <span className="ml-3 text-sm font-medium text-white dark:text-gray-300"></span>
                                 </label>
                             </div>
+
                         </div>
                         <div className='ml-2'>
                             <label htmlFor="nome" className="block text-xs text-white">
@@ -278,8 +415,11 @@ const Atributos = () => {
                                     type="number"
                                     placeholder=" ATR"
                                     className="mt-2 w-11 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
-                                    defaultValue={kai} readOnly
+                                    value={isEditing ? editedKai : kai}
+                                    readOnly={!isEditing}
+                                    onChange={(e) => handleInputChange(e, 'kai')}
                                 />
+
                                 <input
                                     type="number"
                                     placeholder="mod"
@@ -288,11 +428,17 @@ const Atributos = () => {
                                     disabled
                                 />
                                 <label className=" ml-2 relative inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" value="" className="sr-only peer" onClick={() => toggleStat('kai')} />
+                                    <input
+                                        type="checkbox"
+                                        checked={toggleKai}
+                                        className="sr-only peer"
+                                        onChange={() => toggleStat('kai')}
+                                    />
                                     <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:mt-[0.1rem] after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                                    <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
+                                    <span className="ml-3 text-sm font-medium text-white dark:text-gray-300"></span>
                                 </label>
                             </div>
+
                         </div>
                         <div className='ml-2'>
                             <label htmlFor="nome" className="block text-xs text-white">
@@ -303,8 +449,11 @@ const Atributos = () => {
                                     type="number"
                                     placeholder=" ATR"
                                     className="mt-2 w-11 rounded-md  shadow-sm border-gray-700 bg-gray-800 text-gray-400 sm:text-sm"
-                                    defaultValue={destreza} readOnly
+                                    value={isEditing ? editedDestreza : destreza}
+                                    readOnly={!isEditing}
+                                    onChange={(e) => handleInputChange(e, 'destreza')}
                                 />
+
                                 <input
                                     type="number"
                                     placeholder="mod"
@@ -313,11 +462,17 @@ const Atributos = () => {
                                     disabled
                                 />
                                 <label className=" ml-2 relative inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" value="" className="sr-only peer" onClick={() => toggleStat('destreza')} />
+                                    <input
+                                        type="checkbox"
+                                        checked={toggleDestreza}
+                                        className="sr-only peer"
+                                        onChange={() => toggleStat('destreza')}
+                                    />
                                     <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:mt-[0.1rem] after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                                    <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
+                                    <span className="ml-3 text-sm font-medium text-white dark:text-gray-300"></span>
                                 </label>
                             </div>
+
                         </div>
                     </div>
                 </div>

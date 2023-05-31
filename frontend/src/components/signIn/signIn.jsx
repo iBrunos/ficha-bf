@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const SignInForm = () => {
@@ -8,6 +11,8 @@ const SignInForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [items, setItems] = useState([]); // Definindo o estado inicial dos items
+
 
 
     const changePageTitle = (newTitle) => {
@@ -35,20 +40,22 @@ const SignInForm = () => {
     console.error("A senha e a confirmação de senha não correspondem.");
     return;
   }
-        try {
-            const response = await axios.post(API_URL, newItem);
-            setItems([...items, response.data]);
-            setUsername("");
-            setlastname("");
-            setPhone("");
-            setEmail("");
-            setPassword("");
-            setConfirmPassword("");
-            fetchItems();
-        } catch (error) {
-            console.error(error);
-        }
-    };
+  try {
+    const response = await axios.post(API_URL, newItem);
+    setItems([...items, response.data]);
+    setUsername("");
+    setlastname("");
+    setPhone("");
+    setEmail("");
+    setPassword("");
+    setConfirmPassword("");
+    toast.success("Usuário criado com sucesso!");
+    navigate('/user/home'); // Redireciona para '/home'
+} catch (error) {
+    console.error(error);
+    toast.error("Erro ao criar usuário.");
+}
+};
 
     const deleteItem = async (id) => {
         const token = localStorage.getItem("token");
@@ -65,6 +72,7 @@ const SignInForm = () => {
 
     return (
         <>
+           <ToastContainer />
             <section className="bg-white dark:bg-gray-900">
                 <div className="flex justify-center min-h-screen">
                     <div className="hidden bg-cover lg:block lg:w-2/5" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1494621930069-4fd4b2e24a11?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80')" }}>

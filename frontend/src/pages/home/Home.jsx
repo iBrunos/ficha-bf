@@ -14,7 +14,6 @@ import SubAttributesEspirito from '../../components/sub-attributes/Subattributes
 import SubAttributesSabedoria from '../../components/sub-attributes/SubAttributesSabedoria';
 import Todolist from '../../components/todolist/ToDoList';
 import Slots from '../../components/slots/Slots';
-import login from '../../components/loginForm/LoginForm';
 function Home() {
 
   return (
