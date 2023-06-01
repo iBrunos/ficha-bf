@@ -1,34 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import EditIcon from '@mui/icons-material/Edit';
+import { useState, useEffect } from "react";
+import axios from "axios";
+import EditIcon from "@mui/icons-material/Edit";
 import DoneIcon from '@mui/icons-material/Done';
 import CloseIcon from '@mui/icons-material/Close';
-import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 
-function UploadImage() {
-  const [imageSrc, setImageSrc] = useState('');
-  const [isEditing, setIsEditing] = useState(false);
-  const [editingItem, setEditingItem] = useState(null); // Adicionado o estado para guardar o item sendo editado
+export default function FormUsers() {
   const [items, setItems] = useState([]);
+  const [editingItem, setEditingItem] = useState(null);
   const [avatar, setAvatar] = useState();
-  const API_URL = 'https://ficha-bf-nine.vercel.app/user'; // Corrigido o nome da variável
+  const [imageSrc, setImageSrc] = useState("");
+  const API_URL = "https://api-bladefall.vercel.app/user";
 
   const fetchItems = async () => {
+    const id = localStorage.getItem("userId");
     const token = localStorage.getItem("token");
-    const userId = localStorage.getItem("userId");
+    // definir o cabeçalho `Authorization` com o token JWT
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
-
+    // fazer uma solicitação HTTP GET para a rota protegida com o token JWT
     try {
-      const response = await axios.get(`${API_URL}/${userId}`, config);
+      const response = await axios.get(`${API_URL}/${id}`, config);
       // Converte o buffer da imagem em um array de bytes
       const imageBuffer = response.data.avatar.data; // obtém o buffer de imagem do response
       const blob = new Blob([new Uint8Array(imageBuffer)], {
         type: "image/png",
       }); // cria um objeto Blob a partir do buffer
-      const imageUrl = URL.createObjectURL(blob); // cria um URL para o objeto Blob
-      setImageSrc(imageUrl); // define a URL como a fonte da imagem
+      const avatar = URL.createObjectURL(blob); // cria um URL para o objeto Blob
+      setAvatar(avatar); // define a URL como a fonte da imagem
     } catch (error) {
       console.error(error);
     }
@@ -38,67 +38,68 @@ function UploadImage() {
     fetchItems();
   }, []);
 
-  const editItem = async (id) => {
-    const token = localStorage.getItem('token');
-    setIsEditing(true);
-    setEditingItem(id);
+  const addItem = async (e) => {
+    e.preventDefault();
+
+
+    // Create a new FormData object
+    const formData = new FormData();
+    formData.append("avatar", avatar); // Add the image file to the form data
+
 
     try {
-      const response = await axios.get(`${API_URL}/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      const item = response.data;
-      setImageSrc(item.avatar); // Alterado para usar a propriedade avatar do item
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-
-    if (file) {
-      const reader = new FileReader();
-
-      reader.onload = () => {
-        setImageSrc(reader.result);
-        setAvatar(file);
-      };
-
-      reader.readAsDataURL(file);
-    }
-  };
-
-
-  const handleSaveClick = async (e) => {
-    try {
-      const token = localStorage.getItem('token');
-      const userId = localStorage.getItem("userId");
-      console.log("userId: ", userId)
-      const formData = new FormData();
-      formData.append("avatar", avatar);
-      formData.append("userId", userId);
-
-      await axios.put(`${API_URL}/${userId}`, formData, {
+      const response = await axios.post(API_URL, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
-          'Content-Type': 'multipart/form-data',
+          "Content-Type": "multipart/form-data", // Set the content type to multipart/form-data
         },
       });
-
-      toast.success('Atualização realizada com sucesso!');
+      setItems([...items, response.data]);
+      setAvatar(""); // Reset the selected image file
       fetchItems();
-      setIsEditing(false);
     } catch (error) {
       console.error(error);
-      toast.error('Erro ao realizar a atualização.');
     }
   };
 
-  const handleCancelClick = () => {
-    setIsEditing(false);
-    setImageSrc('');
+  const editItem = async (id) => {
+    const token = localStorage.getItem("token");
+
+    setEditingItem(id);
+    const response = await axios.get(`${API_URL}/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    const item = response.data;
+
   };
+
+  const updateItem = async (e) => {
+    e.preventDefault();
+    const id = localStorage.getItem("userId");
+    console.log("userid", id)
+    const updatedItem = {
+      _id: id,
+      avatar,
+    };
+    const formData = new FormData();
+    formData.append("_id", updatedItem._id);
+    formData.append("avatar", updatedItem.avatar); // Add the image file to the form data
+    const token = localStorage.getItem("token");
+
+    const response = await axios.put(`${API_URL}/${id}`, formData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data", // Set the content type to multipart/form-data
+      },
+    });
+    setItems(
+      items.map((item) => (item._id === editingItem ? response.data : item))
+    );
+    setAvatar("");
+    setEditingItem(null);
+    fetchItems();
+  }
 
   return (
     <>
@@ -107,47 +108,38 @@ function UploadImage() {
         <div className="flex flex-col">
           <div className="flex flex-row">
             <div className="ml-2 mt-2 rounded-xl max-w-sm flex-col">
-
-
               {/* Adicione o elemento <img> adicional para exibir a imagem selecionada */}
               {avatar && (
-                <img
-                  src={imageSrc}
-                  alt="Selected Image"
-                  className="h-52 w-52 rounded-full object-cover px-30"
-                />
+                 <img
+                 src={avatar}
+                 alt="Avatar do Usúario"
+                 className="w-56 h-56 rounded-full border lg:border-2"
+               />
               )}
-
-
-              <label
-                className="ml-[5.5rem] cursor-pointer w-full rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg text-white sm:text-sm hover:border-blue-500 hover:shadow-md"
-                htmlFor="upload-image"
+              <form
+                onSubmit={updateItem}
+                className="flex lg:flex-row flex-col mb-0 mt-1  pl-8 pt-1 pb-2 ml-0"
               >
-                {!isEditing ? (
-                  <EditIcon
-                    className="text-black hover:text-white mt-2"
-                    onClick={() => editItem(editingItem)} // Alterado para usar o ID do item sendo editado
-                  />
-                ) : (
-                  <>
-                    <CloseIcon
-                      className="text-black hover:text-white mt-2 mr-2"
-                      onClick={handleCancelClick}
-                    />
-                    <DoneIcon
-                      className="text-black hover:text-white mt-2"
-                      onClick={handleSaveClick}
-                    />
-                  </>
-                )}
+                <label
+                  htmlFor="meuArquivo"
+                  className="text-gray-400 hover:text-white px-4 py-2 rounded cursor-pointer lg:mt-0 mt-2 "
+                >
+                 <EditIcon/>
+                </label>
                 <input
-                  id="upload-image"
                   type="file"
                   accept="image/*"
-                  onChange={handleImageChange}
-                  style={{ display: 'none' }}
+                  id="meuArquivo"
+                  onChange={(e) => setAvatar(e.target.files[0])}
+                  className="my-0 border-gray-300 rounded-sm outline-none appearance-none placeholder-pink-500 text-gray-500 focus:border-pink-500 hidden"
                 />
-              </label>
+                <button
+                  type="submit"
+                  className="text-gray-400 hover:text-white px-4 py-2 rounded cursor-pointer lg:mt-0 mt-2 "
+                >
+                  {editingItem !== null ? <EditIcon/> : <DoneIcon/>}
+                </button>
+              </form>
             </div>
           </div>
         </div>
@@ -155,5 +147,3 @@ function UploadImage() {
     </>
   );
 }
-
-export default UploadImage;

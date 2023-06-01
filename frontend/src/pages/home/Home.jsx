@@ -29,7 +29,7 @@ function Home() {
       </div>
       <div className='grid grid-cols-2 bg-gray-900 w-[50rem]'>
 
-        <div className='bg-gray-900 '>
+        <div className='mt-6 bg-gray-900 '>
           <Attributes />
           <Slots />
         </div>
