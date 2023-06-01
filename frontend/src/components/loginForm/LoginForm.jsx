@@ -40,7 +40,7 @@ const LoginForm = () => {
     e.preventDefault();
     const newItem = { email, password };
 
-    const response = await axios.post("https://ficha-bf-nine.vercel.app/auth", newItem);
+    const response = await axios.post("https://api-bladefall.app/auth", newItem);
     const data = response.data;
     if (data.message === "Login realizado com sucesso.") {
       localStorage.setItem("token", data.token);
