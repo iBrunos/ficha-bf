@@ -154,6 +154,18 @@ const update = async (req, res) => {
       avatar = fs.readFileSync(imagePath);
     }
 
+    const user = await userService.findByIdService(_id);
+
+    if (!user) {
+      return res.status(404).send({ message: "User not found" });
+    }
+
+    // Verifica se há um avatar existente e o remove
+    if (user.avatar && user.avatar.data) {
+      fs.unlinkSync(user.avatar.data);
+    }
+
+    // Atualiza o usuário com o novo avatar
     await userService.updateService(_id, avatar);
 
     res.send({

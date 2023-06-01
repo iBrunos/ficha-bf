@@ -56,16 +56,19 @@ function UploadImage() {
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    const reader = new FileReader();
-
-    reader.onload = () => {
-      setAvatar(reader.result);
-    };
 
     if (file) {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        setImageSrc(reader.result);
+        setAvatar(file);
+      };
+
       reader.readAsDataURL(file);
     }
   };
+
 
   const handleSaveClick = async (e) => {
     try {
@@ -104,15 +107,17 @@ function UploadImage() {
         <div className="flex flex-col">
           <div className="flex flex-row">
             <div className="ml-2 mt-2 rounded-xl max-w-sm flex-col">
-              <img
-                name="avatar"
-                alt="Developer"
-                src={
-                  imageSrc ||
-                  'https://images.unsplash.com/photo-1614644147724-2d4785d69962?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80'
-                }
-                className="h-52 w-52 rounded-full object-cover px-30"
-              />
+
+
+              {/* Adicione o elemento <img> adicional para exibir a imagem selecionada */}
+              {avatar && (
+                <img
+                  src={imageSrc}
+                  alt="Selected Image"
+                  className="h-52 w-52 rounded-full object-cover px-30"
+                />
+              )}
+
 
               <label
                 className="ml-[5.5rem] cursor-pointer w-full rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg text-white sm:text-sm hover:border-blue-500 hover:shadow-md"
@@ -139,9 +144,8 @@ function UploadImage() {
                   id="upload-image"
                   type="file"
                   accept="image/*"
-                  onChange={(e) => setAvatar(e.target.files[0])}
+                  onChange={handleImageChange}
                   style={{ display: 'none' }}
-
                 />
               </label>
             </div>
