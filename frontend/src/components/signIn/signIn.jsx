@@ -20,7 +20,7 @@ const SignInForm = () => {
     };
     changePageTitle("Blade Fall | Sign In");
 
-    const API_URL = "https://api-bladefall.vercel.app/user";
+    const API_URL = "https://ficha-bf-nine.vercel.app/user";
 
 
 

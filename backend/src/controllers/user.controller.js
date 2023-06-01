@@ -20,7 +20,7 @@ const createService = async (req, res) => {
       confirmPassword,
       email,
       phone,
-      avatar: ''
+      avatar
     });
 
     if (!createUser) {
