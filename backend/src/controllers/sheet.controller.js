@@ -136,38 +136,49 @@ const updateFicha = async (req, res) => {
   try {
     const { userId } = req.params;
     const {
-      // Campos da ficha a serem atualizados
+      username,
+      age,
+      level,
+      race,
+      size,
+      alignment,
+      xp,
+      hp,
+      hpTotal,
+      characterClass,
+      forca,
+      espirito,
+      constituicao,
+      kai,
+      inteligencia,
+      carisma,
+      sabedoria,
+      destreza,
+      proficiencia
     } = req.body;
 
-
-    const ficha = await Ficha.findOne({ userId }); // Pesquisa a ficha pelo ID do usuário
-
-    if (!ficha) {
-      return res.status(404).send({ message: 'Ficha not found.' });
-    }
-
-    // Atualiza os campos da ficha
-    ficha.username = req.body.username;
-    ficha.age = req.body.age;
-    ficha.level = req.body.level;
-    ficha.race = req.body.race;
-    ficha.size = req.body.size;
-    ficha.alignment = req.body.alignment;
-    ficha.xp = req.body.xp;
-    ficha.hp = req.body.hp;
-    ficha.hpTotal = req.body.hpTotal;
-    ficha.characterClass = req.body.characterClass;
-    ficha.forca = req.body.forca;
-    ficha.espirito = req.body.espirito;
-    ficha.constituicao = req.body.constituicao;
-    ficha.kai = req.body.kai;
-    ficha.inteligencia = req.body.inteligencia;
-    ficha.carisma = req.body.carisma;
-    ficha.sabedoria = req.body.sabedoria;
-    ficha.destreza = req.body.destreza;
-    ficha.proficiencia = req.body.proficiencia;
-
-    await fichaService.updateService(ficha); // Salva as alterações na ficha
+    // Save the changes to the ficha using the fichaService
+    await fichaService.updateService(userId, {
+      username,
+      age,
+      level,
+      race,
+      size,
+      alignment,
+      xp,
+      hp,
+      hpTotal,
+      characterClass,
+      forca,
+      espirito,
+      constituicao,
+      kai,
+      inteligencia,
+      carisma,
+      sabedoria,
+      destreza,
+      proficiencia
+    });
 
     res.send({
       message: 'Ficha successfully updated.',

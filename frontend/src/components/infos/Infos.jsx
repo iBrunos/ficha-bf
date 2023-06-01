@@ -10,6 +10,7 @@ function Infos() {
   const [selectedRace, setSelectedRace] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
   const [customRace, setCustomRace] = useState('');
+  const [age, setAge] = useState('');
   const [customSize, setCustomSize] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const [name, setName] = useState(''); // Adicionei o estado para o campo "Nome"
@@ -47,8 +48,7 @@ function Infos() {
       const updatedData = {
         selectedRace,
         selectedSize,
-        customRace,
-        customSize,
+        age,
         name, // Adicione o campo "name" aqui
       };
   
@@ -88,6 +88,11 @@ function Infos() {
   const handleNameChange = (event) => {
     setName(event.target.value);
   };
+  const handleAgeChange = (event) => {
+    setAge(event.target.value);
+  };
+
+  handleAgeChange
 
   return (
     <>
@@ -130,6 +135,8 @@ function Infos() {
           <div className='flex flex-row'>
             <input
               type="number"
+              value={name}
+              onChange={handleAgeChange}
               placeholder="Digite a idade"
               className={`mt-1 w-40 rounded-md shadow-sm border-gray-700 bg-gray-800 text-white sm:text-sm ${isEditing ? '' : 'bg-gray-500'}`}
               readOnly={!isEditing}
