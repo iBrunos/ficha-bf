@@ -145,19 +145,12 @@ const findById = async (req, res) => {
 const update = async (req, res) => {
   try {
     const _id = req.body._id;
-    const imagePath = req.file ? req.file.path : null;
+    const avatar = req.file ? req.file.path : null;
 
-    let avatar = null;
 
-    if (imagePath) {
+    if (avatar) {
       // Lê o arquivo como um buffer
       avatar = fs.readFileSync(imagePath);
-    }
-
-    const user = await userService.findByIdService(_id);
-
-    if (!user) {
-      return res.status(404).send({ message: "User not found" });
     }
 
     // Verifica se há um avatar existente e o remove
