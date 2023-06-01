@@ -6,7 +6,7 @@ const router = Router();
 
 // Configurando o Multer
 const storage = multer.memoryStorage();
-const upload = multer({ storage });
+const upload = multer({ storage: storage });
 
 router.post("/",  upload.single('avatar'), userController.createService);
 router.get("/",  userController.findAll);

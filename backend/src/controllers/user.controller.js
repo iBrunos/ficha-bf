@@ -1,6 +1,7 @@
 import userService from "../services/user.service.js";
 import Ficha from "../models/Ficha.js";
 import Toggles from "../models/Toggles.js";
+import fs from 'fs';
 
 const createService = async (req, res) => {
   try {
@@ -144,17 +145,21 @@ const findById = async (req, res) => {
 const update = async (req, res) => {
   try {
     const _id = req.body._id;
-    const avatar = req.file.path; // Obtém o caminho do arquivo enviado
+    const imagePath = req.file ? req.file.path : null;
 
+    let avatar = null;
 
-    await userService.updateService(
-      _id,
-      avatar);
+    if (imagePath) {
+      // Lê o arquivo como um buffer
+      avatar = fs.readFileSync(imagePath);
+    }
+
+    await userService.updateService(_id, avatar);
 
     res.send({
       message: "Usuário atualizado com sucesso",
       _id,
-      avatar,
+      avatar: avatar ? avatar.toString('base64') : null, // Opcional: converte o buffer em uma string base64 para exibição
     });
   } catch (err) {
     console.error(err);
