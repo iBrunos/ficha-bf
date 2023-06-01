@@ -12,7 +12,7 @@ const createService = async (req, res) => {
         message: "Submit all fields for registration",
       });
     }
-
+    const avatar = req.file ? req.file.buffer : null;
     const createUser = await userService.createService({
       username,
       lastname,
