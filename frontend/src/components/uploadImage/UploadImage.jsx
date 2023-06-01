@@ -141,6 +141,7 @@ function UploadImage() {
                   accept="image/*"
                   onChange={(e) => setAvatar(e.target.files[0])}
                   style={{ display: 'none' }}
+
                 />
               </label>
             </div>
