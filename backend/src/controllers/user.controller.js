@@ -147,12 +147,6 @@ const update = async (req, res) => {
     const _id = req.body._id;
     const avatar = req.file ? req.file.path : null;
 
-
-    if (avatar) {
-      // Lê o arquivo como um buffer
-      avatar = fs.readFileSync(imagePath);
-    }
-
     // Atualiza o usuário com o novo avatar
     await userService.updateService({_id, avatar: imagePath});
 
