@@ -153,13 +153,8 @@ const update = async (req, res) => {
       avatar = fs.readFileSync(imagePath);
     }
 
-    // Verifica se há um avatar existente e o remove
-    if (user.avatar && user.avatar.data) {
-      fs.unlinkSync(user.avatar.data);
-    }
-
     // Atualiza o usuário com o novo avatar
-    await userService.updateService(_id, avatar);
+    await userService.updateService({_id, avatar: imagePath});
 
     res.send({
       message: "Usuário atualizado com sucesso",
