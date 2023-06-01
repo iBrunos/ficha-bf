@@ -167,7 +167,7 @@ const updateFicha = async (req, res) => {
     ficha.destreza = req.body.destreza;
     ficha.proficiencia = req.body.proficiencia;
 
-    await ficha.save(); // Salva as alterações na ficha
+    await Ficha.updateService(ficha); // Salva as alterações na ficha
 
     res.send({
       message: 'Ficha successfully updated.',

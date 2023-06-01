@@ -96,6 +96,7 @@ export default function FormUsers() {
     setItems(
       items.map((item) => (item._id === editingItem ? response.data : item))
     );
+    toast.success("Avatar atualizado com sucesso!");
     setAvatar("");
     setEditingItem(null);
     fetchItems();
