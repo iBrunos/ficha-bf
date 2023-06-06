@@ -1,7 +1,7 @@
 import userService from "../services/user.service.js";
 import Ficha from "../models/Ficha.js";
 import Toggles from "../models/Toggles.js";
-import fs from 'fs';
+import multer from 'multer';
 
 const createService = async (req, res) => {
   try {
@@ -13,7 +13,7 @@ const createService = async (req, res) => {
         message: "Submit all fields for registration",
       });
     }
-    const avatar = req.file ? req.file.buffer : null;
+
     const createUser = await userService.createService({
       username,
       lastname,
@@ -21,7 +21,7 @@ const createService = async (req, res) => {
       confirmPassword,
       email,
       phone,
-      avatar
+      avatar: null, // Inicializa o avatar como null
     });
 
     if (!createUser) {
@@ -145,10 +145,16 @@ const findById = async (req, res) => {
 const update = async (req, res) => {
   try {
     const _id = req.body._id;
-    const avatar = req.file ? req.file.path : null;
+
+    // Verifica se um arquivo de imagem foi enviado
+    if (!req.file) {
+      return res.status(400).send({ message: "Nenhuma imagem enviada" });
+    }
+
+    const avatar = req.file.buffer; // Obtém o buffer de imagem do arquivo enviado
 
     // Atualiza o usuário com o novo avatar
-    await userService.updateService({_id, avatar});
+    await userService.updateService({ _id, avatar });
 
     res.send({
       message: "Usuário atualizado com sucesso",
@@ -160,6 +166,5 @@ const update = async (req, res) => {
     res.status(500).send({ message: err.message });
   }
 };
-
 
 export default { createService, findAll, findById, update, deleteUser };

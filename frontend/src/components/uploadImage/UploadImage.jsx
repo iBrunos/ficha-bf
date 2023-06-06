@@ -36,8 +36,7 @@ export default function FormUsers() {
       avatar,
     };
     const formData = new FormData();
-    formData.append("_id", updatedItem._id);
-    formData.append("avatar", updatedItem.avatar);
+    formData.append("avatar", updatedItem.avatar[0]);
     const token = localStorage.getItem("token");
 
     const response = await axios.put(`${API_URL}/${id}`, formData, {
@@ -85,7 +84,7 @@ export default function FormUsers() {
                   id="meuArquivo"
                   type="file"
                   onChange={handleFileSelect}
-                  className="my-0 border-gray-300 rounded-sm outline-none appearance-none placeholder-pink-500 text-gray-500 focus:border-pink-500 hidden"
+                  className="my-0 border-gray-300 rounded-sm outline-none appearance-none placeholder-pink-500 text-gray-500 focus:border-pink-500"
                 />
 
                 <button
