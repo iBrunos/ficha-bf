@@ -1,7 +1,11 @@
 import userService from "../services/user.service.js";
 import Ficha from "../models/Ficha.js";
 import Toggles from "../models/Toggles.js";
-import multer from 'multer';
+import fs from 'fs';
+import path from 'path';
+
+const avatarDefaultPath = path.join(__dirname, '../assets/imgs/avatar.png');
+const avatarDefaultBuffer = fs.readFileSync(avatarDefaultPath);
 
 const createService = async (req, res) => {
   try {
@@ -21,8 +25,15 @@ const createService = async (req, res) => {
       confirmPassword,
       email,
       phone,
-      avatar
+      avatar: avatarDefaultBuffer // Usar o avatar padrão como buffer
     });
+
+    // Resto do código...
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({ message: err.message });
+  }
+};
 
     if (!createUser) {
       return res.status(400).send({
