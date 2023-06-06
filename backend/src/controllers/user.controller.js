@@ -24,7 +24,7 @@ const createService = async (req, res) => {
       confirmPassword,
       email,
       phone,
-      avatar: avatarDefaultBuffer // Usar o avatar padrão como buffer
+      avatar: avatarDefaultPath // Usar o avatar padrão como buffer
     });
 
     if (!createUser) {
