@@ -7,8 +7,9 @@ import { toast, ToastContainer } from "react-toastify";
 
 export default function FormUsers() {
   const [avatar, setAvatar] = useState("");
-  const API_URL = "https://api-bladefall.vercel.app/user";
-
+  const [file, setFile] = useState(null); // Adiciona o estado para armazenar o arquivo
+ // const API_URL = "https://api-bladefall.vercel.app/user";
+  const API_URL = "http://localhost:3000/user";
   const fetchItems = async () => {
     const id = localStorage.getItem("userId");
     const token = localStorage.getItem("token");
@@ -36,7 +37,8 @@ export default function FormUsers() {
       avatar,
     };
     const formData = new FormData();
-    formData.append("avatar", updatedItem.avatar[0]);
+    formData.append("_id", updatedItem._id);
+    formData.append("avatar", file); // Usamos o arquivo armazenado no estado 'file'
     const token = localStorage.getItem("token");
 
     const response = await axios.put(`${API_URL}/${id}`, formData, {
@@ -53,6 +55,7 @@ export default function FormUsers() {
   const handleFileSelect = (event) => {
     const file = event.target.files[0];
     setAvatar(URL.createObjectURL(file));
+    setFile(file); // Armazena o arquivo no estado 'file'
   };
 
   return (
@@ -84,7 +87,7 @@ export default function FormUsers() {
                   id="meuArquivo"
                   type="file"
                   onChange={handleFileSelect}
-                  className="my-0 border-gray-300 rounded-sm outline-none appearance-none placeholder-pink-500 text-gray-500 focus:border-pink-500"
+                  className="my-0 border-gray-300 rounded-sm outline-none appearance-none placeholder-pink-500 text-gray-500 focus:border-pink-500 hidden"
                 />
 
                 <button

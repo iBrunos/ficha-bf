@@ -155,7 +155,7 @@ const update = async (req, res) => {
 
     // Atualiza o usuário com o novo avatar
     await userService.updateService({ _id, avatar });
-
+    console.log(avatar)
     res.send({
       message: "Usuário atualizado com sucesso",
       _id,
