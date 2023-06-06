@@ -28,12 +28,6 @@ const createService = async (req, res) => {
       avatar: avatarDefaultBuffer // Usar o avatar padrão como buffer
     });
 
-    // Resto do código...
-  } catch (err) {
-    console.error(err);
-    res.status(500).send({ message: err.message });
-  }
-};
 
     if (!createUser) {
       return res.status(400).send({
