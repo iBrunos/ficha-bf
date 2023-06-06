@@ -21,7 +21,7 @@ const createService = async (req, res) => {
       confirmPassword,
       email,
       phone,
-      avatar: null, // Inicializa o avatar como null
+      avatar
     });
 
     if (!createUser) {
@@ -95,7 +95,7 @@ const createService = async (req, res) => {
         confirmPassword,
         email,
         phone,
-        avatar: '',
+        avatar,
       },
     });
   } catch (err) {
