@@ -1,11 +1,10 @@
 import userService from "../services/user.service.js";
 import Ficha from "../models/Ficha.js";
 import Toggles from "../models/Toggles.js";
-import fs from 'fs';
 import path from 'path';
 
-const avatarDefaultPath = path.join(__dirname, '../assets/imgs/avatar.png');
-const avatarDefaultBuffer = fs.readFileSync(avatarDefaultPath);
+const avatarDefaultPath = path.resolve('../assets/imgs/avatar.png');
+
 
 const createService = async (req, res) => {
   try {
@@ -27,7 +26,6 @@ const createService = async (req, res) => {
       phone,
       avatar: avatarDefaultBuffer // Usar o avatar padrão como buffer
     });
-
 
     if (!createUser) {
       return res.status(400).send({
