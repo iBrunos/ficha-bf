@@ -3,7 +3,6 @@ import Ficha from "../models/Ficha.js";
 import Toggles from "../models/Toggles.js";
 import path from 'path';
 
-const avatarDefaultPath = path.resolve('../assets/imgs/avatar.png');
 
 
 const createService = async (req, res) => {
@@ -16,6 +15,9 @@ const createService = async (req, res) => {
         message: "Submit all fields for registration",
       });
     }
+    
+    // Obtendo o buffer da imagem
+    const avatar = req.file ? req.file.buffer : null;
 
     const createUser = await userService.createService({
       username,
@@ -24,7 +26,7 @@ const createService = async (req, res) => {
       confirmPassword,
       email,
       phone,
-      avatar: avatarDefaultPath // Usar o avatar padrão como buffer
+      avatar
     });
 
     if (!createUser) {
@@ -154,7 +156,7 @@ const update = async (req, res) => {
       return res.status(400).send({ message: "Nenhuma imagem enviada" });
     }
 
-    const avatar = req.file.buffer; // Obtém o buffer de imagem do arquivo enviado
+    const avatar = req.file ? req.file.buffer : null;
 
     // Atualiza o usuário com o novo avatar
     await userService.updateService({ _id, avatar });
@@ -162,7 +164,7 @@ const update = async (req, res) => {
     res.send({
       message: "Usuário atualizado com sucesso",
       _id,
-      avatar: avatar ? avatar.toString('base64') : null, // Opcional: converte o buffer em uma string base64 para exibição
+      avatar
     });
   } catch (err) {
     console.error(err);

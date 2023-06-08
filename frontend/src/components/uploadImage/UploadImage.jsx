@@ -10,6 +10,8 @@ export default function FormUsers() {
   const [file, setFile] = useState(null); // Adiciona o estado para armazenar o arquivo
  const API_URL = "https://api-bladefall.vercel.app/user";
   //const API_URL = "http://localhost:3000/user";
+  
+  
   const fetchItems = async () => {
     const id = localStorage.getItem("userId");
     const token = localStorage.getItem("token");
@@ -18,8 +20,13 @@ export default function FormUsers() {
     };
     try {
       const response = await axios.get(`${API_URL}/${id}`, config);
-      const avatarUrl = response.data.avatar;
-      setAvatar(avatarUrl);
+      const imageBuffer = response.data.avatar.data;
+      console.log(imageBuffer)
+      const blob = new Blob([new Uint8Array(imageBuffer)], {
+        type: "image/png",
+      }); // cria um objeto Blob a partir do buffer 
+      const imageUrl = URL.createObjectURL(blob);
+      setAvatar(imageUrl);
     } catch (error) {
       console.error(error);
     }
