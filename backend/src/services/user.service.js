@@ -6,7 +6,16 @@ const findAllService = () => User.find();
 
 const findByIdService = (id) => User.findById(id);
 
-const updateService = (id, avatar) => User.findOneAndUpdate({ _id: id }, { avatar: avatar });
+const updateService = (id, avatar) => {
+  User.findOneAndUpdate({ _id: id }, { avatar }, { new: true })
+    .then(updatedUser => {
+     // console.log("Valor atualizado:", updatedUser);
+    })
+    .catch(error => {
+      //console.error("Erro ao atualizar:", error);
+    });
+};
+
 
 const deleteService = (id) => User.findByIdAndDelete(id);
 

@@ -8,8 +8,8 @@ import { toast, ToastContainer } from "react-toastify";
 export default function FormUsers() {
   const [avatar, setAvatar] = useState("");
   const [file, setFile] = useState(null); // Adiciona o estado para armazenar o arquivo
- const API_URL = "https://api-bladefall.vercel.app/user";
-  //const API_URL = "http://localhost:3000/user";
+  //const API_URL = "https://api-bladefall.vercel.app/user";
+  const API_URL = "http://localhost:3000/user";
   
   
   const fetchItems = async () => {

@@ -159,8 +159,8 @@ const update = async (req, res) => {
     const avatar = req.file ? req.file.buffer : null;
 
     // Atualiza o usuário com o novo avatar
-    await userService.updateService({ _id, avatar });
-    console.log(avatar)
+    await userService.updateService(_id, avatar);
+ 
     res.send({
       message: "Usuário atualizado com sucesso",
       _id,
