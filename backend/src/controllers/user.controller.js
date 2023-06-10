@@ -57,6 +57,15 @@ const createService = async (req, res) => {
       sabedoria: 0,
       destreza: 0,
       proficiencia: 0,
+      togglePercepcao: 0,
+      toggleForca: 0,
+      toggleEspirito: 0,
+      toggleConstituicao: 0,
+      toggleKai: 0,
+      toggleInteligecnia: 0,
+      toggleCarisma: 0,
+      toggleSabedoria: 0,
+      toggleDestreza: 0
     });
     await ficha.save();
 

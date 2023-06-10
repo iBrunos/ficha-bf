@@ -1,7 +1,6 @@
 import fichaService from '../services/sheet.service.js';
 import Ficha from "../models/Ficha.js";
-import userService from "../services/user.service.js";
-import User from "../models/User.js";
+
 const createService = async (req, res) => {
   try {
     const {
@@ -23,6 +22,15 @@ const createService = async (req, res) => {
       carisma,
       sabedoria,
       destreza,
+      togglePercepcao,
+      toggleForca,
+      toggleEspirito,
+      toggleConstituicao,
+      toggleKai,
+      toggleInteligecnia,
+      toggleCarisma,
+      toggleSabedoria,
+      toggleDestreza
     } = req.body;
 
     // Verificar se todos os campos foram enviados
@@ -70,7 +78,16 @@ const createService = async (req, res) => {
       carisma,
       sabedoria,
       destreza,
-      proficiencia
+      proficiencia,
+      togglePercepcao,
+      toggleForca,
+      toggleEspirito,
+      toggleConstituicao,
+      toggleKai,
+      toggleInteligecnia,
+      toggleCarisma,
+      toggleSabedoria,
+      toggleDestreza
     });
 
     if (!createFicha) {
@@ -160,7 +177,16 @@ const updateFicha = async (req, res) => {
       carisma,
       sabedoria,
       destreza,
-      proficiencia
+      proficiencia,
+      togglePercepcao,
+      toggleForca,
+      toggleEspirito,
+      toggleConstituicao,
+      toggleKai,
+      toggleInteligecnia,
+      toggleCarisma,
+      toggleSabedoria,
+      toggleDestreza
     } = req.body;
 
     // Encontre a ficha correspondente com base no userId
@@ -192,6 +218,15 @@ const updateFicha = async (req, res) => {
     ficha.sabedoria = sabedoria;
     ficha.destreza = destreza;
     ficha.proficiencia = proficiencia;
+    ficha.togglePercepcao = togglePercepcao;
+    ficha.toggleForca = toggleForca;
+    ficha.toggleEspirito = toggleEspirito;
+    ficha.toggleConstituicao = toggleConstituicao;
+    ficha.toggleKai = toggleKai;
+    ficha.toggleInteligecnia = toggleInteligecnia;
+    ficha.toggleCarisma = toggleCarisma;
+    ficha.toggleSabedoria = toggleSabedoria;
+    ficha.toggleDestreza = toggleDestreza;
 
     // Salve as alterações da ficha usando o serviço fichaService
     const updatedFicha = await fichaService.updateService(userId, ficha);
@@ -205,8 +240,6 @@ const updateFicha = async (req, res) => {
     res.status(500).send({ message: err.message });
   }
 };
-
-
 
 export default {
   createService,

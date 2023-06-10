@@ -60,14 +60,58 @@ const SheetSchema = new mongoose.Schema({
     proficiencia: {
         type: Number
     },
+    togglePercepcao: {
+        type: Boolean,
+        required: true,
+        default: false,
+      },
+      toggleForca: {
+        type: Boolean,
+        required: true,
+        default: false,
+      },
+      toggleEspirito: {
+        type: Boolean,
+        required: true,
+        default: false,
+      },
+      toggleConstituicao: {
+        type: Boolean,
+        required: true,
+        default: false,
+      },
+      toggleKai: {
+        type: Boolean,
+        required: true,
+        default: false,
+      },
+      toggleInteligecnia: {
+        type: Boolean,
+        required: true,
+        default: false,
+      },
+      toggleCarisma: {
+        type: Boolean,
+        required: true,
+        default: false,
+      },
+      toggleSabedoria: {
+        type: Boolean,
+        required: true,
+        default: false,
+      },
+      toggleDestreza: {
+        type: Boolean,
+        required: true,
+        default: false,
+      },
+
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
     },
 });
 
-
 const Ficha = mongoose.model("Ficha", SheetSchema);
-
 
 export default Ficha;
