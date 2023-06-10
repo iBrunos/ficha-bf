@@ -16,8 +16,6 @@ const LoginForm = () => {
     setEmail(e.target.value);
   };
 
- 
-
   useEffect(() => {
     if (localStorage.getItem("checkError") === "true") {
       window.alert(

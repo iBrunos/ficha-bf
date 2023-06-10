@@ -114,7 +114,14 @@ const getAllFichas = async (req, res) => {
     res.status(500).send({ message: err.message });
   }
 };
-
+const findFichaByUserId = async (userId) => {
+  try {
+    const ficha = await Ficha.findOne({ userId }); // Procura uma ficha com o userId fornecido
+    return ficha;
+  } catch (error) {
+    throw new Error("Erro ao buscar a ficha por userId.");
+  }
+};
 const getFichaById = async (req, res) => {
   try {
     const userId = req.params.userId; // Obter o UserId dos parâmetros da rota
@@ -131,11 +138,10 @@ const getFichaById = async (req, res) => {
     res.status(500).send({ message: err.message });
   }
 };
-
 const updateFicha = async (req, res) => {
   try {
-    const { userId } = req.params;
     const {
+      userId,
       username,
       age,
       level,
@@ -157,31 +163,42 @@ const updateFicha = async (req, res) => {
       proficiencia
     } = req.body;
 
-    // Save the changes to the ficha using the fichaService
-    await fichaService.updateService(userId, {
-      username,
-      age,
-      level,
-      race,
-      size,
-      alignment,
-      xp,
-      hp,
-      hpTotal,
-      characterClass,
-      forca,
-      espirito,
-      constituicao,
-      kai,
-      inteligencia,
-      carisma,
-      sabedoria,
-      destreza,
-      proficiencia
-    });
+    // Encontre a ficha correspondente com base no userId
+    const ficha = await fichaService.findFichaByUserId(userId);
+
+    if (!ficha) {
+      return res.status(404).send({
+        message: 'Ficha não encontrada.',
+      });
+    }
+
+    // Atualize os campos da ficha com os dados fornecidos
+    ficha.username = username;
+    ficha.age = age;
+    ficha.level = level;
+    ficha.race = race;
+    ficha.size = size;
+    ficha.alignment = alignment;
+    ficha.xp = xp;
+    ficha.hp = hp;
+    ficha.hpTotal = hpTotal;
+    ficha.characterClass = characterClass;
+    ficha.forca = forca;
+    ficha.espirito = espirito;
+    ficha.constituicao = constituicao;
+    ficha.kai = kai;
+    ficha.inteligencia = inteligencia;
+    ficha.carisma = carisma;
+    ficha.sabedoria = sabedoria;
+    ficha.destreza = destreza;
+    ficha.proficiencia = proficiencia;
+
+    // Salve as alterações da ficha usando o serviço fichaService
+    const updatedFicha = await fichaService.updateService(userId, ficha);
 
     res.send({
-      message: 'Ficha successfully updated.',
+      message: 'Ficha atualizada com sucesso.',
+      updatedFicha,
     });
   } catch (err) {
     console.error(err);
@@ -189,10 +206,13 @@ const updateFicha = async (req, res) => {
   }
 };
 
+
+
 export default {
   createService,
   getAllFichas,
   getFichaById,
   updateFicha,
   deleteFicha,
+  findFichaByUserId
 };

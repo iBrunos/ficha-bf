@@ -46,7 +46,8 @@ const Atributos = () => {
     const [editedKai, setEditedKai] = useState(kai);
 
 
-    const API_URL = 'https://api-bladefall.vercel.app/sheet';
+    //const API_URL = 'https://api-bladefall.vercel.app/sheet';
+    const API_URL = 'http://localhost:3000/sheet';
     const fetchItems = async () => {
         try {
             const token = localStorage.getItem('token');
@@ -97,6 +98,7 @@ const Atributos = () => {
             };
 
             const updatedData = {
+                userId: userId,
                 forca: editedForca,
                 inteligencia: editedInteligencia,
                 destreza: editedDestreza,
@@ -105,15 +107,6 @@ const Atributos = () => {
                 espirito: editedEspirito,
                 constituicao: editedConstituicao,
                 kai: editedKai,
-                proficiencia,
-                modForca: calcularMod(editedForca),
-                modInteligencia: calcularMod(editedInteligencia),
-                modDestreza: calcularMod(editedDestreza),
-                modCarisma: calcularMod(editedCarisma),
-                modSabedoria: calcularMod(editedSabedoria),
-                modEspirito: calcularMod(editedEspirito),
-                modConstituicao: calcularMod(editedConstituicao),
-                modKai: calcularMod(editedKai),
             };
 
             await axios.put(`${API_URL}/${userId}`, updatedData, config);
