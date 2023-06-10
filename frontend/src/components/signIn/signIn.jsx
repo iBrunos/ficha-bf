@@ -3,7 +3,8 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import BF from "../../assets/imgs/BF.jpg";
+import Footer from '../../components/footer/Footer';
 const SignInForm = () => {
     const [username, setUsername] = useState("");
     const [lastname, setlastname] = useState("");
@@ -34,30 +35,30 @@ const SignInForm = () => {
             password,
             confirmPassword,
         };
-  // Verificar se a senha e a confirmação de senha correspondem
-  if (password !== confirmPassword) {
-    console.error("A senha e a confirmação de senha não correspondem.");
-    return;
-  }
-  try {
-    const response = await axios.post(API_URL, newItem);
-    setItems([...items, response.data]);
-    setUsername("");
-    setlastname("");
-    setPhone("");
-    setEmail("");
-    setPassword("");
-    setConfirmPassword("");
-    toast.success("Usuário criado com sucesso!");
-    toast.success("Vamos te redirecionar para fazer login");
-    setTimeout(() => {
-        navigate('/user/home'); // Redireciona para '/home' após 3 segundos
-      }, 3000);
-} catch (error) {
-    console.error(error);
+        // Verificar se a senha e a confirmação de senha correspondem
+        if (password !== confirmPassword) {
+            console.error("A senha e a confirmação de senha não correspondem.");
+            return;
+        }
+        try {
+            const response = await axios.post(API_URL, newItem);
+            setItems([...items, response.data]);
+            setUsername("");
+            setlastname("");
+            setPhone("");
+            setEmail("");
+            setPassword("");
+            setConfirmPassword("");
+            toast.success("Usuário criado com sucesso!");
+            toast.success("Vamos te redirecionar para fazer login");
+            setTimeout(() => {
+                navigate('/user/home'); // Redireciona para '/home' após 3 segundos
+            }, 3000);
+        } catch (error) {
+            console.error(error);
 
-}
-};
+        }
+    };
 
     const deleteItem = async (id) => {
         const token = localStorage.getItem("token");
@@ -74,10 +75,12 @@ const SignInForm = () => {
 
     return (
         <>
-           <ToastContainer />
+            <ToastContainer />
             <section className="bg-white dark:bg-gray-900">
                 <div className="flex justify-center min-h-screen">
-                    <div className="hidden bg-cover lg:block lg:w-2/5" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1494621930069-4fd4b2e24a11?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80')" }}>
+                    <div className="hidden bg-right bg-cover lg:block lg:w-3/5" style={{
+                        backgroundImage: `url(${BF})`,
+                    }}>
                     </div>
 
 
@@ -173,6 +176,7 @@ const SignInForm = () => {
                     </div>
                 </div>
             </section>
+            <Footer />
         </>
     );
 }

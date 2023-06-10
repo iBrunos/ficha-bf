@@ -77,6 +77,14 @@ const Atributos = () => {
                 setModEspirito(calcularMod(sheetData.espirito || 0));
                 setModConstituicao(calcularMod(sheetData.constituicao || 0));
                 setModKai(calcularMod(sheetData.kai || 0));
+                setToggleForca(sheetData.toggleForca || false);
+                setToggleInteligencia(sheetData.toggleInteligencia || false);
+                setToggleDestreza(sheetData.toggleDestreza || false);
+                setToggleCarisma(sheetData.toggleCarisma || false);
+                setToggleSabedoria(sheetData.toggleSabedoria || false);
+                setToggleEspirito(sheetData.toggleEspirito || false);
+                setToggleConstituicao(sheetData.toggleConstituicao || false);
+                setToggleKai(sheetData.toggleKai || false);
             }
         } catch (error) {
             // Trate os erros aqui, por exemplo, exibindo uma mensagem de erro
@@ -118,41 +126,41 @@ const Atributos = () => {
         }
     };
 
-
     const calcularMod = (valor) => {
         return Math.floor((valor - 10) / 2);
     };
 
     const toggleStat = (stat) => {
         switch (stat) {
-            case 'forca':
-                setToggleForca(!toggleForca);
-                break;
-            case 'inteligencia':
-                setToggleInteligencia(!toggleInteligencia);
-                break;
-            case 'destreza':
-                setToggleDestreza(!toggleDestreza);
-                break;
-            case 'carisma':
-                setToggleCarisma(!toggleCarisma);
-                break;
-            case 'sabedoria':
-                setToggleSabedoria(!toggleSabedoria);
-                break;
-            case 'espirito':
-                setToggleEspirito(!toggleEspirito);
-                break;
-            case 'constituicao':
-                setToggleConstituicao(!toggleConstituicao);
-                break;
-            case 'kai':
-                setToggleKai(!toggleKai);
-                break;
-            default:
-                break;
+          case 'forca':
+            setToggleForca(!toggleForca);
+            break;
+          case 'inteligencia':
+            setToggleInteligencia(!toggleInteligencia);
+            break;
+          case 'destreza':
+            setToggleDestreza(!toggleDestreza);
+            break;
+          case 'carisma':
+            setToggleCarisma(!toggleCarisma);
+            break;
+          case 'sabedoria':
+            setToggleSabedoria(!toggleSabedoria);
+            break;
+          case 'espirito':
+            setToggleEspirito(!toggleEspirito);
+            break;
+          case 'constituicao':
+            setToggleConstituicao(!toggleConstituicao);
+            break;
+          case 'kai':
+            setToggleKai(!toggleKai);
+            break;
+          default:
+            break;
         }
-    };
+      };
+      
     const handleInputChange = (e, stat) => {
         const value = parseInt(e.target.value);
         switch (stat) {
@@ -219,7 +227,7 @@ const Atributos = () => {
                                     type="number"
                                     placeholder="mod"
                                     className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-white sm:text-sm"
-                                    value={toggleForca ? modForca + proficiencia : modForca}
+                                    value={toggleForca ? modForca + (proficiencia * toggleForca) : modForca}
                                     disabled
                                 />
                                 <label className=" ml-2 relative inline-flex items-center cursor-pointer">
@@ -254,7 +262,7 @@ const Atributos = () => {
                                     type="number"
                                     placeholder="mod"
                                     className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-white sm:text-sm"
-                                    value={toggleInteligencia ? modInteligencia + proficiencia : modInteligencia}
+                                    value={toggleInteligencia ? modInteligencia + (proficiencia * toggleInteligencia) : modInteligencia}
                                     disabled
                                 />
                                 <label className=" ml-2 relative inline-flex items-center cursor-pointer">
@@ -288,7 +296,7 @@ const Atributos = () => {
                                     type="number"
                                     placeholder="mod"
                                     className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-white sm:text-sm"
-                                    value={toggleEspirito ? modEspirito + proficiencia : modEspirito}
+                                    value={toggleEspirito ? modEspirito + (proficiencia * toggleEspirito) : modEspirito}
                                     disabled
                                 />
                                 <label className=" ml-2 relative inline-flex items-center cursor-pointer">
@@ -322,7 +330,7 @@ const Atributos = () => {
                                     type="number"
                                     placeholder="mod"
                                     className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-white sm:text-sm"
-                                    value={toggleCarisma ? modCarisma + proficiencia : modCarisma}
+                                    value={toggleCarisma ? modCarisma + (proficiencia * toggleCarisma) : modCarisma}
                                     disabled
                                 />
                                 <label className=" ml-2 relative inline-flex items-center cursor-pointer">
@@ -356,7 +364,7 @@ const Atributos = () => {
                                     type="number"
                                     placeholder="mod"
                                     className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-white sm:text-sm"
-                                    value={toggleConstituicao ? modConstituicao + proficiencia : modConstituicao}
+                                    value={toggleConstituicao ? modConstituicao + (proficiencia * toggleConstituicao) : modConstituicao}
                                     disabled
                                 />
                                 <label className=" ml-2 relative inline-flex items-center cursor-pointer">
@@ -390,7 +398,7 @@ const Atributos = () => {
                                     type="number"
                                     placeholder="mod"
                                     className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-white sm:text-sm"
-                                    value={toggleSabedoria ? modSabedoria + proficiencia : modSabedoria}
+                                    value={toggleSabedoria ? modSabedoria +  (proficiencia * toggleSabedoria)  : modSabedoria}
                                     disabled
                                 />
                                 <label className=" ml-2 relative inline-flex items-center cursor-pointer">
@@ -424,7 +432,7 @@ const Atributos = () => {
                                     type="number"
                                     placeholder="mod"
                                     className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-white sm:text-sm"
-                                    value={toggleKai ? modKai + proficiencia : modKai}
+                                    value={toggleKai ? modKai + (proficiencia * toggleKai) : modKai}
                                     disabled
                                 />
                                 <label className=" ml-2 relative inline-flex items-center cursor-pointer">
@@ -458,7 +466,7 @@ const Atributos = () => {
                                     type="number"
                                     placeholder="mod"
                                     className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-white sm:text-sm"
-                                    value={toggleDestreza ? modDestreza + proficiencia : modDestreza}
+                                    value={toggleDestreza ? modDestreza + (proficiencia * toggleDestreza) : modDestreza}
                                     disabled
                                 />
                                 <label className=" ml-2 relative inline-flex items-center cursor-pointer">
