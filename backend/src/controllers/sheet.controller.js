@@ -22,7 +22,6 @@ const createService = async (req, res) => {
       carisma,
       sabedoria,
       destreza,
-      togglePercepcao,
       toggleForca,
       toggleEspirito,
       toggleConstituicao,
@@ -79,7 +78,6 @@ const createService = async (req, res) => {
       sabedoria,
       destreza,
       proficiencia,
-      togglePercepcao,
       toggleForca,
       toggleEspirito,
       toggleConstituicao,
@@ -217,7 +215,6 @@ const updateFicha = async (req, res) => {
     ficha.sabedoria = sabedoria;
     ficha.destreza = destreza;
     ficha.proficiencia = proficiencia;
-    ficha.togglePercepcao = togglePercepcao;
     ficha.toggleForca = toggleForca;
     ficha.toggleEspirito = toggleEspirito;
     ficha.toggleConstituicao = toggleConstituicao;

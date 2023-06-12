@@ -143,12 +143,15 @@ const Atributos = () => {
         switch (stat) {
             case 'forca':
                 setToggleForca(!toggleForca);
+                setEditedForca(forca);
                 break;
             case 'inteligencia':
                 setToggleInteligencia(!toggleInteligencia);
+                setEditedInteligencia(inteligencia);
                 break;
             case 'destreza':
                 setToggleDestreza(!toggleDestreza);
+                setEditedDestreza(destreza);
                 break;
             case 'carisma':
                 setToggleCarisma(!toggleCarisma);
