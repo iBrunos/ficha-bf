@@ -60,11 +60,6 @@ const SheetSchema = new mongoose.Schema({
     proficiencia: {
         type: Number
     },
-    togglePercepcao: {
-        type: Boolean,
-        required: true,
-        default: false,
-      },
       toggleForca: {
         type: Boolean,
         required: true,
@@ -85,7 +80,7 @@ const SheetSchema = new mongoose.Schema({
         required: true,
         default: false,
       },
-      toggleInteligecnia: {
+      toggleInteligencia: {
         type: Boolean,
         required: true,
         default: false,

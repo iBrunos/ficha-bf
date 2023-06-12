@@ -178,7 +178,6 @@ const updateFicha = async (req, res) => {
       sabedoria,
       destreza,
       proficiencia,
-      togglePercepcao,
       toggleForca,
       toggleEspirito,
       toggleConstituicao,

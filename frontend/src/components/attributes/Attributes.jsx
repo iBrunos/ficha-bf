@@ -115,6 +115,14 @@ const Atributos = () => {
                 espirito: editedEspirito,
                 constituicao: editedConstituicao,
                 kai: editedKai,
+                toggleForca: toggleForca,
+                toggleInteligencia: toggleInteligencia,
+                toggleDestreza: toggleDestreza,
+                toggleCarisma: toggleCarisma,
+                toggleSabedoria: toggleSabedoria,
+                toggleEspirito: toggleEspirito,
+                toggleConstituicao: toggleConstituicao,
+                toggleKai: toggleKai,
             };
 
             await axios.put(`${API_URL}/${userId}`, updatedData, config);
@@ -126,41 +134,42 @@ const Atributos = () => {
         }
     };
 
+
     const calcularMod = (valor) => {
         return Math.floor((valor - 10) / 2);
     };
 
     const toggleStat = (stat) => {
         switch (stat) {
-          case 'forca':
-            setToggleForca(!toggleForca);
-            break;
-          case 'inteligencia':
-            setToggleInteligencia(!toggleInteligencia);
-            break;
-          case 'destreza':
-            setToggleDestreza(!toggleDestreza);
-            break;
-          case 'carisma':
-            setToggleCarisma(!toggleCarisma);
-            break;
-          case 'sabedoria':
-            setToggleSabedoria(!toggleSabedoria);
-            break;
-          case 'espirito':
-            setToggleEspirito(!toggleEspirito);
-            break;
-          case 'constituicao':
-            setToggleConstituicao(!toggleConstituicao);
-            break;
-          case 'kai':
-            setToggleKai(!toggleKai);
-            break;
-          default:
-            break;
+            case 'forca':
+                setToggleForca(!toggleForca);
+                break;
+            case 'inteligencia':
+                setToggleInteligencia(!toggleInteligencia);
+                break;
+            case 'destreza':
+                setToggleDestreza(!toggleDestreza);
+                break;
+            case 'carisma':
+                setToggleCarisma(!toggleCarisma);
+                break;
+            case 'sabedoria':
+                setToggleSabedoria(!toggleSabedoria);
+                break;
+            case 'espirito':
+                setToggleEspirito(!toggleEspirito);
+                break;
+            case 'constituicao':
+                setToggleConstituicao(!toggleConstituicao);
+                break;
+            case 'kai':
+                setToggleKai(!toggleKai);
+                break;
+            default:
+                break;
         }
-      };
-      
+    };
+
     const handleInputChange = (e, stat) => {
         const value = parseInt(e.target.value);
         switch (stat) {
@@ -398,7 +407,7 @@ const Atributos = () => {
                                     type="number"
                                     placeholder="mod"
                                     className="ml-2 mt-1 w-11 rounded-md border-gray-200 shadow-sm dark:border-gray-700 dark:bg-gray-800 text-white sm:text-sm"
-                                    value={toggleSabedoria ? modSabedoria +  (proficiencia * toggleSabedoria)  : modSabedoria}
+                                    value={toggleSabedoria ? modSabedoria + (proficiencia * toggleSabedoria) : modSabedoria}
                                     disabled
                                 />
                                 <label className=" ml-2 relative inline-flex items-center cursor-pointer">
