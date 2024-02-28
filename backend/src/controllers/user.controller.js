@@ -1,6 +1,4 @@
 import userService from "../services/user.service.js";
-import Ficha from "../models/Ficha.js";
-import Toggles from "../models/Toggles.js";
 
 const createService = async (req, res) => {
   try {
@@ -31,70 +29,6 @@ const createService = async (req, res) => {
         message: "Error creating User",
       });
     }
-
-    // Cria a ficha vinculada ao usuário
-    const ficha = new Ficha({
-      user: createUser._id,
-      username,
-      age: 0,
-      level: 0,
-      race: 'Humano',
-      size: 'Pequeno',
-      alignment: 'Neutro (N)',
-      xp: 0,
-      hp: 0,
-      hpTotal: 0,
-      characterClass: 'Bruxo',
-      forca: 0,
-      espirito: 0,
-      constituicao: 0,
-      kai: 0,
-      inteligencia: 0,
-      carisma: 0,
-      sabedoria: 0,
-      destreza: 0,
-      proficiencia: 0,
-      togglePercepcao: 0,
-      toggleForca: 0,
-      toggleEspirito: 0,
-      toggleConstituicao: 0,
-      toggleKai: 0,
-      toggleInteligecnia: 0,
-      toggleCarisma: 0,
-      toggleSabedoria: 0,
-      toggleDestreza: 0
-    });
-    await ficha.save();
-
-    // Cria os toggles vinculados ao usuário
-    const toggle = new Toggles({
-      user: createUser._id,
-      toggleSeducao: 0,
-      toggleIntimidar: 0,
-      togglePersuadir: 0,
-      toggleResistencia: 0,
-      toggleEstamina: 0,
-      toggleAcrobacia: 0,
-      toggleFurtividade: 0,
-      togglePontaria: 0,
-      togglePrestidigitacao: 0,
-      toggleReligiao: 0,
-      toggleDeterminacao: 0,
-      toggleAtletismo: 0,
-      toggleDominacao: 0,
-      toggleInvestigacao: 0,
-      toggleHistoria: 0,
-      toggleAprender: 0,
-      toggleMisticismo: 0,
-      toggleDetectarAlma: 0,
-      toggleControleChi: 0,
-      toggleArmaduraEspiritual: 0,
-      toggleMedicina: 0,
-      toggleSobrevivencia: 0,
-      togglePerspicacia: 0,
-      togglePercepcao: 0,
-    });
-    await toggle.save();
 
     res.status(201).send({
       message: "User created successfully",
