@@ -60,19 +60,6 @@ const SignInForm = () => {
         }
     };
 
-    const deleteItem = async (id) => {
-        const token = localStorage.getItem("token");
-        try {
-            await axios.delete(`${API_URL}/${id}`, {
-                headers: { Authorization: `Bearer ${token}` },
-            });
-            setItems(items.filter((item) => item._id !== id));
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
-
     return (
         <>
             <ToastContainer />
@@ -92,19 +79,20 @@ const SignInForm = () => {
 
                             <p className="mt-4 text-gray-500 dark:text-gray-400">
 
-                                Vamos configurar tudo para que você possa verificar sua conta pessoal e começar a configurar seu perfil.
+                                Vamos configurar tudo para que você possa verificar sua conta pessoal.
                             </p>
 
                             <form className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2" onSubmit={addItem}>
                                 <div>
-                                    <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">username</label>
+                                    <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Usuário</label>
                                     < input
                                         type="text"
                                         placeholder="João"
                                         value={username}
                                         onChange={(e) => setUsername(e.target.value)}
                                         className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-                                    />
+                                        required
+                                   />
                                 </div>
                                 <div>
                                     <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Sobrenome</label>
@@ -114,6 +102,7 @@ const SignInForm = () => {
                                         value={lastname}
                                         onChange={(e) => setlastname(e.target.value)}
                                         className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                        required
                                     />
                                 </div>
 
@@ -125,6 +114,7 @@ const SignInForm = () => {
                                         value={phone}
                                         onChange={(e) => setPhone(e.target.value)}
                                         className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                        required
                                     />
                                 </div>
 
@@ -136,6 +126,7 @@ const SignInForm = () => {
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
                                         className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                        required
                                     />
                                 </div>
 
@@ -147,7 +138,8 @@ const SignInForm = () => {
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
                                         className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-                                    />
+                                        required
+                                   />
                                 </div>
 
                                 <div>
@@ -158,6 +150,7 @@ const SignInForm = () => {
                                         value={confirmPassword}
                                         onChange={(e) => setConfirmPassword(e.target.value)}
                                         className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                        required
                                     />
                                 </div>
 
