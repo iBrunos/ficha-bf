@@ -1,10 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import BF from "../../assets/imgs/BF.jpg";
 import Footer from '../../components/footer/Footer';
+import { CiUser } from "react-icons/ci";
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
+import { IoPhonePortraitOutline } from "react-icons/io5";
+import { TfiEmail } from "react-icons/tfi";
+import { IoKeyOutline } from "react-icons/io5";
 const SignInForm = () => {
     const [username, setUsername] = useState("");
     const [lastname, setlastname] = useState("");
@@ -15,7 +21,6 @@ const SignInForm = () => {
     const [items, setItems] = useState([]); // Definindo o estado inicial dos items
     const navigate = useNavigate();
 
-
     const changePageTitle = (newTitle) => {
         document.title = newTitle;
     };
@@ -23,10 +28,8 @@ const SignInForm = () => {
 
     const API_URL = "https://api-bladefall.vercel.app/user";
 
-
     const addItem = async (e) => {
         e.preventDefault();
-
         const newItem = {
             username,
             lastname,
@@ -69,22 +72,22 @@ const SignInForm = () => {
                         backgroundImage: `url(${BF})`,
                     }}>
                     </div>
-
-
                     <div className="flex items-center w-full max-w-3xl p-8 mx-auto lg:px-12 lg:w-3/5">
                         <div className="w-full">
-                            <h1 className="text-2xl font-semibold tracking-wider text-gray-800 capitalize dark:text-white">
+                            <h1 className="text-2xl font-semibold text-gray-800 dark:text-white">
                                 Crie sua conta aqui
                             </h1>
 
                             <p className="mt-4 text-gray-500 dark:text-gray-400">
-
-                                Vamos configurar tudo para que você possa verificar sua conta pessoal.
+                                Vamos configurar tudo para que você possa entrar em sua conta pessoal.
                             </p>
 
                             <form className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2" onSubmit={addItem}>
                                 <div>
-                                    <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Usuário</label>
+                                    <label className="flex mb-2 text-sm text-gray-600 dark:text-gray-200">
+                                        <CiUser className="mt-[0.2rem] mr-2 text-white" />
+                                        Usuário 
+                                    </label>
                                     < input
                                         type="text"
                                         placeholder="João"
@@ -92,10 +95,13 @@ const SignInForm = () => {
                                         onChange={(e) => setUsername(e.target.value)}
                                         className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                                         required
-                                   />
+                                    />
                                 </div>
                                 <div>
-                                    <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Sobrenome</label>
+                                    <label className="flex mb-2 text-sm text-gray-600 dark:text-gray-200">
+                                    <CiUser className="mt-[0.2rem] mr-2 text-white" />
+                                        Sobrenome
+                                    </label>
                                     <input
                                         type="text"
                                         placeholder="Silva"
@@ -107,7 +113,10 @@ const SignInForm = () => {
                                 </div>
 
                                 <div>
-                                    <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Telefone</label>
+                                    <label className="flex mb-2 text-sm text-gray-600 dark:text-gray-200">
+                                    <IoPhonePortraitOutline className="mt-[0.2rem] mr-2 text-white" />
+                                        Telefone
+                                    </label>
                                     <input
                                         type="text"
                                         placeholder="(XX) - XXXXX-XXXX"
@@ -119,7 +128,10 @@ const SignInForm = () => {
                                 </div>
 
                                 <div>
-                                    <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Endereço de Email</label>
+                                    <label className="flex mb-2 text-sm text-gray-600 dark:text-gray-200">
+                                     <TfiEmail className="mt-[0.2rem] mr-2 text-white" />
+                                        Endereço de Email
+                                    </label>
                                     <input
                                         type="email"
                                         placeholder="joãosilva@gmail.com"
@@ -131,7 +143,10 @@ const SignInForm = () => {
                                 </div>
 
                                 <div>
-                                    <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Senha</label>
+                                    <label className="flex mb-2 text-sm text-gray-600 dark:text-gray-200">
+                                    <IoKeyOutline className="mt-[0.2rem] mr-2 text-white" />
+                                        Senha
+                                    </label>
                                     <input
                                         type="password"
                                         placeholder="Digite a senha"
@@ -139,11 +154,14 @@ const SignInForm = () => {
                                         onChange={(e) => setPassword(e.target.value)}
                                         className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                                         required
-                                   />
+                                    />
                                 </div>
 
                                 <div>
-                                    <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Confirme sua senha</label>
+                                    <label className="flex mb-2 text-sm text-gray-600 dark:text-gray-200">
+                                    <IoKeyOutline className="mt-[0.2rem] mr-2 text-white" />
+                                        Confirme sua senha
+                                    </label>
                                     <input
                                         type="password"
                                         placeholder="Confirme a senha"
@@ -152,6 +170,7 @@ const SignInForm = () => {
                                         className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                                         required
                                     />
+
                                 </div>
 
                                 <button

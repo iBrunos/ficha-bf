@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import logoMin from "../../assets/imgs/logoMin.png";
+import logoMin from "../../assets/imgs/SX.png";
 import setCookie from "../../hooks/Cookie";
 import BF from "../../assets/imgs/bf.png";
 
@@ -53,7 +53,6 @@ const LoginForm = () => {
       setError("Email ou senha incorretos.");
     }
   };
-
 
   const handleRememberMe = () => {
     setRememberMe(!rememberMe);
