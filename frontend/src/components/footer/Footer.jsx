@@ -1,4 +1,4 @@
-import logoMin from "../../assets/imgs/logoMin.png";
+import logoMin from "../../assets/imgs/SX.png";
 
 
 function Footer()  {
@@ -8,12 +8,12 @@ function Footer()  {
         <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
           <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
             <img src={logoMin} alt="Logo da Archei" className="w-10" />
-            <span className="ml-3 text-xl text-black dark:text-white">Archei Software</span>
+            <span className="ml-3 text-xl text-black dark:text-white">SunX Tecnologia</span>
           </a>
           <p className="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
-            © 2023 Archei Software - Todos os direitos reservados -
-            <a href="https://twitter.com/archeisoftware" className="text-gray-600 ml-1" rel="noopener noreferrer" target="_blank">
-              @ArcheiSoftware
+            © 2023 SunX Tecnologia - Todos os direitos reservados -
+            <a href="https://www.instagram.com/sunxtecnologia/" className="text-gray-600 ml-1" rel="noopener noreferrer" target="_blank">
+              @sunxtencologia
             </a>
           </p>
           <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
