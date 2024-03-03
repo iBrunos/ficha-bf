@@ -1,10 +1,10 @@
 // employees.module.ts
 
 import { Module } from '@nestjs/common';
-import { EmployeesController } from './employees.controller';
-import { EmployeeService } from './employees.service';
+import { UsersController } from './user.controller';
+import { UserService } from './user.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import { EmployeesSchema } from './schemas/employee.schemas';
+import { UsersSchema } from './schemas/user.schemas';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
@@ -23,10 +23,10 @@ import { ConfigService } from '@nestjs/config';
         };
       },
     }),
-    MongooseModule.forFeature([{ name: 'Employee', schema: EmployeesSchema }]),
+    MongooseModule.forFeature([{ name: 'User', schema: UsersSchema }]),
   ],
-  controllers: [EmployeesController],
-  providers: [EmployeeService], // Certifique-se de incluir o EmployeeService como provedor aqui
+  controllers: [UsersController],
+  providers: [UserService], // Certifique-se de incluir o UserService como provedor aqui
   exports: [PassportModule],
 })
-export class EmployeeModule {}
+export class UserModule {}

@@ -1,5 +1,5 @@
 "use client"
-import EmployeeTable from '../../../../components/interface/tables/Employee/EmployeeTable';
+import UserTable from '../../../../components/interface/tables/User/UserTable';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import HeaderAdmin from '@/components/layout/HeaderAdmin';
@@ -32,7 +32,7 @@ export default function Employee() {
   return (
     <>
       <HeaderAdmin /> 
-      <EmployeeTable />
+      <UserTable />
     </>
   );
 }

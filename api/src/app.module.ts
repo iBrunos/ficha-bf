@@ -1,11 +1,8 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ServiceModule } from './services/services.module';
-import { EmployeeModule } from './employees/employees.module';
-import { ScheduleModule } from './schedules/schedules.module';
+import { UserModule } from './users/user.module';
 import { SpellsModule } from './spells/spells.module';
-import { AppearanceModule } from './appearance/appearance.module';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 
@@ -16,12 +13,8 @@ import { MongooseModule } from '@nestjs/mongoose';
       isGlobal: true,
     }),
     MongooseModule.forRoot(process.env.DB_URI),
-    ServiceModule,
-    EmployeeModule,
-    ScheduleModule,
+    UserModule,
     SpellsModule,
-    AppearanceModule,
-
   ],
   controllers: [AppController],
   providers: [AppService],
