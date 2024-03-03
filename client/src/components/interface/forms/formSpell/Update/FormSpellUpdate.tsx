@@ -2,39 +2,36 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-interface Client {
+interface Spell {
     _id: string;
-    name: string;
-    email: string;
-    birthdayDate: string;
-    gender: string;
-    children: number;
-    phone: string;
+    title: string;
+    releaseTime: string;
+    range: string;
+    duration: string;
+    description: string;
 }
 
-interface FormClientUpdateProps {
-    client: Client | null;
+interface FormSpellUpdateProps {
+    spell: Spell | null;
     onClose: () => void;
-    onUpdateClient: (updatedClient: Client) => void;
+    onUpdateSpell: (updatedSpell: Spell) => void;
 }
 
-const FormClientUpdate: React.FC<FormClientUpdateProps> = ({ client, onClose, onUpdateClient }) => {
-    const [clients, setClients] = useState<Client[]>([]);
-    const [name, setName] = useState<string>(client ? client.name : "");
-    const [email, setEmail] = useState<string>(client ? client.email : "");
-    const [birthdayDate, setBirthdayDate] = useState<string>(client ? client.birthdayDate : "");
-    const [gender, setGender] = useState<string>(client ? client.gender : "");
-    const [children, setChildren] = useState<number>(client ? client.children || 0 : 0);
-    const [phone, setPhone] = useState<string>(client ? client.phone : "");
-
+const FormSpellUpdate: React.FC<FormSpellUpdateProps> = ({ spell, onClose, onUpdateSpell }) => {
+    const [spells, setSpells] = useState<Spell[]>([]);
+    const [title, setTitle] = useState<string>(spell ? spell.title : "");
+    const [releaseTime, setReleaseTime] = useState<string>(spell ? spell.releaseTime : "");
+    const [range, setRange] = useState<string>(spell ? spell.range : "");
+    const [duration, setDuration] = useState<string>(spell ? spell.duration : "");
+    const [description, setDescription] = useState<string>(spell ? spell.description : "");
 
     useEffect(() => {
-        fetch("https://sunx-api-agendamento.vercel.app/clients")
+        fetch("https://sunx-api-agendamento.vercel.app/spells")
             .then((response) => response.json())
             .then((data) => {
-                setClients(data);
+                setSpells(data);
             })
-            .catch((error) => console.error("Erro ao buscar clientes:", error));
+            .catch((error) => console.error("Erro ao buscar spells:", error));
     }, []);
 
 
@@ -62,32 +59,32 @@ const FormClientUpdate: React.FC<FormClientUpdateProps> = ({ client, onClose, on
         e.preventDefault();
 
         try {
-            if (!client) {
+            if (!spell) {
                 return;
             }
 
-            const updatedClient = { ...client, name, email, birthdayDate, gender, children, phone };
+            const updatedSpell = { ...spell, title, releaseTime, range, duration, description};
 
 
-            const response = await fetch(`https://sunx-api-agendamento.vercel.app/clients/${client._id}`, {
+            const response = await fetch(`https://sunx-api-agendamento.vercel.app/spells/${spell._id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(updatedClient),
+                body: JSON.stringify(updatedSpell),
             });
 
             if (response.ok) {
-                toast.success("O cliente foi atualizado!");
-                onUpdateClient(updatedClient); // Chame a função para atualizar o cliente na lista
+                toast.success("O spelle foi atualizado!");
+                onUpdateSpell(updatedSpell); // Chame a função para atualizar o spelle na lista
                 onClose();
             } else {
-                console.error('Erro ao atualizar o cliente:', response.statusText);
-                toast.error("Erro ao atualizar o cliente!");
+                console.error('Erro ao atualizar o spelle:', response.statusText);
+                toast.error("Erro ao atualizar o spelle!");
             }
         } catch (error) {
             console.error('Erro de rede:', error);
-            toast.error("Erro de rede ao atualizar o cliente!");
+            toast.error("Erro de rede ao atualizar o spelle!");
         }
     };
 
@@ -116,48 +113,48 @@ const FormClientUpdate: React.FC<FormClientUpdateProps> = ({ client, onClose, on
                             <div>
                                 <label
                                     className="text-gray-700 dark:text-gray-200"
-                                    htmlFor="username"
+                                    htmlFor="title"
                                 >
-                                    Nome Completo
+                                    Título
                                 </label>
                                 <input
-                                    id="username"
+                                    id="title"
                                     type="text"
-                                    value={name}
+                                    value={title}
                                     required
-                                    onChange={(e) => setName(e.target.value)}
+                                    onChange={(e) => setTitle(e.target.value)}
                                     className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                                 />
                             </div>
                             <div>
                                 <label
                                     className="text-gray-700 dark:text-gray-200"
-                                    htmlFor="username"
+                                    htmlFor="releaseTime"
                                 >
-                                    Genêro
+                                    Tempo de lançamento
                                 </label>
                                 <input
-                                    id="name"
+                                    id="releaseTime"
                                     type="text"
-                                    value={gender}
+                                    value={releaseTime}
                                     required
-                                    onChange={(e) => setGender(e.target.value)}
+                                    onChange={(e) => setReleaseTime(e.target.value)}
                                     className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                                 />
                             </div>
                             <div>
                                 <label
                                     className="text-gray-700 dark:text-gray-200"
-                                    htmlFor="email"
+                                    htmlFor="range"
                                 >
-                                    Email
+                                    Alcançe
                                 </label>
                                 <input
-                                    id="email"
+                                    id="range"
                                     type="text"
-                                    value={email}
+                                    value={range}
                                     required
-                                    onChange={(e) => setEmail(e.target.value)}
+                                    onChange={(e) => setRange(e.target.value)}
                                     className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                                 />
                             </div>
@@ -166,14 +163,14 @@ const FormClientUpdate: React.FC<FormClientUpdateProps> = ({ client, onClose, on
                                     className="text-gray-700 dark:text-gray-200"
                                     htmlFor="username"
                                 >
-                                    Data de nascimento
+                                    Duração
                                 </label>
                                 <input
-                                    id="username"
-                                    type="date"
-                                    value={birthdayDate}
+                                    id="duration"
+                                    type="text"
+                                    value={duration}
                                     required
-                                    onChange={(e) => setBirthdayDate(e.target.value)}
+                                    onChange={(e) => setDuration(e.target.value)}
                                     className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                                 />
                             </div>
@@ -182,30 +179,14 @@ const FormClientUpdate: React.FC<FormClientUpdateProps> = ({ client, onClose, on
                                     className="text-gray-700 dark:text-gray-200"
                                     htmlFor="username"
                                 >
-                                    Telefone
+                                    Descrição
                                 </label>
                                 <input
-                                    id="telefone"
-                                    type="tel"
-                                    value={phone}
+                                    id="description"
+                                    type="text"
+                                    value={description}
                                     required
-                                    onChange={(e) => setPhone(e.target.value)}
-                                    className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-                                />
-                            </div>
-                            <div>
-                                <label
-                                    className="text-gray-700 dark:text-gray-200"
-                                    htmlFor="username"
-                                >
-                                    Filhos
-                                </label>
-                                <input
-                                    id="username"
-                                    type="number"  // Change the input type to number
-                                    value={children || ''}  // Provide an empty string as the default value
-                                    required
-                                    onChange={(e) => setChildren(parseInt(e.target.value, 10) || 0)}  // Parse the input value to a number
+                                    onChange={(e) => setDescription(e.target.value)}
                                     className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                                 />
                             </div>
@@ -223,4 +204,4 @@ const FormClientUpdate: React.FC<FormClientUpdateProps> = ({ client, onClose, on
     );
 };
 
-export default FormClientUpdate;
+export default FormSpellUpdate;

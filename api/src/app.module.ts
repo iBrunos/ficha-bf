@@ -4,7 +4,7 @@ import { AppService } from './app.service';
 import { ServiceModule } from './services/services.module';
 import { EmployeeModule } from './employees/employees.module';
 import { ScheduleModule } from './schedules/schedules.module';
-import { ClientModule } from './clients/clients.module';
+import { SpellsModule } from './spells/spells.module';
 import { AppearanceModule } from './appearance/appearance.module';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -17,9 +17,9 @@ import { MongooseModule } from '@nestjs/mongoose';
     }),
     MongooseModule.forRoot(process.env.DB_URI),
     ServiceModule,
-    EmployeeModule, // Mova o EmployeeModule para cima
+    EmployeeModule,
     ScheduleModule,
-    ClientModule,
+    SpellsModule,
     AppearanceModule,
 
   ],

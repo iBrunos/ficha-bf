@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { ClientsController } from './clients.controller';
-import { ClientService } from './clients.service';
+import { SpellsController } from './spells.controller';
+import { SpellsService } from './spells.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import { ClientsSchema } from './schemas/clients.schemas';
+import { SpellsSchema } from './schemas/spells.schemas';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
@@ -22,10 +22,10 @@ import { JwtStrategy } from './jwt.strategy';
         };
       },
     }),
-    MongooseModule.forFeature([{ name: 'Client', schema: ClientsSchema }]),
+    MongooseModule.forFeature([{ name: 'Spell', schema: SpellsSchema }]),
   ],
-  controllers: [ClientsController],
-  providers: [ClientService, JwtStrategy],
+  controllers: [SpellsController],
+  providers: [SpellsService, JwtStrategy],
   exports: [JwtStrategy, PassportModule],
 })
-export class ClientModule {}
+export class SpellsModule {}

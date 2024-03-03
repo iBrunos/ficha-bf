@@ -3,35 +3,33 @@ import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-interface Client {
+interface Spell {
     _id: string;
-    name: string;
-    email: string;
-    birthdayDate: string;
-    gender: string;
-    children: number;
-    phone: string;
+    title: string;
+    releaseTime: string;
+    range: string;
+    duration: string;
+    description: string;
 }
 
-const FormClientCreate: React.FC<{
+const FormSpellCreate: React.FC<{
     onClose: () => void;
-    onClientCreated: (newClient: Client) => void;
-}> = ({ onClose, onClientCreated }) => {
-    const [clients, setClients] = useState<Client[]>([]);
-    const [name, setName] = useState<string>("");
-    const [email, setEmail] = useState<string>("");
-    const [birthdayDate, setBirthdayDate] = useState<string>("");
-    const [gender, setGender] = useState<string>("");
-    const [children, setChildren] = useState<number>();
-    const [phone, setPhone] = useState<string>("");
+    onSpellCreated: (newSpell: Spell) => void;
+}> = ({ onClose, onSpellCreated }) => {
+    const [spells, setSpells] = useState<Spell[]>([]);
+    const [title, setTitle] = useState<string>("");
+    const [releaseTime, setReleaseTime] = useState<string>("");
+    const [range, setRange] = useState<string>("");
+    const [duration, setDuration] = useState<string>("");
+    const [description, setDescription] = useState<string>("");
 
     useEffect(() => {
-        fetch("https://sunx-api-agendamento.vercel.app/clients")
+        fetch("https://sunx-api-agendamento.vercel.app/spells")
             .then((response) => response.json())
             .then((data) => {
-                setClients(data);
+                setSpells(data);
             })
-            .catch((error) => console.error("Erro ao buscar clientes:", error));
+            .catch((error) => console.error("Erro ao buscar spells:", error));
     }, []);
 
 
@@ -40,16 +38,15 @@ const FormClientCreate: React.FC<{
         try {
 
             const requestBody = {
-                name,
-                email,
-                birthdayDate,
-                gender,
-                children,
-                phone
+                title,
+                releaseTime,
+                range,
+                duration,
+                description,
 
             };
 
-            const response = await fetch('https://sunx-api-agendamento.vercel.app/clients/create', {
+            const response = await fetch('https://sunx-api-agendamento.vercel.app/spells/create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -59,23 +56,22 @@ const FormClientCreate: React.FC<{
 
             if (response.ok) {
                 const data = await response.json();
-                onClientCreated(data);
+                onSpellCreated(data);
 
-                setName("");
-                setEmail("");
-                setBirthdayDate("");
-                setGender("");
-                setChildren(undefined);
-                setPhone("");
+                setTitle("");
+                setReleaseTime("");
+                setRange("");
+                setDuration("");
+                setDescription("");
 
-                toast.success("O Cliente foi adicionado!");
+                toast.success("O Spell foi adicionado!");
             } else {
-                console.error('Erro ao criar o Cliente:', response.statusText);
-                toast.error("Erro ao adicionar o Cliente!");
+                console.error('Erro ao criar o Spell:', response.statusText);
+                toast.error("Erro ao adicionar o Spell!");
             }
         } catch (error) {
             console.error('Erro de rede:', error);
-            toast.error("Erro de rede ao adicionar o Cliente!");
+            toast.error("Erro de rede ao adicionar o Spell!");
         }
     };
 
@@ -110,11 +106,11 @@ const FormClientCreate: React.FC<{
                                     Título
                                 </label>
                                 <input
-                                    id="username"
+                                    id="title"
                                     type="text"
-                                    value={name}
+                                    value={title}
                                     required
-                                    onChange={(e) => setName(e.target.value)}
+                                    onChange={(e) => setTitle(e.target.value)}
                                     className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                                 />
                             </div>
@@ -123,10 +119,10 @@ const FormClientCreate: React.FC<{
                                     Tempo de Lançamento
                                 </label>
                                 <select
-                                    value={gender}
+                                    value={releaseTime}
                                     required
                                     onChange={(e) => {
-                                        setGender(e.target.value);
+                                        setReleaseTime(e.target.value);
                                     }}
                                     id="genero"
                                     className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
@@ -140,32 +136,32 @@ const FormClientCreate: React.FC<{
                             <div>
                                 <label
                                     className="text-gray-700 dark:text-gray-200"
-                                    htmlFor="email"
+                                    htmlFor="releaseTime"
                                 >
                                     Alcance
                                 </label>
                                 <input
-                                    id="email"
+                                    id="releaseTime"
                                     type="text"
-                                    value={email}
+                                    value={releaseTime}
                                     required
-                                    onChange={(e) => setEmail(e.target.value)}
+                                    onChange={(e) => setReleaseTime(e.target.value)}
                                     className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                                 />
                             </div>
                             <div>
                                 <label
                                     className="text-gray-700 dark:text-gray-200"
-                                    htmlFor="username"
+                                    htmlFor="duration"
                                 >
                                     Duração
                                 </label>
                                 <input
-                                    id="Data de Nascimento"
-                                    type="date"
-                                    value={birthdayDate}
+                                    id="duration"
+                                    type="text"
+                                    value={duration}
                                     required
-                                    onChange={(e) => setBirthdayDate(e.target.value)}
+                                    onChange={(e) => setDuration(e.target.value)}
                                     className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                                 />
                             </div>
@@ -177,11 +173,11 @@ const FormClientCreate: React.FC<{
                                     Descrição
                                 </label>
                                 <input
-                                    id="telefone"
-                                    type="tel"
-                                    value={phone}
+                                    id="description"
+                                    type="text"
+                                    value={description}
                                     required
-                                    onChange={(e) => setPhone(e.target.value)}
+                                    onChange={(e) => setDescription(e.target.value)}
                                     className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                                 />
                             </div>
@@ -198,4 +194,4 @@ const FormClientCreate: React.FC<{
     );
 };
 
-export default FormClientCreate;
+export default FormSpellCreate;

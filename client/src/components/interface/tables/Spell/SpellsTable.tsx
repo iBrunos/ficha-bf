@@ -6,99 +6,98 @@ import FormSpellUpdate from '../../forms/formSpell/Update/FormSpellUpdate';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-interface Client {
+interface Spell {
   _id: string;
-  name: string;
-  email: string;
-  birthdayDate: string;
-  gender: string;
-  children: number;
-  phone: string;
+  title: string;
+  releaseTime: string;
+  range: string;
+  duration: string;
+  description: string;
 }
 
-const ClientsTable: React.FC = () => {
-  const [showAddClient, setShowAddClient] = useState(false);
-  const [clients, setClients] = useState<Client[]>([]);
-  const [editingClient, setEditingClient] = useState<Client | null>(null);
-  const [showEditClient, setShowEditClient] = useState(false);
+const SpellsTable: React.FC = () => {
+  const [showAddSpell, setShowAddSpell] = useState(false);
+  const [spells, setSpells] = useState<Spell[]>([]); // Initialize with an empty array
+  const [editingSpell, setEditingSpell] = useState<Spell | null>(null);
+  const [showEditSpell, setShowEditSpell] = useState(false);
 
-  const handleEditClientClick = (client: Client) => {
-    setEditingClient(client);
-    setShowEditClient(true);
+  const handleEditSpellClick = (spell: Spell) => {
+    setEditingSpell(spell);
+    setShowEditSpell(true);
   };
 
-  const handleCloseEditClient = () => {
-    setEditingClient(null);
-    setShowEditClient(false);
+  const handleCloseEditSpell = () => {
+    setEditingSpell(null);
+    setShowEditSpell(false);
   };
 
-  const handleAddClientClick = () => {
-    setShowAddClient(true);
+  const handleAddSpellClick = () => {
+    setShowAddSpell(true);
   };
 
-  const handleClientCreated = (newClient: Client) => {
-    setClients([...clients, newClient]);
+  const handleSpellCreated = (newSpell: Spell) => {
+    setSpells([...spells, newSpell]);
   };
-  const handleCloseAddClients = () => {
-    setShowAddClient(false);
+  const handleCloseAddSpells = () => {
+    setShowAddSpell(false);
     // Atualize a tabela chamando a API novamente
-    fetch("https://sunx-api-agendamento.vercel.app/clients")
+    fetch("https://sunx-api-agendamento.vercel.app/spells")
       .then((response) => response.json())
       .then((data) => {
-        setClients(data);
+        setSpells(data);
       })
       .catch((error) => console.error("Erro ao buscar funcionários:", error));
   };
-  const handleUpdateClient = (updatedClient: Client) => {
-    const updatedClients = clients.map((client) =>
-    client._id === updatedClient._id ? updatedClient : client
+  const handleUpdateSpell = (updatedSpell: Spell) => {
+    const updatedSpells = spells.map((spell) =>
+    spell._id === updatedSpell._id ? updatedSpell : spell
     );
-    setClients(updatedClients);
-    handleCloseEditClient();
+    setSpells(updatedSpells);
+    handleCloseEditSpell();
   };
 
   useEffect(() => {
-    fetch('https://sunx-api-agendamento.vercel.app/clients')
+    fetch('https://sunx-api-agendamento.vercel.app/spells')
       .then((response) => response.json())
       .then((data) => {
-        setClients(data);
+        setSpells(data);
       })
       .catch((error) => console.error('Erro ao buscar serviços:', error));
   }, []);
 
-  const handleDeleteClient = async (id: string) => {
+  const handleDeleteSpell = async (id: string) => {
     try {
-      const response = await fetch(`https://sunx-api-agendamento.vercel.app/clients/${id}`, {
+      const response = await fetch(`https://sunx-api-agendamento.vercel.app/spells/${id}`, {
         method: 'DELETE',
       });
 
       if (response.ok) {
         // Atualize a lista de serviços após a exclusão bem-sucedida
-        const updatedClients = clients.filter((client) => client._id !== id);
-        toast.success("O client foi excluído!");
-        setClients(updatedClients);
+        const updatedSpells = spells.filter((spell) => spell._id !== id);
+        toast.success("O spell foi excluído!");
+        setSpells(updatedSpells);
       } else {
-        console.error('Erro ao excluir o client:', response.statusText);
-        toast.error("Erro ao excluir o client");
+        console.error('Erro ao excluir o spell:', response.statusText);
+        toast.error("Erro ao excluir o spell");
       }
     } catch (error) {
-      console.error('Erro de rede ao excluir o client:', error);
-      toast.error("Erro de rede ao excluir o client!");
+      console.error('Erro de rede ao excluir o spell:', error);
+      toast.error("Erro de rede ao excluir o spell!");
     }
   };
 
   return (
     <>
       <ToastContainer />
-      {showAddClient && <FormSpellCreate onClose={handleCloseAddClients} onClientCreated={handleClientCreated} />}
-      {showEditClient && <FormSpellUpdate client={editingClient} onClose={handleCloseEditClient} onUpdateClient={handleUpdateClient} />}
+      {showAddSpell && <FormSpellCreate onClose={handleCloseAddSpells} onSpellCreated={handleSpellCreated} />}
+      {showEditSpell && <FormSpellUpdate spell={editingSpell} onClose={handleCloseEditSpell} onUpdateSpell={handleUpdateSpell} />}
       <main className="pt-32 h-full bg-gradient-to-t from-gray-200 via-gray-300 to-gray-300">
         <section className="container">
           <div className="flex items-center md:gap-x-3 lg:gap-x-3">
           <h1 className="text-md text-2xl font-bold text-gray-700 ml-0 md:ml-8 lg:ml-8">Magias de Blade Fall</h1>
             <button
               type="button"
-              onClick={handleAddClientClick}
+              onClick={handleAddSpellClick}
               className="flex items-center rounded px-2 text-sm text-blue-600 transition-colors duration-300 hover:text-blue-400 focus:outline-none dark:text-blue-400 dark:hover:text-blue-500"
             >
               <svg
@@ -166,14 +165,14 @@ const ClientsTable: React.FC = () => {
                       </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                      {clients.map((client) => (
-                        <tr key={client._id}>
+                      {spells.map((spell) => (
+                        <tr key={spell._id}>
                           <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                             <div className="inline-flex items-center gap-x-3">
                               <div className="flex items-center gap-x-2">
                                 <div>
                                   <h2 className="font-medium text-gray-800 dark:text-white ">
-                                    {client.name}
+                                    {spell.title}
                                   </h2>
                                 </div>
                               </div>
@@ -182,28 +181,28 @@ const ClientsTable: React.FC = () => {
                           <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                             <div className=" items-center py-1 gap-x-2">
                               <h2 className="text-sm font-normal text-black">
-                                {client.email}
+                                {spell.releaseTime}
                               </h2>
                             </div>
                           </td>
                           <td className="px-4 py-4 text-sm whitespace-nowrap">
                             <div className=" items-center max-w-full overflow-x-auto">
                               <p className="text-black">
-                                {client.birthdayDate}
+                                {spell.range}
                               </p>
                             </div>
                           </td>
                           <td className="px-4 py-4 text-sm whitespace-nowrap">
                             <div className=" items-center max-w-full overflow-x-auto">
                               <p className="text-black">
-                                {client.gender}
+                                {spell.duration}
                               </p>
                             </div>
                           </td>
                           <td className="px-4 py-4 text-sm whitespace-nowrap">
                             <div className=" items-center max-w-full overflow-x-auto">
                               <p className="text-black">
-                                {client.phone}
+                                {spell.description}
                               </p>
                             </div>
                           </td>
@@ -211,7 +210,7 @@ const ClientsTable: React.FC = () => {
                             <div className="flex justify-end gap-x-6">
                               <button
                                 className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none"
-                                onClick={() => handleDeleteClient(client._id)}
+                                onClick={() => handleDeleteSpell(spell._id)}
                               >
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
@@ -230,7 +229,7 @@ const ClientsTable: React.FC = () => {
                               </button>
                               <button
                                 className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none"
-                                onClick={() => handleEditClientClick(client)} // Abre o formulário de edição com o serviço
+                                onClick={() => handleEditSpellClick(spell)} // Abre o formulário de edição com o serviço
                               >                              <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -262,4 +261,4 @@ const ClientsTable: React.FC = () => {
   );
 };
 
-export default ClientsTable;
+export default SpellsTable;
