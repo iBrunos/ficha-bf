@@ -48,7 +48,7 @@ const UserTable: React.FC = () => {
   const handleCloseAddUser = () => {
     setShowAddUser(false);
     // Atualize a tabela chamando a API novamente
-    fetch("https://sunx-api-agendamento.vercel.app/users")
+    fetch("https://api-bladefall.vercel.app/users")
       .then((response) => response.json())
       .then((data) => {
         setUsers(data);
@@ -57,7 +57,7 @@ const UserTable: React.FC = () => {
   };
 
   useEffect(() => {
-    fetch("https://sunx-api-agendamento.vercel.app/users")
+    fetch("https://api-bladefall.app/users")
       .then((response) => response.json())
       .then((data) => {
         setUsers(data);
@@ -68,7 +68,7 @@ const UserTable: React.FC = () => {
   const handleDeleteUser = async (id: string) => {
     try {
       const response = await fetch(
-        `https://sunx-api-agendamento.vercel.app/users/${id}`,
+        `https://api-bladefall.app/users/${id}`,
         {
           method: "DELETE",
         }
@@ -215,6 +215,7 @@ const UserTable: React.FC = () => {
                             </div>
                           </td>
                         </tr>
+                        
                       ))}
                     </tbody>
                   </table>

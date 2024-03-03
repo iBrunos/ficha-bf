@@ -41,7 +41,7 @@ const SpellsTable: React.FC = () => {
   const handleCloseAddSpells = () => {
     setShowAddSpell(false);
     // Atualize a tabela chamando a API novamente
-    fetch("https://sunx-api-agendamento.vercel.app/spells")
+    fetch("https://api-bladefall.vercel.app/spells")
       .then((response) => response.json())
       .then((data) => {
         setSpells(data);
@@ -57,7 +57,7 @@ const SpellsTable: React.FC = () => {
   };
 
   useEffect(() => {
-    fetch('https://sunx-api-agendamento.vercel.app/spells')
+    fetch('https://api-bladefall.vercel.app/spells')
       .then((response) => response.json())
       .then((data) => {
         setSpells(data);
@@ -67,7 +67,7 @@ const SpellsTable: React.FC = () => {
 
   const handleDeleteSpell = async (id: string) => {
     try {
-      const response = await fetch(`https://sunx-api-agendamento.vercel.app/spells/${id}`, {
+      const response = await fetch(`https://api-bladefall.vercel.app/spells/${id}`, {
         method: 'DELETE',
       });
 
