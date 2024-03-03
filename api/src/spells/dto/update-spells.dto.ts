@@ -13,6 +13,9 @@ export class UpdateSpellDto {
   @IsString()
   readonly duration: string;
 
-  @IsNumber()
+  @IsString()
   readonly description: string;
+  
+  @IsString()
+  readonly spellLevel: string;
 }

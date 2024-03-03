@@ -9,6 +9,7 @@ interface Spell {
     range: string;
     duration: string;
     description: string;
+    spellLevel: string;
 }
 
 interface FormSpellUpdateProps {
@@ -18,23 +19,13 @@ interface FormSpellUpdateProps {
 }
 
 const FormSpellUpdate: React.FC<FormSpellUpdateProps> = ({ spell, onClose, onUpdateSpell }) => {
-    const [spells, setSpells] = useState<Spell[]>([]);
+
     const [title, setTitle] = useState<string>(spell ? spell.title : "");
     const [releaseTime, setReleaseTime] = useState<string>(spell ? spell.releaseTime : "");
     const [range, setRange] = useState<string>(spell ? spell.range : "");
     const [duration, setDuration] = useState<string>(spell ? spell.duration : "");
     const [description, setDescription] = useState<string>(spell ? spell.description : "");
-
-    useEffect(() => {
-        fetch("https://sunx-api-agendamento.vercel.app/spells")
-            .then((response) => response.json())
-            .then((data) => {
-                setSpells(data);
-            })
-            .catch((error) => console.error("Erro ao buscar spells:", error));
-    }, []);
-
-
+    const [spellLevel, setSpellLevel] = useState<string>(spell ? spell.spellLevel : "");
     const formRef = useRef<HTMLDivElement | null>(null);
 
     const handleClose = () => {
@@ -66,7 +57,7 @@ const FormSpellUpdate: React.FC<FormSpellUpdateProps> = ({ spell, onClose, onUpd
             const updatedSpell = { ...spell, title, releaseTime, range, duration, description};
 
 
-            const response = await fetch(`https://sunx-api-agendamento.vercel.app/spells/${spell._id}`, {
+            const response = await fetch(`https://api-bladefall.vercel.app/spells/${spell._id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -175,15 +166,39 @@ const FormSpellUpdate: React.FC<FormSpellUpdateProps> = ({ spell, onClose, onUpd
                                 />
                             </div>
                             <div>
+                                <label className="text-gray-700 dark:text-gray-200" htmlFor="job">
+                                    Nível da Magia
+                                </label>
+                                <select
+                                    value={spellLevel}
+                                    required
+                                    onChange={(e) => {
+                                        setSpellLevel(e.target.value);
+                                    }}
+                                    id="spellLevel"
+                                    className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                                >
+                                    <option value="">Selecione</option>
+                                    <option value="Nível 1">Nível 1</option>
+                                    <option value="Nível 2">Nível 2</option>
+                                    <option value="Nível 3">Nível 3</option>
+                                    <option value="Nível 4">Nível 4</option>
+                                    <option value="Nível 5">Nível 5</option>
+                                    <option value="Nível 6">Nível 6</option>
+                                    <option value="Nível 7">Nível 7</option>
+                                    <option value="Nível 8">Nível 8</option>
+                                    <option value="Nível 9">Nível 9</option>
+                                </select>
+                            </div>
+                            <div>
                                 <label
                                     className="text-gray-700 dark:text-gray-200"
                                     htmlFor="username"
                                 >
                                     Descrição
                                 </label>
-                                <input
+                                <textarea
                                     id="description"
-                                    type="text"
                                     value={description}
                                     required
                                     onChange={(e) => setDescription(e.target.value)}

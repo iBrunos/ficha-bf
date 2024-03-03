@@ -19,4 +19,8 @@ export class CreateDto {
   @IsNotEmpty()
   @IsString()
   readonly description: string;
+
+  @IsNotEmpty()
+  @IsString()
+  readonly spellLevel: string;
 }

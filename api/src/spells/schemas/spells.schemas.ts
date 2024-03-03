@@ -18,6 +18,9 @@ export class Spell {
 
   @Prop()
   description: string;
+
+  @Prop()
+  spellLevel: string;
 }
 
 export const SpellsSchema = SchemaFactory.createForClass(Spell);

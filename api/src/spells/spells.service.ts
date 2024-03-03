@@ -38,7 +38,7 @@ export class SpellsService {
     return spells;
   }
   async create(createDto: CreateDto): Promise<{ message: string, createdSpell: Spell }> {
-    const { title, releaseTime, range, duration, description } = createDto;
+    const { title, releaseTime, range, duration, description, spellLevel } = createDto;
   
     try {
       const createdSpell= await this.spellModel.create({
@@ -47,6 +47,7 @@ export class SpellsService {
         range,
         duration,
         description,
+        spellLevel
       });
   
       return { message: 'Spell created successfully', createdSpell};

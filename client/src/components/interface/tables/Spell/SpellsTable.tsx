@@ -13,6 +13,7 @@ interface Spell {
   range: string;
   duration: string;
   description: string;
+  spellLevel: string;
 }
 
 const SpellsTable: React.FC = () => {
@@ -152,7 +153,12 @@ const SpellsTable: React.FC = () => {
                         >
                           Duração
                         </th>
-
+                        <th
+                          scope="col"
+                          className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                        >
+                          Nível da Magia
+                        </th>
                         <th
                           scope="col"
                           className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
@@ -203,6 +209,13 @@ const SpellsTable: React.FC = () => {
                             <div className=" items-center max-w-full overflow-x-auto">
                               <p className="text-black">
                                 {spell.description}
+                              </p>
+                            </div>
+                          </td>
+                          <td className="px-4 py-4 text-sm whitespace-nowrap">
+                            <div className=" items-center max-w-full overflow-x-auto">
+                              <p className="text-black">
+                                {spell.spellLevel}
                               </p>
                             </div>
                           </td>
