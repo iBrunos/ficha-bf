@@ -14,7 +14,7 @@ async function bootstrap() {
     app.enableCors({
       origin: [
         'http://localhost:3000',
-        'https://sunx-agendamento.vercel.app',
+        'https://bladefall.vercel.app',
       ], // Lista de origens permitidas
       methods: 'GET, POST, PUT, DELETE, PATCH',
       allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
