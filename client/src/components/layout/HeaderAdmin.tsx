@@ -130,12 +130,12 @@ const HeaderAdmin: React.FC = () => {
                   {isOpen && (
                     <Link
                       className="rounded border-[1px] border-gray-300 bg-white absolute left-[12px] top-[50px] w-[300px] shadow-md"
-                      href="/auth/admin/employees"
+                      href="/auth/admin/users"
                       onClick={closeDropdown}
                     >
-                      <Link className={`flex gap-2 cursor-pointer items-center hover:bg-gray-300 p-4 ${pathname === "/auth/admin/employees" ? "text-green-500" : ""
+                      <Link className={`flex gap-2 cursor-pointer items-center hover:bg-gray-300 p-4 ${pathname === "/auth/admin/users" ? "text-green-500" : ""
                         }`}
-                        href="/auth/admin/employees"
+                        href="/auth/admin/users"
                       >
                         <IoMdPeople />Usuários
                       </Link>
