@@ -4,37 +4,19 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import logo from "../../../public/assets/yokai_icon.png"
 import { useState } from "react";
-import { VscTriangleDown } from 'react-icons/vsc'
 import { LuSwords } from "react-icons/lu";
 import { FaWandMagicSparkles } from "react-icons/fa6";
 import { GiMagicSwirl } from "react-icons/gi";
-import { ImBookmark } from "react-icons/im";
 import { useRouter } from "next/navigation";
-import { IoMdPricetag } from "react-icons/io";
-import { IoMdPeople } from "react-icons/io";
-import { IoExit } from "react-icons/io5";
 
 const HeaderHome: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
-  const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
-  const closeDropdown = () => {
-    setIsOpen(false);
-  };
-  const navigateToLogout = () => {
-    localStorage.removeItem("permission");
-    localStorage.removeItem("sessionInfo");
-    localStorage.removeItem("nameEmployee");
 
-    router.push("/auth");
-  };
   return (
     <>
       <header className="fixed top-0 bg-white shadow dark:bg-gray-800 w-full z-10">
@@ -98,7 +80,7 @@ const HeaderHome: React.FC = () => {
                 <Link
                   className={`px-3 py-2 mx-3 mt-2 flex gap-2 items-center  transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-gray-100 dark:hover-bg-gray-700 ${pathname === "/auth/admin" ? "text-green-500" : ""
                     } `}
-                  href="/spells"
+                  href="/itens"
                 >
                   <LuSwords />Itens
                 </Link>
@@ -114,7 +96,7 @@ const HeaderHome: React.FC = () => {
                 <Link
                   className={`px-3 py-2 mx-3 mt-2 flex gap-2 items-center transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-gray-100 dark:hover-bg-gray-700 ${pathname === "/auth/admin/settings" ? "text-green-500" : ""
                     } `}
-                  href="/spells"
+                  href="/tecnica"
                 >
                   <GiMagicSwirl />Tokens de Técnica
                 </Link>

@@ -23,7 +23,7 @@ async function bootstrap() {
     await app.listen(port);
     console.log(
       `LOCAL:  200 🟢 | Server running locally on http://localhost:${port}/
-      VERCEL: 200 🟢 | Server deployed at https://sunx-api-agendamento.vercel.app/
+      VERCEL: 200 🟢 | Server deployed at https://bladefall.vercel.app/
       Call support for help ONLY IF necessary.
       `,
     );
