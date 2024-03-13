@@ -77,13 +77,14 @@ const HeaderHome: React.FC = () => {
             >
               <div className="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8">
 
-                <Link
+                {/* Link para Itens (comentado) */}
+                {/* <Link
                   className={`px-3 py-2 mx-3 mt-2 flex gap-2 items-center  transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-gray-100 dark:hover-bg-gray-700 ${pathname === "/auth/admin" ? "text-green-500" : ""
                     } `}
                   href="/itens"
                 >
                   <LuSwords />Itens
-                </Link>
+                </Link> */}
 
                 <Link
                   className={`px-3 py-2 mx-3 mt-2 flex gap-2 items-center transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-gray-100 dark:hover-bg-gray-700 ${pathname === "/auth/admin/clients" ? "text-green-500" : ""
@@ -93,14 +94,14 @@ const HeaderHome: React.FC = () => {
                   <FaWandMagicSparkles />Magias
                 </Link>
 
-                <Link
+                {/* Link para Tokens de Técnica (comentado) */}
+                {/* <Link
                   className={`px-3 py-2 mx-3 mt-2 flex gap-2 items-center transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-gray-100 dark:hover-bg-gray-700 ${pathname === "/auth/admin/settings" ? "text-green-500" : ""
                     } `}
                   href="/tecnica"
                 >
                   <GiMagicSwirl />Tokens de Técnica
-                </Link>
-
+                </Link> */}
               </div>
             </div>
           </div>

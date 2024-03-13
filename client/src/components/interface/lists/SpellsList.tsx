@@ -19,6 +19,7 @@ interface Spell {
 const SpellsList: React.FC = () => {
     const [spells, setSpells] = useState<Spell[]>([]);
     const [searchTerm, setSearchTerm] = useState<string>('');
+    const [selectedLevels, setSelectedLevels] = useState<string[]>([]);
 
     useEffect(() => {
         fetch('https://api-bladefall.vercel.app/spells')
@@ -33,9 +34,19 @@ const SpellsList: React.FC = () => {
         setSearchTerm(event.target.value);
     };
 
+    const toggleLevelSelection = (level: string) => {
+        if (selectedLevels.includes(level)) {
+            setSelectedLevels(selectedLevels.filter(l => l !== level));
+        } else {
+            setSelectedLevels([...selectedLevels, level]);
+        }
+    };
+
     const filteredSpells = spells.filter((spell) =>
-        spell.title.toLowerCase().includes(searchTerm.toLowerCase())
+        spell.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
+        (selectedLevels.length === 0 || selectedLevels.includes(spell.spellLevel))
     );
+
     const copyToClipboard = (text: string) => {
         // Cria um elemento de texto temporário e o adiciona ao corpo do documento
         const tempTextArea = document.createElement('textarea');
@@ -56,8 +67,8 @@ const SpellsList: React.FC = () => {
 
         <>
             <ToastContainer />
-            <div className="mb-4">
-                <div>
+
+                <div className="flex mt-2">
                     <div className="flex mt-2">
                         <p className="py-2.5 ml-2 px-3 h-9 text-gray-500 bg-gray-100  dark:bg-gray-800 dark:border-gray-700 border border-r-0 rtl:rounded-r-lg rtl:rounded-l-none rtl:border-l-0 rtl:border-r rounded-l-lg"><IoIosSearch /></p>
                         <input
@@ -69,9 +80,20 @@ const SpellsList: React.FC = () => {
                             className="block rounded-l-none rtl:rounded-l-lg w-64 h-9 rtl:rounded-r-none placeholder-gray-400/70 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-gray-700 focus:border-red-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-red-500"
                         />
                     </div>
+                    <label className="ml-2 mr-2 text-white pt-3">Níveis de Feitiço:</label>
+                    {Array.from(new Set(spells.map(spell => spell.spellLevel))).map(level => (
+                        <div key={level} className="flex items-center ml-2 p-1 mt-1 border-2">
+                            <input
+                                type="checkbox"
+                                id={level}
+                                checked={selectedLevels.includes(level)}
+                                onChange={() => toggleLevelSelection(level)}
+                                className="w-4 h-4 mr-2 ml-2"
+                            />
+                            <label htmlFor={level} className=" text-white">{level}</label>
+                        </div>
+                    ))}
                 </div>
-
-            </div>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 mt-2 ml-auto mr-auto max-w-screen-lg">
                 {filteredSpells.map((spell) => (
                     <div key={spell._id} className="relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border rounded-xl">
@@ -98,6 +120,9 @@ const SpellsList: React.FC = () => {
                             </p>
                             <p className="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
                                 <strong>Tempo de Lançamento:</strong> {spell.releaseTime}
+                            </p>
+                            <p className="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
+                                <strong>Alcance:</strong> {spell.range}
                             </p>
                             <p className="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
                                 <strong> Duração:</strong> {spell.duration}

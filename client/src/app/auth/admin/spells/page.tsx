@@ -1,5 +1,5 @@
 "use client"
-import ClientsTable from '../../../../components/interface/tables/Spell/SpellsTable';
+import SpellsTable from '../../../../components/interface/tables/Spell/SpellsTable';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import HeaderAdmin from '@/components/layout/HeaderAdmin';
@@ -31,8 +31,10 @@ export default function Magic() {
 
   return (
     <>
+     <main className="bg-gradient-to-t from-gray-200 via-gray-300 to-gray-300">
       <HeaderAdmin /> 
-      <ClientsTable />
+      <SpellsTable />
+      </main>
     </>
   );
 }

@@ -1,5 +1,3 @@
-"use client"
-
 import React, { useState, useEffect } from 'react';
 import FormSpellCreate from '../../forms/formSpell/Create/FormSpellCreate';
 import FormSpellUpdate from '../../forms/formSpell/Update/FormSpellUpdate';
@@ -21,6 +19,7 @@ const SpellsTable: React.FC = () => {
   const [spells, setSpells] = useState<Spell[]>([]); // Initialize with an empty array
   const [editingSpell, setEditingSpell] = useState<Spell | null>(null);
   const [showEditSpell, setShowEditSpell] = useState(false);
+  const [confirmDeleteSpell, setConfirmDeleteSpell] = useState<Spell | null>(null);
 
   const handleEditSpellClick = (spell: Spell) => {
     setEditingSpell(spell);
@@ -39,6 +38,7 @@ const SpellsTable: React.FC = () => {
   const handleSpellCreated = (newSpell: Spell) => {
     setSpells([...spells, newSpell]);
   };
+
   const handleCloseAddSpells = () => {
     setShowAddSpell(false);
     // Atualize a tabela chamando a API novamente
@@ -49,9 +49,10 @@ const SpellsTable: React.FC = () => {
       })
       .catch((error) => console.error("Erro ao buscar funcionários:", error));
   };
+
   const handleUpdateSpell = (updatedSpell: Spell) => {
     const updatedSpells = spells.map((spell) =>
-    spell._id === updatedSpell._id ? updatedSpell : spell
+      spell._id === updatedSpell._id ? updatedSpell : spell
     );
     setSpells(updatedSpells);
     handleCloseEditSpell();
@@ -67,24 +68,39 @@ const SpellsTable: React.FC = () => {
   }, []);
 
   const handleDeleteSpell = async (id: string) => {
-    try {
-      const response = await fetch(`https://api-bladefall.vercel.app/spells/${id}`, {
-        method: 'DELETE',
-      });
-
-      if (response.ok) {
-        // Atualize a lista de serviços após a exclusão bem-sucedida
-        const updatedSpells = spells.filter((spell) => spell._id !== id);
-        toast.success("O spell foi excluído!");
-        setSpells(updatedSpells);
-      } else {
-        console.error('Erro ao excluir o spell:', response.statusText);
-        toast.error("Erro ao excluir o spell");
-      }
-    } catch (error) {
-      console.error('Erro de rede ao excluir o spell:', error);
-      toast.error("Erro de rede ao excluir o spell!");
+    const spellToDelete = spells.find(spell => spell._id === id);
+    if (spellToDelete) {
+      setConfirmDeleteSpell(spellToDelete);
     }
+  };
+
+  const confirmDelete = async () => {
+    if (confirmDeleteSpell) {
+      try {
+        const response = await fetch(`https://api-bladefall.vercel.app/spells/${confirmDeleteSpell._id}`, {
+          method: 'DELETE',
+        });
+
+        if (response.ok) {
+          // Atualize a lista de serviços após a exclusão bem-sucedida
+          const updatedSpells = spells.filter((spell) => spell._id !== confirmDeleteSpell._id);
+          toast.success("O spell foi excluído!");
+          setSpells(updatedSpells);
+        } else {
+          console.error('Erro ao excluir o spell:', response.statusText);
+          toast.error("Erro ao excluir o spell");
+        }
+      } catch (error) {
+        console.error('Erro de rede ao excluir o spell:', error);
+        toast.error("Erro de rede ao excluir o spell!");
+      } finally {
+        setConfirmDeleteSpell(null); // Limpe o estado de confirmação de exclusão
+      }
+    }
+  };
+
+  const cancelDelete = () => {
+    setConfirmDeleteSpell(null); // Limpe o estado de confirmação de exclusão
   };
 
   return (
@@ -95,7 +111,7 @@ const SpellsTable: React.FC = () => {
       <main className="pt-32 h-full bg-gradient-to-t from-gray-200 via-gray-300 to-gray-300">
         <section className="container">
           <div className="flex items-center md:gap-x-3 lg:gap-x-3">
-          <h1 className="text-md text-2xl font-bold text-gray-700 ml-0 md:ml-8 lg:ml-8">Magias de Blade Fall</h1>
+            <h1 className="text-md text-2xl font-bold text-gray-700 ml-0 md:ml-8 lg:ml-8">Magias de Blade Fall</h1>
             <button
               type="button"
               onClick={handleAddSpellClick}
@@ -157,13 +173,13 @@ const SpellsTable: React.FC = () => {
                           scope="col"
                           className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                         >
-                          Nível da Magia
+                          Descrição
                         </th>
                         <th
                           scope="col"
                           className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                         >
-                          Descrição
+                          Nível da Magia
                         </th>
                         <th scope="col" className="relative py-3.5 px-4">
                           <span className="sr-only">Edit</span>
@@ -205,11 +221,9 @@ const SpellsTable: React.FC = () => {
                               </p>
                             </div>
                           </td>
-                          <td className="px-4 py-4 text-sm whitespace-nowrap">
-                            <div className=" items-center max-w-full overflow-x-auto">
-                              <p className="text-black">
-                                {spell.description}
-                              </p>
+                          <td className="px-4 py-4 text-sm whitespace-normal break-words">
+                            <div className="items-center max-w-full overflow-x-auto">
+                              <p className="text-black">{spell.description}</p>
                             </div>
                           </td>
                           <td className="px-4 py-4 text-sm whitespace-nowrap">
@@ -224,6 +238,7 @@ const SpellsTable: React.FC = () => {
                               <button
                                 className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none"
                                 onClick={() => handleDeleteSpell(spell._id)}
+                                title='Excluir'
                               >
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
@@ -243,6 +258,7 @@ const SpellsTable: React.FC = () => {
                               <button
                                 className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none"
                                 onClick={() => handleEditSpellClick(spell)} // Abre o formulário de edição com o serviço
+                                title='Editar'
                               >                              <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -270,6 +286,47 @@ const SpellsTable: React.FC = () => {
           </div>
         </section>
       </main>
+
+      {/* Modal de confirmação */}
+      {confirmDeleteSpell && (
+        <div className="fixed z-10 inset-0 overflow-y-auto">
+          <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div className="fixed inset-0 transition-opacity" aria-hidden="true">
+              <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+            <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+              <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div className="sm:flex sm:items-start">
+                  <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                    <svg className="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </div>
+                  <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                    <h3 className="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                      Excluir Feitiço
+                    </h3>
+                    <div className="mt-2">
+                      <p className="text-sm text-gray-500">
+                        Tem certeza de que deseja excluir o feitiço <span className="font-medium">{confirmDeleteSpell.title}</span>? Essa ação não pode ser desfeita.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button onClick={confirmDelete} type="button" className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
+                  Excluir
+                </button>
+                <button onClick={cancelDelete} type="button" className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                  Cancelar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };
